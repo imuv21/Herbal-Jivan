@@ -27,7 +27,7 @@
     transition: all 0.5s ease-in-out;
 
     &.on-scroll {
-        background: var(--codeThree);
+        background: var(--codeSeven);
         box-shadow: var(--shadow-medium);
 
         .menu {
@@ -38,6 +38,14 @@
                     border-bottom: 1px solid var(--codeOne);
                     filter: drop-shadow(1px 1px 1px var(--codeOne));
                 }
+            }
+        }
+
+        .brand {
+            img {
+                width: 140px;
+                height: auto;
+                filter: drop-shadow(2px 2px 2px var(--codeFour));
             }
         }
     }
@@ -57,10 +65,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    transition: all 0.5s ease-in-out;
+
     img {
         width: 140px;
         height: auto;
-        filter: drop-shadow(2px 2px 2px var(--codeOne));
     }
 }
 
@@ -230,15 +239,18 @@
         padding: 10px 15px;
     }
 }
+
 @media only screen and (max-width: 840px) {
     .menu {
         &-block {
             display: none;
         }
     }
+
     .mlink {
         display: flex;
     }
+
     .menu {
         padding: 2rem 0rem;
 
@@ -251,6 +263,7 @@
         }
     }
 }
+
 @media only screen and (max-width: 550px) {
     .navbar {
         height: 50px;
