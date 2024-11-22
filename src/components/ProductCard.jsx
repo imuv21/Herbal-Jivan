@@ -19,7 +19,7 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
     const { fullStars, halfStar, emptyStars } = getStars(ratings);
 
     return (
-        <a className='show-img-detail-sub' href={`/product-details`}>
+        <a className='show-img-detail-sub' href={`/product-details/${id}`}>
             <img className='product-img-size' src={tempimg} alt={`${name}`} />
             <div className="discount-icon">{discountPercentage.toFixed(0)}% OFF</div>
             <div className='product-detail-info'>
@@ -34,7 +34,7 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
                         <span key={`empty-${i}`} className="dullStar"><StarOutlineIcon /></span>
                     ))}
                     &nbsp;&nbsp;<span className="textBig">{ratings}</span>
-                </div>;
+                </div>
                 <p className='product-title'>{name.length > 20 ? `${name.substring(0, 20)}...` : name}</p>
                 <div className='flex' style={{ gap: '10px' }}>
                     <p className='product-discount'>Rs. {Number(originalPrice).toFixed(2)}₹</p>

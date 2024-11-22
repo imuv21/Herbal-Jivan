@@ -13,11 +13,13 @@ const Layout = lazy(() => import('./components/Layout'));
 const Login = lazy(() => import('./pages/auth/Login'));
 const Signup = lazy(() => import('./pages/auth/Signup'));
 const Otp = lazy(() => import('./pages/auth/Otp'));
+const Rough = lazy(() => import('./pages/Rough'));
 
 //private
 const Home = lazy(() => import('./pages/Home'));
 const Profile = lazy(() => import('./pages/auth/Profile'));
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
+const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
             <Route path='/' element={<Layout><Home /></Layout>} />
             <Route path='/profile' element={<Layout><Profile /></Layout>} />
             <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
+            <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
+            <Route path='/rough' element={<Rough />} />
           </Route>
 
           {/* public */}
@@ -43,6 +47,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/verify-otp' element={<Otp />} />
+           
           </Route>
 
           {/* both */}

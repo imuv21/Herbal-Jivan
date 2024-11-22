@@ -27,11 +27,7 @@ const ImageSlider = ({ images, interval }) => {
             ))}
             <div className="dots">
                 {images.map((_, i) => (
-                    <span
-                        key={i}
-                        className={`dot ${i === index ? 'active' : ''}`}
-                        onClick={() => setIndex(i)}
-                    ></span>
+                    <span key={i} className={`dot ${i === index ? 'active' : ''}`} onClick={() => setIndex(i)}></span>
                 ))}
             </div>
         </div>

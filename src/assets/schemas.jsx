@@ -6,6 +6,20 @@ export const images = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s',
 ];
 
+export const productDetail = {
+    name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+    originalPrice: 1498,
+    salePrice: 953,
+    ratings: 3.7,
+    imageOne: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+    imageTwo: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
+    imageThree: 'https://herbalmax.in/cdn/shop/files/60-l-glutathione-tablet-for-glowing-skin-reduce-pigmentation-for-original-imah3abwqhztgtp3.jpg?v=1731665236&width=823',
+    imageFour: 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823',
+    imageFive: 'https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823',
+    productId: 'sgrehkliulrhtbtr',
+    info: 'Vitamin B12 Capsules are designed to support your daily energy levels and mental focus. Each easy-to-swallow capsule provides essential nutrients, including Vitamin B12, which may help you maintain a more vibrant, energetic lifestyle. Simple, effective, and easy to incorporate into your routine.',
+};
+
 export const products = [
     {
         name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
