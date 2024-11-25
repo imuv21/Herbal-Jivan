@@ -254,29 +254,33 @@ button:focus {
 }
 
 /* fonts */
+.headingBig {
+  font-size: 32px;
+  font-weight: 700;
+}
 
 .heading {
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .headingSmol {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .textBig {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .text {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .textSmol {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -325,7 +329,7 @@ button:focus {
   right: 0;
   bottom: 0;
   background: rgba(9, 9, 9, 0.732);
-  transition: opacity 0.3s, transform 0.3s;
+  transition: var(--trans);
   z-index: 1;
 }
 
@@ -356,7 +360,7 @@ button:focus {
 .popup-btn .popup {
   opacity: 0;
   bottom: -10px;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
+  transition: var(--trans);
 }
 
 .popup-btn.clicked .popup {
@@ -387,8 +391,40 @@ button:focus {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 50px;
   border-bottom: none !important;
+}
+
+.header-icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.cartIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartIcon .MuiSvgIcon-root {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.cartNum {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--codeFive);
+  color: var(--codeOne);
+  font-size: 12px;
+  border-radius: 50%;
 }
 
 .hover-div {
@@ -406,7 +442,7 @@ button:focus {
   left: 0;
   opacity: 0;
   transform: translateY(-20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: var(--trans);
   pointer-events: none;
   border-radius: var(--brOne);
 }
@@ -432,6 +468,21 @@ button:focus {
 }
 
 /* footer */
+.whatsapp {
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  z-index: 2;
+  transition: var(--trans);
+}
+
+.whatsapp:hover {
+  transform: scale(1.1);
+}
+
 .footer {
   width: 100%;
   background-color: var(--codeSeven);
@@ -454,17 +505,16 @@ button:focus {
 
 .payment-icon {
   width: 30px;
-  color: #fff;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: fill;
+  filter: drop-shadow(2px 2px 2px var(--codeFour));
 }
 
-.payment-icon:hover {
-  background-color: #fff;
-  transition: 0.6s ease-in-out;
-}
 
 .footer-img {
   font-size: 80px;
-  color: rgb(53, 161, 232);
+  color: var(--codeOne);
 }
 
 .para-1 {
@@ -491,7 +541,7 @@ button:focus {
   font-weight: 600;
   font-family: var(--font);
   color: var(--codeOne);
-  color: rgb(53, 161, 232);
+  color: var(--codeOne);
 }
 
 .para-3 {
@@ -517,7 +567,7 @@ button:focus {
 }
 
 .border-line-1 {
-  border: 1px solid black;
+  border: 1px solid var(--codeFour);
 }
 
 .footer-nav-item {
@@ -535,7 +585,7 @@ button:focus {
 .footer-flex-3 .MuiSvgIcon-root {
   width: 30px;
   height: 30px;
-  color: #07763c;
+  color: var(--codeSeven);
   cursor: pointer;
 }
 
@@ -745,58 +795,23 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
+  background: var(--codeFour);
 }
 
 .slide {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  will-change: opacity;
-}
-
-.dots {
-  position: absolute;
-  bottom: 10px;
-  display: flex;
-  gap: 7px;
-  justify-content: center;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.dot.active {
-  background: rgba(255, 255, 255, 1);
-}
-
-/* image slider pd */
-.slider-containerpd {
-  position: relative;
-  width: 100%;
-  height: 75vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
+  will-change: opacity;
 }
 
-.slidepd {
-  position: absolute;
+.slide-image {
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  will-change: opacity;
+  object-fit: fill;
 }
 
 .arrows {
@@ -808,52 +823,53 @@ button:focus {
   align-items: center;
   transform: translateY(-50%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: var(--trans);
 }
 
-.arrow {
-  font-size: 2rem;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.8);
+.arrows .MuiSvgIcon-root {
+  width: 40px;
+  height: 40px;
+  color: var(--codeTwo);
   cursor: pointer;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  user-select: none;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: var(--trans);
+  filter: drop-shadow(2px 2px 2px var(--codeFour));
 }
 
-.arrow:hover {
-  background: rgba(255, 255, 255, 0.8);
-  color: #000;
+.arrows .MuiSvgIcon-root:hover {
+  color: var(--codeOne);
 }
 
-.slider-containerpd:hover .arrows {
-  opacity: 1;
-}
-
-.dotspd {
+.dots {
   position: absolute;
   bottom: 10px;
   display: flex;
   gap: 7px;
   justify-content: center;
+  opacity: 0;
+  transition: var(--trans);
 }
 
-.dotpd {
+.dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--codeTwo);
   cursor: pointer;
-  transition: background 0.3s ease;
+  filter: drop-shadow(2px 2px 2px var(--codeFour));
+  transition: var(--trans);
 }
 
-.dotpd.active {
-  background: rgba(255, 255, 255, 1);
+.dot.active {
+  background: var(--codeOne);
 }
 
+.slider-container:hover .arrows {
+  opacity: 1;
+}
 
+.slider-container:hover .dots {
+  opacity: 1;
+}
 
 
 /* Card Carousel - product card */
@@ -994,7 +1010,7 @@ button:focus {
 }
 
 .btn-color-gr {
-  background-color: #07763c;
+  background-color: var(--codeSeven);
   border: none;
   outline: none;
   cursor: pointer;
@@ -1003,8 +1019,9 @@ button:focus {
 
 .btn-color-gr:hover {
   background-color: #000;
-  transition: 0.6s ease-in-out;
+  transition: var(--trans);
 }
+
 
 /* product detail page  */
 .pdCont {
@@ -1025,8 +1042,7 @@ button:focus {
   justify-content: flex-start;
 }
 
-
-
+/* image slider pd */
 .pdContImg {
   width: 100%;
   gap: 15px;
@@ -1036,56 +1052,28 @@ button:focus {
   justify-content: flex-start;
 }
 
-.mainImgCont {
+.slider-containerpd {
   position: relative;
-  display: inline-block;
-  width: 500px;
-  height: auto;
-  overflow: hidden;
-}
-
-.mainImageWrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: calc(100% * var(--num-images));
-}
-
-.mainImage {
   width: 100%;
-  max-width: 500px;
-  height: auto;
-  object-fit: contain;
-  outline: 1px solid black;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.imageSwitcher {
-  position: absolute;
-  top: 0;
-  left: 0;
+.slide-imagepd {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  object-fit: fill;
 }
 
-.mainImgCont:hover .imageSwitcher {
+.slider-containerpd:hover .arrows {
   opacity: 1;
 }
 
-.imageSwitcher .MuiSvgIcon-root {
-  width: 50px;
-  height: 50px;
-  color: var(--codeTwo);
-  filter: drop-shadow(2px 2px 2px #343434);
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-
-.imageSwitcher .MuiSvgIcon-root:hover {
-  color: var(--codeOne);
+.slider-containerpd:hover .dots {
+  opacity: 1;
 }
 
 .smallImages {
@@ -1096,19 +1084,20 @@ button:focus {
   justify-content: center;
 }
 
-.smallImages img {
+.smolImg {
   width: 60px;
   height: 60px;
   object-fit: fill;
-  outline: 1px solid black;
   cursor: pointer;
-  transition: transform 0.3s ease, outline 0.3s ease;
+  filter: drop-shadow(2px 2px 2px var(--codeOne));
+  transition: var(--trans);
 }
 
-.smallImages img.selected {
-  outline: 2px solid var(--codeOne);
+.smolImg.active {
+  filter: drop-shadow(2px 2px 2px var(--codeFour));
   transform: scale(1.1);
 }
+
 
 
 
@@ -1157,6 +1146,50 @@ button:focus {
   color: var(--codeThree);
 }
 
+.starContFour {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 3px;
+}
+
+.starFour .MuiSvgIcon-root {
+  width: 30px;
+  height: 30px;
+  color: gold;
+  cursor: pointer;
+}
+
+.dullStarFour .MuiSvgIcon-root {
+  width: 30px;
+  height: 30px;
+  color: var(--codeThree);
+  cursor: pointer;
+}
+
+.starContFive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0px;
+}
+
+.starFive .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
+  color: gold;
+  cursor: pointer;
+}
+
+.dullStarFive .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
+  color: var(--codeThree);
+  cursor: pointer;
+}
+
 .product-priceTwo {
   font-size: 23px;
   color: var(--codeSix);
@@ -1178,6 +1211,31 @@ button:focus {
   text-align: center;
   background-color: #ff7979;
   font-size: 15px;
+  color: white;
+  font-weight: 400;
+}
+
+.product-priceThree {
+  font-size: 20px;
+  color: var(--codeSix);
+}
+
+.product-discounThree {
+  text-decoration: line-through;
+  font-size: 14px;
+  color: var(--codeThree);
+}
+
+.discount-iconThree {
+  padding: 3px 8px;
+  border-radius: 10px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--codeFive);
+  font-size: 12px;
   color: white;
   font-weight: 400;
 }
@@ -1233,14 +1291,14 @@ button:focus {
 
 .plusMinusCont input {
   border: 1px solid var(--codeSix);
-  width: 70px;
+  width: 111px;
   text-align: center;
   background-color: var(--codeOne);
 }
 
 .payBtn {
   width: 100%;
-  max-width: 250px;
+  max-width: 200px;
   background-color: var(--codeSix);
   border: none;
 }
@@ -1258,17 +1316,18 @@ button:focus {
 
 .ratings {
   width: 100%;
+  padding-top: 10px;
   gap: 10px;
-  padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border-top: 1px solid var(--codeTwo);
+  border-bottom: 1px solid var(--codeTwo);
 }
 
 .ratingCont {
   width: 100%;
-  padding: 5px;
   gap: 20px;
   display: flex;
   flex-direction: row;
@@ -1278,12 +1337,11 @@ button:focus {
 
 .ratingBox {
   width: 100%;
-  height: 300px;
+  padding: 20px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  outline: 1px solid black;
 }
 
 .ratingline {
@@ -1293,12 +1351,14 @@ button:focus {
   flex-direction: row;
   gap: 20px;
 }
+
 .ratingline p {
   width: 20px;
   text-align: left;
   color: var(--codeThree);
   font-size: 14px;
 }
+
 .line {
   width: 150px;
   height: 10px;
@@ -1307,11 +1367,437 @@ button:focus {
   border-radius: 5px;
   overflow: hidden;
 }
+
 .yellowline {
   background-color: #FFC107;
   height: 100%;
   position: absolute;
 }
+
+/* forms review & question */
+.reviewForm,
+.questionForm {
+  width: 100%;
+  max-width: 700px;
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid var(--codeTwo);
+  border-radius: var(--brOne);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.visible {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+/* image uploader  */
+.upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px dashed var(--codeThree);
+  border-radius: var(--brOne);
+  color: var(--codeThree);
+  font-size: 16px;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preview-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 1px solid var(--codeThree);
+  border-radius: var(--brOne);
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.delete-icon {
+  position: absolute;
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 2px;
+  right: 2px;
+  background-color: var(--codeOne);
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.delete-icon .MuiSvgIcon-root {
+  color: var(--codeFour);
+  width: 18px;
+  size: 18px;
+  transition: var(--trans);
+}
+
+.delete-icon:hover .MuiSvgIcon-root {
+  color: red;
+}
+
+/* r and q section*/
+.randqCont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0px;
+}
+
+.sortToggle {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--codeTwo);
+  border-top: 1px solid var(--codeTwo);
+}
+
+.reviewList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.reviewBox {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--codeTwo);
+  border-top: 1px solid var(--codeTwo);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.reviewprocont {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.reviewprocont .MuiSvgIcon-root {
+  width: 30px;
+  height: 30px;
+  color: var(--codeThree);
+}
+
+.reviewImages {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.reviewImages img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--brOne);
+}
+
+.questionList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.questionBox {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--codeTwo);
+  border-top: 1px solid var(--codeTwo);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.questionprocont {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.questionprocont .MuiSvgIcon-root {
+  width: 30px;
+  height: 30px;
+  color: var(--codeThree);
+}
+
+.questionList {
+  display: none;
+}
+
+.questionList.visible {
+  display: flex;
+}
+
+.questionList.hidden {
+  display: none;
+}
+
+.reply {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 5px;
+  background-color: #08894642;
+  border-radius: var(--brOne);
+}
+
+.reply .textBig {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.reviewListSort,
+.reviewList {
+  display: none;
+}
+
+.reviewListSort.visible,
+.reviewList.visible {
+  display: flex;
+}
+
+.reviewListSort.hidden,
+.reviewList.hidden {
+  display: none;
+}
+
+.reviewListSort {
+  width: fit-content;
+  color: var(--codeSix);
+  border: 1px solid var(--codeSix);
+}
+
+.toggleBtn {
+  background: var(--codeTwo);
+  color: var(--codeFour);
+  cursor: pointer;
+  transition: var(--trans);
+  border: none;
+}
+
+.toggleBtn.active {
+  background: var(--codeSix);
+  color: var(--codeOne);
+}
+
+.toggleBtn:not(.active):hover {
+  background: var(--codeThree)
+}
+
+/* you may also like  */
+.youlike {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* home - category  */
+.category {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.cate-item {
+  width: 370px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--brTwo);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cate-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: var(--trans);
+}
+
+.cate-item img:hover {
+  transform: scale(1.2);
+}
+
+.cate-item .heading {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--codeOne);
+  filter: drop-shadow(2px 2px 2px var(--codeFour));
+}
+
+/* cart page  */
+.cartCont {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.cartProducts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cartproCont {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--codeOne);
+  box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
+  border-radius: var(--brTwo);
+}
+.cartImg {
+  width: 110px;
+  height: 110px;
+  object-fit: fill;
+  border-radius: var(--brTwo);
+}
+.cartDetail {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.cartDetail button {
+  padding: 5px 10px;
+  background-color: var(--codeOne);
+  color: #ff7979;
+  border-radius: var(--brTwo);
+  border: 1px solid #ff7979;
+  transition: var(--trans);
+}
+.cartDetail button:hover {
+  background-color: #ff7979;
+  color: var(--codeOne);
+}
+.cartBtnsCont {
+  width: 100%;
+  max-width: 200px;
+  min-width: 180px;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.plusMinusCartCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--codeSix);
+  border-top-left-radius: var(--brOne);
+  border-top-right-radius: var(--brOne);
+  border-bottom-left-radius: var(--brOne);
+  border-bottom-right-radius: var(--brOne);
+  gap: 0px;
+}
+
+.plusMinusCartCont div {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.plusMinusCartCont .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
+  color: var(--codeOne);
+}
+
+.plusMinusCartCont input {
+  border: 1px solid var(--codeSix);
+  width: 100%;
+  text-align: center;
+  background-color: var(--codeOne);
+  border-radius: var(--brOne);
+}
+
+.cartCalc {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  height: 500px;
+  background: var(--codeOne);
+  box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
+  border-radius: var(--brTwo);
+}
+
 
 
 

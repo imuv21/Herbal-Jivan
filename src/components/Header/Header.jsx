@@ -8,6 +8,9 @@ import { logoutUser, deleteUser } from '../../slices/authSlice';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchIcon from '@mui/icons-material/Search';
 import logo from '../../assets/images/tempLogo.png';
 
 
@@ -94,7 +97,7 @@ const Header = () => {
     return (
         <Fragment>
             <header className="header" id="header">
-                <nav className="navbar container">
+                <nav className="navbar">
                     <div className='headerBox'>
                         <div className="burger" id="burger">
                             <span className="burger-line"></span>
@@ -104,25 +107,35 @@ const Header = () => {
                         <a href="/" className="brand"><img src={logo} alt="Herbal Jivan" /></a>
                     </div>
 
+                    <div className='searchCont'>
+                        <input type="text" placeholder='Search products...' />
+                        <SearchIcon />
+                    </div>
+
                     <div className="menu" id="menu">
                         <ul className="menu-inner">
-                            <li className="menu-item"><a href="/about-us" className="menu-link">About us</a></li>
-                            <li className="menu-item"><a href="/contact-us" className="menu-link">Contact us</a></li>
+                            {/* <li className="menu-item"><a href="/about-us" className="menu-link">About us</a></li> */}
+                            <li className="menu-item">
+                                <a href="/cart" className="menu-link cartIcon">
+                                    <ShoppingCartIcon />
+                                    <div className='cartNum'>12</div>
+                                </a>
+                            </li>
                             <li className="menu-item">
                                 <a href="/profile" className="menu-link main-div" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-                                    Account <KeyboardArrowDownIcon />
+                                    <AccountCircleIcon className='header-icon' /> <KeyboardArrowDownIcon />
                                     <div className={`hover-div ${isHovered ? 'visible' : ''}`}>
                                         <a href='/profile' className='text'>Profile</a>
-                                        <a href='/chats' className='text'>Chats</a>
-                                        <a href='/likes' className='text'>Likes</a>
+                                        <a href="/contact-us" className='text'>Contact us</a>
+                                        <a href="/about-us" className='text'>About us</a>
                                         <a onClick={logout} className='text'>Logout</a>
                                         <a onClick={deleteAccount} className='text'>Delete Account</a>
                                     </div>
                                 </a>
                             </li>
                             <li className="menu-item mlink"><a href="/profile" className="menu-link">Profile</a></li>
-                            <li className="menu-item mlink"><a href="/chats" className="menu-link">Chats</a></li>
-                            <li className="menu-item mlink"><a href="/likes" className="menu-link">Likes</a></li>
+                            <li className="menu-item mlink"><a href="/contact-us" className="menu-link">Contact us</a></li>
+                            <li className="menu-item mlink"><a href="/about-us" className="menu-link">About us</a></li>
                             <li className="menu-item mlink"><a onClick={logout} className="menu-link">Logout</a></li>
                             <li className="menu-item mlink"><a onClick={deleteAccount} className="menu-link">Delete Account</a></li>
                         </ul>

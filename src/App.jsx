@@ -20,6 +20,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Profile = lazy(() => import('./pages/auth/Profile'));
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
 const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
+const Cart = lazy(() => import('./pages/shop/Cart'));
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
   const user = true;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Suspense fallback={<Loader />}>
         <Toaster />
         <Routes>
@@ -39,7 +40,9 @@ function App() {
             <Route path='/profile' element={<Layout><Profile /></Layout>} />
             <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
             <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
+            <Route path='/cart' element={<Layout><Cart /></Layout>} />
             <Route path='/rough' element={<Rough />} />
+
           </Route>
 
           {/* public */}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 
 const ImageSlider = ({ images, interval }) => {
@@ -9,7 +11,7 @@ const ImageSlider = ({ images, interval }) => {
         const timer = setInterval(() => {
             setIndex((prev) => (prev + 1) % images.length);
         }, interval);
-        return () => clearInterval(timer); 
+        return () => clearInterval(timer);
     }, [images.length, interval]);
 
     const transitions = useTransition(index, {
@@ -20,11 +22,20 @@ const ImageSlider = ({ images, interval }) => {
         config: { duration: 1000 },
     });
 
+    const handlePrev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
+    const handleNext = () => setIndex((prev) => (prev + 1) % images.length);
+
     return (
         <div className="slider-container">
             {transitions((style, i) => (
-                <animated.div className="slide" style={{ ...style, backgroundImage: `url(${images[i]})` }} />
+                <animated.div className="slide" style={style}>
+                    <img src={images[i]} alt={`Slide ${i}`} className="slide-image" />
+                </animated.div>
             ))}
+            <div className="arrows">
+                <span className="arrow left"><ArrowCircleLeftIcon onClick={handlePrev} /></span>
+                <span className="arrow right" ><ArrowCircleRightIcon onClick={handleNext} /></span>
+            </div>
             <div className="dots">
                 {images.map((_, i) => (
                     <span key={i} className={`dot ${i === index ? 'active' : ''}`} onClick={() => setIndex(i)}></span>

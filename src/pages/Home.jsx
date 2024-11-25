@@ -4,6 +4,7 @@ import Loader from '../components/Loader/Loader';
 import { images } from '../assets/schemas';
 import Carousel from '../components/Carousel';
 import { products } from '../assets/schemas';
+import tempImage from '../assets/images/defaultImage.jpg';
 const ImageSlider = lazy(() => import('../components/ImageSlider'));
 
 const Home = () => {
@@ -15,15 +16,39 @@ const Home = () => {
         <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
         <link rel="canonical" href="https://herbaljivan.netlify.app" />
       </Helmet>
-      <section className='page flexcol g5 center'>
+      <section className='page flexcol center'>
         <Suspense fallback={<Loader />}>
           <ImageSlider images={images} interval={5000} />
         </Suspense>
 
-        <article><h1 className='heading'>Best Deals</h1></article>
+        <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Best Deals</h1></article>
         <Carousel products={products} />
 
-        <article><h1 className='heading'>Daily Wellness</h1></article>
+        <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Shop By Category</h1></article>
+        <section className="category">
+          <article className='cate-item'>
+            <img src={tempImage} alt="JOINT PAIN" />
+            <h1 className='heading'>JOINT PAIN</h1>
+          </article>
+          <article className='cate-item'>
+            <img src={tempImage} alt="HAIR FALL" />
+            <h1 className='heading'>HAIR FALL</h1>
+          </article>
+          <article className='cate-item'>
+            <img src={tempImage} alt="WEIGHT GAIN" />
+            <h1 className='heading'>WEIGHT GAIN</h1>
+          </article>
+          <article className='cate-item'>
+            <img src={tempImage} alt="DIABETIC" />
+            <h1 className='heading'>DIABETIC</h1>
+          </article>
+          <article className='cate-item'>
+            <img src={tempImage} alt="SEXUAL" />
+            <h1 className='heading'>SEXUAL</h1>
+          </article>
+        </section>
+
+        <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Daily Wellness</h1></article>
         <Carousel products={products} />
 
       </section>

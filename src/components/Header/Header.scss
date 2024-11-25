@@ -12,10 +12,6 @@
     text-rendering: optimizeLegibility;
 }
 
-.container {
-    padding: 10px 100px;
-}
-
 .header {
     position: fixed;
     top: 0;
@@ -35,8 +31,7 @@
                 color: var(--codeOne);
 
                 &:hover {
-                    border-bottom: 1px solid var(--codeOne);
-                    filter: drop-shadow(1px 1px 1px var(--codeOne));
+                    filter: drop-shadow(1px 1px 1px var(--codeFive));
                 }
             }
         }
@@ -48,17 +43,58 @@
                 filter: drop-shadow(2px 2px 2px var(--codeFour));
             }
         }
+
+        .searchCont {
+            input {
+                border: 1px solid var(--codeOne);
+                color: var(--codeOne);
+            }
+            input::placeholder {
+                color: var(--codeOne);
+            }
+            .MuiSvgIcon-root {
+                color: var(--codeOne);
+            }
+        }
     }
 }
 
 .navbar {
+    padding: 10px 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     height: 80px;
 }
+
+.searchCont {
+    position: relative;
+    margin: 0px auto;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+        width: 100%;
+        border: 1px solid var(--codeThree);
+        transition: var(--trans);
+    }
+
+    .MuiSvgIcon-root {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        color: var(--codeThree);
+        transition: var(--trans);
+    }
+}
+
 
 .brand {
     display: flex;
@@ -102,7 +138,6 @@
         font-family: var(--font);
         font-size: 13px;
         font-weight: 540;
-        line-height: 1.5;
         color: var(--codeThree);
         text-transform: uppercase;
         border-bottom: 1px solid transparent;
@@ -111,7 +146,6 @@
 
         &:hover {
             color: var(--codeThree);
-            border-bottom: 1px solid var(--codeThree);
             filter: drop-shadow(1px 1px 1px var(--codeThree));
         }
     }
@@ -235,7 +269,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-    .container {
+    .navbar {
         padding: 10px 15px;
     }
 }

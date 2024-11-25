@@ -12,7 +12,6 @@ import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
 
-
 const Footer = () => {
     return (
         <Fragment>

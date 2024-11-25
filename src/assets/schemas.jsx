@@ -10,7 +10,11 @@ export const productDetail = {
     name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
     originalPrice: 1498,
     salePrice: 953,
-    ratings: 3.7,
+    onestar: 42,
+    twostar: 0,
+    threestar: 18,
+    fourstar: 35,
+    fivestar: 57,
     imageOne: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
     imageTwo: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
     imageThree: 'https://herbalmax.in/cdn/shop/files/60-l-glutathione-tablet-for-glowing-skin-reduce-pigmentation-for-original-imah3abwqhztgtp3.jpg?v=1731665236&width=823',
@@ -102,3 +106,99 @@ export const products = [
         productId: 'sgrehrhii6ktbtr',
     },
 ];
+
+export const reviews = [
+    {
+        rating: 4,
+        name: 'Alice Johnson',
+        review: 'The product worked well for me. The herbal ingredients seem effective.',
+        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+    },
+    {
+        rating: 5,
+        name: 'Michael Brown',
+        review: 'Excellent quality! I feel more energetic after using it. Highly recommend.',
+        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+    },
+    {
+        rating: 3,
+        name: 'Sophia Lee',
+        review: 'Decent product, but I expected better packaging. Hope it improves.',
+        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+    },
+    {
+        rating: 2,
+        name: 'David Smith',
+        review: 'Not satisfied. It didn’t meet my expectations. Maybe it works for others.',
+        reviewImages: [],
+    },
+    {
+        rating: 5,
+        name: 'Emma Davis',
+        review: 'Amazing results! Quick delivery and great customer service. Loved it.',
+        reviewImages: [],
+    },
+    {
+        rating: 4,
+        name: 'Chris Wilson',
+        review: 'Very good product. It’s helping me with my health goals. Worth the price.',
+        reviewImages: [],
+    },
+    {
+        rating: 1,
+        name: 'Olivia Garcia',
+        review: 'Disappointed. The product didn’t work as advertised. Waste of money.',
+        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+    },
+    {
+        rating: 5,
+        name: 'James Martinez',
+        review: 'Fantastic product! I’ve been using it for weeks and see great results.',
+        reviewImages: [],
+    },
+];
+
+export const quests = [
+    {
+        name: 'John Doe',
+        question: 'Does it work on our body?',
+        reply: 'Yes, it can help boost natural production of glutathione in the body.',
+    },
+    {
+        name: 'Alice Johnson',
+        question: 'How long does it take to see results?',
+        reply: 'Results may vary, but most users notice improvements within 2-4 weeks of consistent use.',
+    },
+    {
+        name: 'Michael Brown',
+        question: 'Is it safe for daily use?',
+        reply: 'Yes, the product is formulated with natural ingredients and is safe for daily use as recommended.',
+    },
+    {
+        name: 'Emma Davis',
+        question: 'Can it be used alongside other supplements?',
+        reply: 'Yes, it can be taken with other supplements, but we recommend consulting your healthcare provider first.',
+    },
+    {
+        name: 'Chris Wilson',
+        question: 'Is this product suitable for vegetarians?',
+        reply: 'Yes, this product is 100% vegetarian-friendly.',
+    },
+    {
+        name: 'Sophia Lee',
+        question: 'What is the best time to take this supplement?',
+        reply: 'It is best taken in the morning with breakfast or as directed by your physician.',
+    },
+    {
+        name: 'David Smith',
+        question: 'Are there any side effects?',
+        reply: 'No major side effects have been reported, but it’s always best to follow the recommended dosage.',
+    },
+    {
+        name: 'Olivia Garcia',
+        question: 'Can children use this product?',
+        reply: 'This product is recommended for adults. Consult a pediatrician for child-specific advice.',
+    },
+];
+
+
