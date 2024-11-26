@@ -42,6 +42,10 @@ const Cart = () => {
         return totalPrice.toFixed(2);
     }
 
+    const subTotal = products.reduce((sum, item, index) => {
+        return sum + (item.salePrice || 0) * (quantities[index] || 1);
+    }, 0);
+
 
     return (
         <Fragment>
@@ -53,6 +57,7 @@ const Cart = () => {
             <section className='page flexcol center'>
                 <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Shopping Cart</h1></article>
                 <section className='cartCont'>
+
                     <article className='cartProducts'>
                         {products && products.map((item, index) => (
                             <article key={index} className='cartproCont'>
@@ -77,9 +82,23 @@ const Cart = () => {
                             </article>
                         ))}
                     </article>
-                    <article className='cartCalc'>
 
+                    <article className='cartCalc'>
+                        <article><h1 className='heading' style={{ color: 'var(--codeSix)' }}>Cart Summary</h1></article>
+                        <div className="flexcol center g5 wh">
+                            <input className='applyInput' type="text" placeholder='Enter the code' />
+                            <button style={{width: '100%'}}>Apply coupon</button>
+                        </div>
+                        <div className="flexcol start-center wh g5">
+                            <div className="flex center-space wh">
+                                <p className="textBig">Subtotal</p>
+                                <p className="textBig">Rs. {subTotal}₹</p>
+                            </div>
+                            <p className="textSmol">Tax included. Shipping calculated at checkout.</p>
+                        </div>
+                        <button style={{width: '100%'}}>Buy Now</button>
                     </article>
+
                 </section>
             </section>
         </Fragment>

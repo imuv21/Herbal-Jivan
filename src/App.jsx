@@ -42,7 +42,6 @@ function App() {
             <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
             <Route path='/cart' element={<Layout><Cart /></Layout>} />
             <Route path='/rough' element={<Rough />} />
-
           </Route>
 
           {/* public */}

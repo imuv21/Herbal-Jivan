@@ -40,7 +40,7 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
                     <p className='product-discount'>Rs. {Number(originalPrice).toFixed(2)}₹</p>
                     <p className='product-price'>Rs. {Number(salePrice).toFixed(2)}₹</p>
                 </div>
-                <button className='addToCartBtn'><AddShoppingCartIcon />Add to cart</button>
+                <button className='applyBtn'><AddShoppingCartIcon />Add to cart</button>
             </div>
         </a>
     )

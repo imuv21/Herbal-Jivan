@@ -1,9 +1,9 @@
 import './Header.scss';
 import React, { useState, useEffect, Fragment } from 'react';
 import { toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logoutUser, deleteUser } from '../../slices/authSlice';
+import { logoutUser } from '../../slices/authSlice';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -18,7 +18,6 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector((state) => state.auth.user);
     const [isHovered, setIsHovered] = useState(false);
 
     const logout = async (e) => {
@@ -30,19 +29,6 @@ const Header = () => {
             toast(<div className='flex center g5'> < NewReleasesIcon /> Error logging out...</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         } finally {
             navigate('/login');
-        }
-    }
-    const deleteAccount = async (e) => {
-        e.preventDefault();
-        try {
-            const deleteResponse = await dispatch(deleteUser({ email: user.email, password: user.password })).unwrap();
-            if (deleteResponse.status === 'success') {
-                toast(<div className='flex center g5'> < VerifiedIcon /> {deleteResponse.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-            } else {
-                toast(<div className='flex center g5'> < NewReleasesIcon /> {deleteResponse.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-            }
-        } catch (error) {
-            toast(<div className='flex center g5'> < NewReleasesIcon /> Error deleting account...</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         }
     }
 
@@ -114,7 +100,6 @@ const Header = () => {
 
                     <div className="menu" id="menu">
                         <ul className="menu-inner">
-                            {/* <li className="menu-item"><a href="/about-us" className="menu-link">About us</a></li> */}
                             <li className="menu-item">
                                 <a href="/cart" className="menu-link cartIcon">
                                     <ShoppingCartIcon />
@@ -126,21 +111,20 @@ const Header = () => {
                                     <AccountCircleIcon className='header-icon' /> <KeyboardArrowDownIcon />
                                     <div className={`hover-div ${isHovered ? 'visible' : ''}`}>
                                         <a href='/profile' className='text'>Profile</a>
+                                        <a href='/orders' className='text'>Orders</a>
                                         <a href="/contact-us" className='text'>Contact us</a>
                                         <a href="/about-us" className='text'>About us</a>
                                         <a onClick={logout} className='text'>Logout</a>
-                                        <a onClick={deleteAccount} className='text'>Delete Account</a>
                                     </div>
                                 </a>
                             </li>
                             <li className="menu-item mlink"><a href="/profile" className="menu-link">Profile</a></li>
+                            <li className="menu-item mlink"><a href='/orders' className="menu-link">Orders</a></li>
                             <li className="menu-item mlink"><a href="/contact-us" className="menu-link">Contact us</a></li>
                             <li className="menu-item mlink"><a href="/about-us" className="menu-link">About us</a></li>
                             <li className="menu-item mlink"><a onClick={logout} className="menu-link">Logout</a></li>
-                            <li className="menu-item mlink"><a onClick={deleteAccount} className="menu-link">Delete Account</a></li>
                         </ul>
                     </div>
-                    {/* <a href="/contact-us" className="menu-block">Sign up &nbsp;&nbsp; <EastIcon /></a> */}
                 </nav>
             </header>
         </Fragment>

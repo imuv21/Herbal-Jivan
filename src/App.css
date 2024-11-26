@@ -125,11 +125,11 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-radius: var(--brOne);
-  background: var(--codeFour);
+  background: var(--codeSix);
   color: var(--codeOne);
-  border: 1px solid var(--codeFour);
-  padding: 10px 30px;
+  border: 1px solid var(--codeSix);
+  border-radius: var(--brOne);
+  padding: 8px 30px;
 }
 
 select,
@@ -388,10 +388,10 @@ button:focus {
 
 .main-div {
   display: flex;
+  height: 50px;
   justify-content: center;
   align-items: center;
   position: relative;
-  border-bottom: none !important;
 }
 
 .header-icon {
@@ -603,13 +603,6 @@ button:focus {
   box-shadow: 5px 5px 13px #d4d4d4, -5px -5px 13px #ffffff;
 }
 
-.headerBox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
 .otpBox {
   width: 50px;
 }
@@ -791,6 +784,7 @@ button:focus {
   position: relative;
   width: 100%;
   height: 75vh;
+  margin-top: 80px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -933,7 +927,7 @@ button:focus {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .product-title {
@@ -949,19 +943,6 @@ button:focus {
   text-decoration: line-through;
   font-size: 13px;
   color: var(--codeThree);
-}
-
-.addToCartBtn {
-  width: 100%;
-  background-color: var(--codeOne);
-  color: var(--codeSix);
-  border: 1px solid var(--codeSix);
-  transition: var(--trans);
-}
-
-.addToCartBtn:hover {
-  background-color: var(--codeSix);
-  color: var(--codeOne);
 }
 
 .starCont {
@@ -1007,19 +988,6 @@ button:focus {
   display: flex;
   justify-content: start;
   gap: 100px;
-}
-
-.btn-color-gr {
-  background-color: var(--codeSeven);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.btn-color-gr:hover {
-  background-color: #000;
-  transition: var(--trans);
 }
 
 
@@ -1712,12 +1680,14 @@ button:focus {
   box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
   border-radius: var(--brTwo);
 }
+
 .cartImg {
   width: 110px;
   height: 110px;
   object-fit: fill;
   border-radius: var(--brTwo);
 }
+
 .cartDetail {
   width: 100%;
   gap: 10px;
@@ -1727,6 +1697,7 @@ button:focus {
   align-items: flex-start;
   justify-content: flex-start;
 }
+
 .cartDetail button {
   padding: 5px 10px;
   background-color: var(--codeOne);
@@ -1735,10 +1706,12 @@ button:focus {
   border: 1px solid #ff7979;
   transition: var(--trans);
 }
+
 .cartDetail button:hover {
   background-color: #ff7979;
   color: var(--codeOne);
 }
+
 .cartBtnsCont {
   width: 100%;
   max-width: 200px;
@@ -1789,14 +1762,32 @@ button:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px;
-  gap: 10px;
-  height: 500px;
+  gap: 30px;
   background: var(--codeOne);
   box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
   border-radius: var(--brTwo);
 }
+
+.applyInput {
+  border: 1px solid var(--codeSix);
+  color: var(--codeSix);
+}
+
+.applyBtn {
+  width: 100%;
+  padding: 5px 10px;
+  background-color: var(--codeOne);
+  border: 1px solid var(--codeSix);
+  color: var(--codeSix);
+}
+.applyBtn:hover {
+  background-color: var(--codeSix);
+  color: var(--codeOne);
+}
+
+
 
 
 
@@ -1805,7 +1796,7 @@ button:focus {
 .page {
   background: var(--codeOne);
   width: 100%;
-  padding: 80px 100px 40px 100px;
+  padding: 40px 100px 40px 100px;
   gap: 30px;
 }
 
@@ -1861,7 +1852,7 @@ button:focus {
   }
 
   .page {
-    padding: 80px 15px 20px 15px;
+    padding: 20px 15px 20px 15px;
     gap: 20px;
   }
 
@@ -1874,8 +1865,6 @@ button:focus {
     right: 10px;
     top: 15%;
   }
-
-
 
   .footer {
     padding: 20px;
@@ -1907,19 +1896,20 @@ button:focus {
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 640px) {
+  .slider-container {
+    margin-top: 50px;
+  }
+
   .main-div {
     display: none;
   }
-
+  .cartIcon {
+    display: none;
+  }
 
   .footer {
     padding: 20px;
-  }
-
-  .footer-nav-item {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
   }
 
   .footer-img {
@@ -1941,9 +1931,7 @@ button:focus {
   .message-box-text {
     width: 500px;
   }
-}
 
-@media screen and (max-width: 640px) {
   .profile {
     width: 100%;
     gap: 20px;
@@ -1959,19 +1947,30 @@ button:focus {
     margin-top: 10px;
   }
 
-
-  .footer {
-    padding: 20px;
-  }
-
   .footer-nav-item {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
+  .footer-img {
+    font-size: 50px;
+  }
+
+  .foSize {
+    font-size: 12px;
+  }
+
+  .message-box-text {
+    width: 100%;
+    height: 200px;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+
   .input-width {
-    width: 250px;
-    border: none;
+    width: 100%;
   }
 
   .footer-img {
@@ -1984,10 +1983,6 @@ button:focus {
 
   .foSize {
     font-size: 12px;
-  }
-
-  .para-3 {
-    font-size: 14px;
   }
 
   .footer-flex-4 {
@@ -2001,42 +1996,5 @@ button:focus {
 }
 
 @media screen and (max-width: 550px) {
-  .page {
-    padding: 50px 15px 20px 15px;
-  }
-
-
-  .footer {
-    padding: 20px;
-  }
-
-  .footer-nav-item {
-    grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
-  }
-
-  .input-width {
-    width: 100%;
-  }
-
-  .footer-img {
-    font-size: 50px;
-  }
-
-  .para-1 {
-    font-size: 13px;
-  }
-
-  .foSize {
-    font-size: 12px;
-  }
-
-  .footer-flex-4 {
-    display: block;
-  }
-
-  .message-box-text {
-    width: 100%;
-    height: 200px;
-  }
+ 
 }

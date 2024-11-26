@@ -46,7 +46,7 @@ const ContactUs = () => {
                             <textarea className='message-box-text' name='message' value={contactUs.message} placeholder='Message here' onChange={handleContactChange} />
                         </div>
                     </form>
-                    <button type='submit' className=' btn-color-gr mt'>Submit</button>
+                    <button type='submit'>Submit</button>
                 </div>
                 <div className='footer-flex-2 mt-3'>
                     <div className=''>

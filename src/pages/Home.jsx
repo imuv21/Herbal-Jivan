@@ -16,10 +16,10 @@ const Home = () => {
         <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
         <link rel="canonical" href="https://herbaljivan.netlify.app" />
       </Helmet>
+      <Suspense fallback={<Loader />}>
+        <ImageSlider images={images} interval={5000} />
+      </Suspense>
       <section className='page flexcol center'>
-        <Suspense fallback={<Loader />}>
-          <ImageSlider images={images} interval={5000} />
-        </Suspense>
 
         <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Best Deals</h1></article>
         <Carousel products={products} />
