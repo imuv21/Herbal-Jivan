@@ -274,4 +274,31 @@ export const Orderproducts = [
     }
 ];
 
+export const Videos = [
+    {
+        id: "12345",
+        name: "Introduction to React",
+        link: "https://res.cloudinary.com/dfsohhjfo/video/upload/v1732796291/Videos/WhatsApp_Video_2024-11-28_at_5.47.17_PM_vfntah.mp4",
+        price: 19.99
+    },
+    {
+        id: "67890",
+        name: "Advanced JavaScript",
+        link: "https://res.cloudinary.com/dfsohhjfo/video/upload/v1732796291/Videos/WhatsApp_Video_2024-11-28_at_5.47.17_PM_vfntah.mp4",
+        price: 29.99
+    },
+    {
+        id: "11223",
+        name: "CSS Flexbox Mastery",
+        link: "https://res.cloudinary.com/dfsohhjfo/video/upload/v1732796291/Videos/WhatsApp_Video_2024-11-28_at_5.47.17_PM_vfntah.mp4",
+        price: 15.99
+    },
+    {
+        id: "44556",
+        name: "Python for Beginners",
+        link: "https://res.cloudinary.com/dfsohhjfo/video/upload/v1732796291/Videos/WhatsApp_Video_2024-11-28_at_5.47.17_PM_vfntah.mp4",
+
+        price: 24.99
+    },
+]
 

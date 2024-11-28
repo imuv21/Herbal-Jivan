@@ -62,21 +62,23 @@ const Cart = () => {
                         {products && products.map((item, index) => (
                             <article key={index} className='cartproCont'>
                                 <img src={item.image || cartImg} className='cartImg' alt={`${item.name}-${index}`} />
-                                <div className="cartDetail">
-                                    <p className="textSmol">{item.name}</p>
-                                    <div className='flex center g10'>
-                                        <p className='product-discounThree'>Rs. {Number(item.originalPrice).toFixed(2)}₹</p>
-                                        <p className='product-priceThree'>Rs. {Number(item.salePrice).toFixed(2)}₹</p>
-                                        <div className='discount-iconThree'>{discount(item.originalPrice, item.salePrice)}% OFF</div>
+                                <div className='cartDetailCont'>
+                                    <div className="cartDetail">
+                                        <p className="text">{item.name}</p>
+                                        <div className='cartPriceBox'>
+                                            <p className='product-discounThree'>Rs. {Number(item.originalPrice).toFixed(2)}₹</p>
+                                            <p className='product-priceThree'>Rs. {Number(item.salePrice).toFixed(2)}₹</p>
+                                            <div className='discount-iconThree'>{discount(item.originalPrice, item.salePrice)}% OFF</div>
+                                        </div>
+                                        <button>Remove</button>
                                     </div>
-                                    <button>Remove</button>
-                                </div>
-                                <div className="cartBtnsCont">
-                                    <p className='product-priceThree'>Rs. {totalPrice(item.salePrice, quantities[index])}₹</p>
-                                    <div className="plusMinusCartCont">
-                                        <div onClick={() => increase(index)}><AddIcon /></div>
-                                        <input type="number" value={quantities[index]} onChange={(e) => handleQuantity(index, e)} min={1} />
-                                        <div onClick={() => decrease(index)}><RemoveIcon /></div>
+                                    <div className="cartBtnsCont">
+                                        <p className='product-priceThree'>Rs. {totalPrice(item.salePrice, quantities[index])}₹</p>
+                                        <div className="plusMinusCartCont">
+                                            <div onClick={() => increase(index)}><AddIcon /></div>
+                                            <input type="number" value={quantities[index]} onChange={(e) => handleQuantity(index, e)} min={1} />
+                                            <div onClick={() => decrease(index)}><RemoveIcon /></div>
+                                        </div>
                                     </div>
                                 </div>
                             </article>
@@ -87,7 +89,7 @@ const Cart = () => {
                         <article><h1 className='heading' style={{ color: 'var(--codeSix)' }}>Cart Summary</h1></article>
                         <div className="flexcol center g5 wh">
                             <input className='applyInput' type="text" placeholder='Enter the code' />
-                            <button style={{width: '100%'}}>Apply coupon</button>
+                            <button style={{ width: '100%' }}>Apply coupon</button>
                         </div>
                         <div className="flexcol start-center wh g5">
                             <div className="flex center-space wh">
@@ -96,7 +98,7 @@ const Cart = () => {
                             </div>
                             <p className="textSmol">Tax included. Shipping calculated at checkout.</p>
                         </div>
-                        <button style={{width: '100%'}}>Buy Now</button>
+                        <button style={{ width: '100%' }}>Buy Now</button>
                     </article>
 
                 </section>

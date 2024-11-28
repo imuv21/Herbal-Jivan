@@ -6,6 +6,9 @@ import Carousel from '../components/Carousel';
 import { products } from '../assets/schemas';
 import tempImage from '../assets/images/defaultImage.jpg';
 const ImageSlider = lazy(() => import('../components/ImageSlider'));
+import VideoSec from '../components/VideoSec';
+import PopularCard from '../components/PopularCard';
+
 
 const Home = () => {
 
@@ -48,6 +51,10 @@ const Home = () => {
             <h1 className='heading'>SEXUAL</h1>
           </article>
         </section>
+
+        <VideoSec />
+        <article><h1 className='headingBig'>Popular Products</h1></article>
+        <PopularCard />
 
         <article><h1 className='headingBig'>Daily Wellness</h1></article>
         <Carousel products={products} />

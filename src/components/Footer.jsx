@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { MdSupportAgent } from "react-icons/md";
 import { MdPayment } from "react-icons/md";
@@ -11,12 +11,25 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Footer = () => {
+
+    const [email, setEmail] = useState('')
+
+    const notify = () => toast.success('Email Submitted');
+
+    const subscribe = async (e) => {
+        e.preventDefault()
+        notify()
+        setEmail('')
+    }
+
     return (
         <Fragment>
             <div className='footer'>
-                <div className='footer-flex-1'>
+                <div className='footer-header-con'>
                     <div className='support-1'>
                         <LiaShippingFastSolid className='footer-img' />
                         <p className='para-1 mt'>Free Shipping</p>
@@ -35,11 +48,15 @@ const Footer = () => {
                 </div>
                 <div className='border-line-1 mt-3'></div>
                 <div className='footer-nav-item mt-3'>
-                    <div className='footer-flex-2'>
+                    <div className='footer-flex-2  start'>
                         <div className='para-2'>KEEP IN TOUCH</div>
                         <p className='para-3 mt'>Expert Support</p>
-                        <input className='input-width' type='text' placeholder='Email' />
-                        <div className='para-2'>Payment Method</div>
+                        <form className='footer-input-con' onSubmit={subscribe}>
+                            <input className='input-width' type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} required />
+                            <button type="submit"> < ArrowForwardIosIcon /> </button>
+                        </form>
+                        <Toaster />
+                        <div className='para-2 mt-2'>Payment Method</div>
                         <div className='footer-flex-3 mt'>
                             <img className='payment-icon' src={Visa} />
                             <img className='payment-icon' src={Upi} />
@@ -67,18 +84,27 @@ const Footer = () => {
                     </div>
                     <div className='footer-flex-2'>
                         <div className='para-2'>CONNECT WITH US</div>
-                        <div className=' para-3 mt'>Address: Plot no. A-1/197,Hastsal,
+                        <div className=' para-3 mt'>Plot no. A-1/197,Hastsal,
                             <p className='para-3'>Uttam Nagar, Delhi, India, 110059</p></div>
-                        <div className='para-3'>Phone: 9599896554</div>
-                        <div className='para-3'>Email: herbalscience28@gmail.com</div>
-                        <div className='footer-flex-3 mt'>
-                            <FacebookIcon />
-                            <InstagramIcon />
-                            <XIcon />
-                            <YouTubeIcon />
+                        <div className='para-3'>+91-9599896554</div>
+                        <div className='para-3'>herbalscience28@gmail.com</div>
+
+                        <div className='icon-con-wrapper'>
+                            <a href='#' className='icon-con'>
+                                <FacebookIcon />
+                            </a>
+                            <a href='#' className='icon-con'>
+                                <InstagramIcon />
+                            </a>
+                            <a href='#' className='icon-con'>
+                                <XIcon />
+                            </a>
+                            <a href='#' className='icon-con'>
+                                <YouTubeIcon />
+                            </a>
                         </div>
-                        <div>
-                        </div>
+
+
                     </div>
                 </div>
                 <div className='border-line-1 mt-3'></div>

@@ -584,12 +584,13 @@ button:focus {
 }
 
 .border-line-1 {
-  border: 1px solid var(--codeFour);
+  border: 1px solid rgba(0, 0, 0, 0.093);
 }
 
 .footer-nav-item {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
 }
 
 .footer-flex-3 {
@@ -604,6 +605,42 @@ button:focus {
   height: 30px;
   color: var(--codeSeven);
   cursor: pointer;
+}
+
+.footer-input-con {
+  display: inline-flex;
+  background: white;
+  width: auto;
+  align-items: center;
+  gap: 12px;
+  padding-right: 6px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.footer-input-con input {
+  flex-grow: 1;
+  border: none;
+}
+
+.footer-input-con button {
+  background: none;
+  border: none;
+  padding: 0px;
+}
+
+.footer-input-con svg {
+  color: var(--codeThree);
+}
+
+.footer-header-con {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 30px;
 }
 
 
@@ -647,10 +684,12 @@ button:focus {
   padding: 20px;
   box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
 }
+
 .name {
   font-size: 16px;
   font-weight: 600;
 }
+
 .verify .MuiSvgIcon-root {
   width: 17px;
   height: 17px;
@@ -671,6 +710,7 @@ button:focus {
   border-radius: var(--brTwo);
   transition: var(--trans);
 }
+
 .addressCard:hover {
   background-color: var(--codeTwo);
   transform: translateY(-4px);
@@ -988,7 +1028,7 @@ button:focus {
 
 .contact-us-input-con {
   padding: 30px;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.104);
+  box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
   border-radius: 12px;
 }
 
@@ -1005,6 +1045,7 @@ button:focus {
   color: gray;
   line-height: 24px;
 }
+
 .pdCont {
   width: 100%;
   gap: 20px;
@@ -1199,12 +1240,14 @@ button:focus {
 .product-priceThree {
   font-size: 20px;
   color: var(--codeSix);
+  white-space: nowrap;
 }
 
 .product-discounThree {
   text-decoration: line-through;
   font-size: 14px;
   color: var(--codeThree);
+  white-space: nowrap;
 }
 
 .discount-iconThree {
@@ -1219,6 +1262,7 @@ button:focus {
   font-size: 12px;
   color: white;
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .pdFeatureIcons {
@@ -1666,6 +1710,14 @@ button:focus {
 }
 
 /* cart page  */
+.cartPriceBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
 .cartCont {
   display: flex;
   flex-direction: row;
@@ -1673,6 +1725,13 @@ button:focus {
   justify-content: center;
   width: 100%;
   gap: 20px;
+}
+.cartDetailCont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .cartProducts {
@@ -1697,6 +1756,7 @@ button:focus {
   border-radius: var(--brTwo);
   transition: var(--trans);
 }
+
 .cartproCont:hover {
   transform: translateY(-4px);
 }
@@ -1779,6 +1839,7 @@ button:focus {
 .cartCalc {
   width: 100%;
   max-width: 400px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1938,6 +1999,118 @@ button:focus {
   border: 1px solid var(--codeTwo);
 }
 
+ /* short video component  */
+.video-con-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 230px);
+  gap: 14px;
+  overflow-x: scroll;
+  justify-content: center;
+  width: 100%;
+}
+
+.video-con .video {
+  border-radius: 12px;
+  width: 230px !important;
+  height: 100%;
+}
+
+.video-con {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-info {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient( 180deg, rgb(0 0 0 / 6%) 26%, rgba(110, 110, 110, 0) 76%, rgb(0 0 0 / 78%) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.video-btn-play {
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 50%;
+  margin-left: auto;
+  pointer-events: all;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.356);
+}
+
+.video-product-con {
+  display: flex;
+  gap: 14px;
+  color: white;
+  pointer-events: all;
+}
+
+.video-product-con img {
+  height: 40px;
+  border-radius: 6px;
+}
+
+/* popup videcon */
+.video-con.popup-video {
+  width: 300px !important;
+}
+
+.video-popup-video {
+  width: 300px !important;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.popup .video-close-btn {
+  color: white;
+  margin-right: 0px;
+  position: absolute;
+  right: 20px;
+  top: 100px;
+}
+
+.popup .video-close-btn svg {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+/* popular card */
+.popular-card-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.popular-card-wrapper img {
+  width: 550px;
+  border-radius: 16px;
+  transition: all 0.4s;
+}
+
+.popular-card-wrapper img:hover {
+  transform: translateY(-4px);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.225);
+}
+
+.custom-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+
+
 
 
 .homepage {
@@ -1976,15 +2149,53 @@ button:focus {
 @media screen and (max-width: 1200px) {
 
   /* Styles for screens up to 1200px */
+  /* popular card */
+  .popular-card-wrapper {
+    overflow-x: auto;
+    justify-content: start;
+  }
+  .video-con-wrapper {
+    grid-template-columns: repeat(4, 210px);
+    justify-content: start;
+  }
+
+  .video-con .video {
+    width: 210px !important;
+  }
   /* contact us  */
   .contact-us-wrapper {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
+  .footer-nav-item {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
+
   /* Styles for screens up to 1024px */
+  .cartCont {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .cartCalc {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .plusMinusCartCont div {
+    padding: 3px 8px;
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -2056,30 +2267,30 @@ button:focus {
     font-size: 16px;
     line-height: 0px;
   }
-  
+
   .starTwo .MuiSvgIcon-root {
     width: 20px;
     height: 20px;
     color: gold;
   }
-  
+
   .dullStarTwo .MuiSvgIcon-root {
     width: 20px;
     height: 20px;
     color: var(--codeThree);
   }
-  
+
   .product-priceTwo {
     font-size: 16px;
     color: var(--codeSix);
   }
-  
+
   .product-discounTwo {
     text-decoration: line-through;
     font-size: 14px;
     color: var(--codeThree);
   }
-  
+
   .discount-iconTwo {
     padding: 2px 8px;
     border-radius: 12px;
@@ -2144,6 +2355,10 @@ button:focus {
 
   }
 
+  .footer-header-con {
+    justify-content: center;
+  }
+
   /* order  */
   .order-con {
     align-items: start;
@@ -2175,7 +2390,97 @@ button:focus {
   }
 }
 
+@media screen and (max-width: 660px) {
+  .cartproCont {
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: var(--codeOne);
+    box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
+    border-radius: var(--brTwo);
+    transition: var(--trans);
+  }
+  .cartImg {
+    width: 100%;
+    height: 250px;
+    object-fit: fill;
+    border-radius: var(--brTwo);
+  }
+  .cartDetailCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0px;
+  }
+
+  .cartBtnsCont {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .product-priceThree {
+    font-size: 16px;
+    color: var(--codeSix);
+    white-space: nowrap;
+  }
+  
+  .product-discounThree {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: var(--codeThree);
+    white-space: nowrap;
+  }
+  
+  .discount-iconThree {
+    padding: 2px 8px;
+    border-radius: 10px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--codeFive);
+    font-size: 11px;
+    color: white;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  
+  .cartDetail {
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .cartProducts {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+}
+
 @media screen and (max-width: 640px) {
+  
+   /* popular card */
+   .popular-card-wrapper img {
+    width: 400px;
+  }
 
   .ratingCont {
     width: 100%;
@@ -2185,6 +2490,7 @@ button:focus {
     align-items: flex-start;
     justify-content: center;
   }
+
   .ratingBox {
     padding: 5px;
   }
@@ -2277,10 +2583,50 @@ button:focus {
 }
 
 @media screen and (max-width: 550px) {
+
+   /* popular card */
+   .popular-card-wrapper img {
+    width: 300px;
+    border-radius: 16px;
+    transition: all 0.4s;
+  }
+
+  .cartProducts {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .contact-us-input-con {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .footer-flex-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+  }
+
+  .smolImg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer-nav-item {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 35px;
+  }
+
   .pdFeatureIcons {
     display: grid;
     grid-template-columns: 50% 50%;
   }
+
   .pdFeatureIcons div img {
     width: 50px;
     height: 50px;
