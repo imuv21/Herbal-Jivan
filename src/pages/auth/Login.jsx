@@ -86,7 +86,7 @@ const Login = () => {
           </div>
           {passwordError && <p className="error">{passwordError.msg}</p>}
 
-          <button type='submit' disabled={isSubmitting}>{isSubmitting ? 'Logging in...' : 'Login'}</button>
+          <button type='submit' style={{backgroundColor: 'var(--codeFour)', border: 'none'}} disabled={isSubmitting}>{isSubmitting ? 'Logging in...' : 'Login'}</button>
           {logError?.length > 0 && <p className="error flex center">Please correct the above errors.</p>}
           {logGenErrors && <p className="error flex center">{logGenErrors}</p>}
           <div className="minBox flexcol center">

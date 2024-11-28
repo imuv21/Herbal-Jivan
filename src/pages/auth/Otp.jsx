@@ -122,7 +122,7 @@ const Otp = () => {
                     </div>
 
                     <div className='flexcol center g10'>
-                        <button style={{ width: 'fit-content' }} disabled={timerRunning} className={timerRunning ? "disabled" : ""} onClick={handleResendClick}>
+                        <button style={{backgroundColor: 'var(--codeFour)', border: 'none'}} disabled={timerRunning} className={timerRunning ? "disabled" : ""} onClick={handleResendClick}>
                             {timerRunning ? `Resend OTP in ${timeLeft}` : "Resend OTP"}
                         </button>
                         <Link to="/signup" className='hover'>Back</Link>

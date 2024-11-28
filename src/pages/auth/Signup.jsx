@@ -134,7 +134,7 @@ const Signup = () => {
                         </div>
                         {confirmPasswordError && <p className="error">{confirmPasswordError.msg}</p>}
                     </div>
-                    <button type='submit' disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Signup'}</button>
+                    <button type='submit' style={{backgroundColor: 'var(--codeFour)', border: 'none'}} disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Signup'}</button>
                     {signError?.length > 0 && <p className="error flex center">Please correct the above errors.</p>}
                     {siGenErrors && <p className="error flex center">{siGenErrors}</p>}
                     <p className="text">Already have an account? <Link className='text hover' to='/login'>Click here</Link></p>

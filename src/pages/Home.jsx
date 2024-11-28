@@ -19,12 +19,13 @@ const Home = () => {
       <Suspense fallback={<Loader />}>
         <ImageSlider images={images} interval={5000} />
       </Suspense>
-      <section className='page flexcol center'>
+      <section className='homepage flexcol center'>
 
-        <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Best Deals</h1></article>
+        <article><h1 className='headingBig'>Best Deals</h1></article>
         <Carousel products={products} />
 
-        <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Shop By Category</h1></article>
+        <article><h1 className='headingBig'>Shop By Category</h1></article>
+
         <section className="category">
           <article className='cate-item'>
             <img src={tempImage} alt="JOINT PAIN" />
@@ -48,7 +49,7 @@ const Home = () => {
           </article>
         </section>
 
-        <article><h1 className='headingBig' style={{ color: 'var(--codeSix)' }}>Daily Wellness</h1></article>
+        <article><h1 className='headingBig'>Daily Wellness</h1></article>
         <Carousel products={products} />
 
       </section>

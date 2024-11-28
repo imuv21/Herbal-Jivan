@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 
+
 //components
 import Loader from './components/Loader/Loader';
 const Protector = lazy(() => import('./components/Protector'));
@@ -21,7 +22,7 @@ const Profile = lazy(() => import('./pages/auth/Profile'));
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
 const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
 const Cart = lazy(() => import('./pages/shop/Cart'));
-
+const Order = lazy(() => import('./pages/shop/Order'));
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
             <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
             <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
             <Route path='/cart' element={<Layout><Cart /></Layout>} />
+            <Route path='/orders' element={<Layout><Order /></Layout>} />
             <Route path='/rough' element={<Rough />} />
           </Route>
 

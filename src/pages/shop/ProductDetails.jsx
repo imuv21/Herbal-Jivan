@@ -284,7 +284,7 @@ const ProductDetails = () => {
               <div onClick={decrease}><RemoveIcon /></div>
             </div>
             <button className='payBtn'>Add to cart</button>
-            <p className='textBig' style={{ lineHeight: '24px', color: 'gray' }}>{productDetail?.info}</p>
+            <p className='textBig proDetext'>{productDetail?.info}</p>
             <div className="pdFeatureIcons">
               <div><img src={freedelivery} alt="delivery" /><p className="text">Free Delivery</p></div>
               <div><img src={cod} alt="pay-on-delivery" /><p className="text">Pay on Delivery</p></div>
@@ -298,7 +298,7 @@ const ProductDetails = () => {
         </section>
 
         <section className='ratings'>
-          <article><h1 className='heading' style={{ color: 'var(--codeSix)' }}>Customer Reviews</h1></article>
+          <article><h1 className='heading'>Customer Reviews</h1></article>
           <article className='ratingCont'>
 
             <div className='ratingBox g5'>
@@ -444,7 +444,7 @@ const ProductDetails = () => {
         </section>
 
         <section className="youlike">
-          <article><h1 className='heading' style={{ color: 'var(--codeSix)' }}>You May Also Like</h1></article>
+          <article><h1 className='heading'>You May Also Like</h1></article>
           <Carousel products={products} />
         </section>
 

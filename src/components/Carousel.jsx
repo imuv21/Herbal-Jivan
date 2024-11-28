@@ -46,23 +46,32 @@ const Carousel = ({ products }) => {
                 },
             },
             {
-                breakpoint: 1000,
+                breakpoint: 1240,
                 settings: {
                     slidesToShow: 4,
                     slidesToScroll: 2,
                 },
             },
             {
-                breakpoint: 800,
+                breakpoint: 1030,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                 },
             },
             {
-                breakpoint: 420,
+                breakpoint: 670,
                 settings: {
                     slidesToShow: 2,
+                    slidesToScroll: 1,
+                    nextArrow: null,
+                    prevArrow: null,
+                },
+            },
+            {
+                breakpoint: 450,
+                settings: {
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                     nextArrow: null,
                     prevArrow: null,
