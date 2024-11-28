@@ -300,5 +300,5 @@ export const Videos = [
 
         price: 24.99
     },
-]
+];
 
