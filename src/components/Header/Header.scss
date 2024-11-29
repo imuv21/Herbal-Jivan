@@ -106,14 +106,20 @@
         transition: var(--trans);
     }
 
-    .MuiSvgIcon-root {
+    button {
         position: absolute;
-        top: 5px;
-        right: 10px;
-        width: 25px;
-        height: 25px;
+        top: 6px;
+        right: 8px;
         color: var(--codeThree);
         transition: var(--trans);
+        border: none;
+        background: none;
+        padding: 0px;
+
+        .MuiSvgIcon-root {
+            width: 25px;
+            height: 25px;
+        }
     }
 }
 

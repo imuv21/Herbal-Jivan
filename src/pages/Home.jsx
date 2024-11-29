@@ -8,7 +8,7 @@ import tempImage from '../assets/images/defaultImage.jpg';
 const ImageSlider = lazy(() => import('../components/ImageSlider'));
 import VideoSec from '../components/VideoSec';
 import PopularCard from '../components/PopularCard';
-
+import InfSlider from '../components/InfSlider';
 
 const Home = () => {
 
@@ -58,6 +58,8 @@ const Home = () => {
 
         <article><h1 className='headingBig'>Daily Wellness</h1></article>
         <Carousel products={products} />
+
+        <InfSlider />
 
       </section>
     </Fragment>

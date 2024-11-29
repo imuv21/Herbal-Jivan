@@ -19,6 +19,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isHovered, setIsHovered] = useState(false);
+    const [searchInput , setSerachInput] = useState('');
 
     const logout = async (e) => {
         e.preventDefault();
@@ -30,6 +31,11 @@ const Header = () => {
         } finally {
             navigate('/login');
         }
+    }
+
+    const postSearch =(e)=>{
+        e.preventDefault();
+        navigate(`/search-results?query=${searchInput}`);
     }
 
     useEffect(() => {
@@ -93,10 +99,10 @@ const Header = () => {
                         <a href="/" className="brand"><img src={logo} alt="Herbal Jivan" /></a>
                     </div>
 
-                    <div className='searchCont'>
-                        <input type="text" placeholder='Search products...' />
-                        <SearchIcon />
-                    </div>
+                    <form className='searchCont' onSubmit={postSearch}>
+                        <input type="text" placeholder='Search products...' value={searchInput} onChange={(e)=> setSerachInput(e.target.value)} />
+                        <button type='submit'><SearchIcon /></button>
+                    </form>
 
                     <div className="menu" id="menu">
                         <ul className="menu-inner">

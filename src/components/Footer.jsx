@@ -66,7 +66,7 @@ const Footer = () => {
                     </div>
                     <div className='footer-flex-2'>
                         <div className='para-2'>QUICK LINKS</div>
-                        <div className=' para-3 mt'>About Us</div>
+                        <Link to='/about-us' className='para-3'>About Us</Link>
                         <div className='para-3'>Track Our Order</div>
                         <Link to='/contact-us' className='para-3'>Contact Us</Link>
                         <div className='para-3'>Terms of Services</div>

@@ -14,15 +14,20 @@ const Layout = lazy(() => import('./components/Layout'));
 const Login = lazy(() => import('./pages/auth/Login'));
 const Signup = lazy(() => import('./pages/auth/Signup'));
 const Otp = lazy(() => import('./pages/auth/Otp'));
-const Rough = lazy(() => import('./pages/Rough'));
 
 //private
-const Home = lazy(() => import('./pages/Home'));
 const Profile = lazy(() => import('./pages/auth/Profile'));
-const ContactUs = lazy(() => import('./pages/static/ContactUs'));
-const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
 const Cart = lazy(() => import('./pages/shop/Cart'));
 const Order = lazy(() => import('./pages/shop/Order'));
+
+//both
+const Home = lazy(() => import('./pages/Home'));
+const Search = lazy(() => import('./pages/shop/Search'));
+const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
+const ContactUs = lazy(() => import('./pages/static/ContactUs'));
+const AboutUs = lazy(() => import('./pages/static/AboutUs'));
+
+
 
 function App() {
 
@@ -37,13 +42,9 @@ function App() {
 
           {/* private */}
           <Route element={<Protector user={user} />}>
-            <Route path='/' element={<Layout><Home /></Layout>} />
             <Route path='/profile' element={<Layout><Profile /></Layout>} />
-            <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
-            <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
             <Route path='/cart' element={<Layout><Cart /></Layout>} />
             <Route path='/orders' element={<Layout><Order /></Layout>} />
-            <Route path='/rough' element={<Rough />} />
           </Route>
 
           {/* public */}
@@ -51,10 +52,14 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/verify-otp' element={<Otp />} />
-           
           </Route>
 
           {/* both */}
+          <Route path='/' element={<Layout><Home /></Layout>} />
+          <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
+          <Route path='/search-results' element={<Layout><Search /></Layout>} />
+          <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
+          <Route path='/about-us' element={<Layout><AboutUs /></Layout>} />
           <Route path='/loader' element={<Loader />} />
 
           {/* not found */}

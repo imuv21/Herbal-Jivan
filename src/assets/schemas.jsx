@@ -302,3 +302,29 @@ export const Videos = [
     },
 ];
 
+export const infslider = [
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461998/Ulinkit/Anmol-Logo_xtcnxq.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462000/Ulinkit/boat_logo_copy_w7ra0u.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461999/Ulinkit/apple2_y1pwpw.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462001/Ulinkit/Bombay-Dyeing-Logo_jvp2dh.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/motorolalogo_mxbke1.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/hplogo_laukjw.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/red_bull_logo.png_2.png_2_-_Copy_tvabwj.jpg",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/n_ubudr9.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462011/Ulinkit/samsunglogo_inbb3m.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462012/Ulinkit/tamronlogo_bqy3bq.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462015/Ulinkit/voltaslogo_lqolss.png",
+
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461998/Ulinkit/Anmol-Logo_xtcnxq.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462000/Ulinkit/boat_logo_copy_w7ra0u.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461999/Ulinkit/apple2_y1pwpw.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462001/Ulinkit/Bombay-Dyeing-Logo_jvp2dh.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/motorolalogo_mxbke1.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/hplogo_laukjw.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/red_bull_logo.png_2.png_2_-_Copy_tvabwj.jpg",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/n_ubudr9.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462011/Ulinkit/samsunglogo_inbb3m.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462012/Ulinkit/tamronlogo_bqy3bq.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462015/Ulinkit/voltaslogo_lqolss.png",
+];
+

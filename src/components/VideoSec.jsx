@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Videos } from "../assets/schemas";
 
 const VideoSec = () => {
+
     const [isClickedFooter, setIsClickedFooter] = useState(false);
     const [popupPlay, setPopupPlay] = useState(true);
     const [selectVideo, setSelectVideo] = useState(null);
@@ -72,7 +73,6 @@ const VideoSec = () => {
 
     return (
         <div className='video-con-wrapper custom-scroll'>
-
             {
                 Videos?.map((e, i) => {
                     return (
@@ -97,11 +97,9 @@ const VideoSec = () => {
                     )
                 })
             }
-
             <div className={`popup-btn ${isClickedFooter ? 'clicked' : ''}`}>
                 {isClickedFooter && selectVideo && (
                     <div className="popup">
-
                         <div className='video-con popup-video' >
                             <video className='video-popup-video' loop onClick={setPopupControl}>
                                 <source src={selectVideo.link} />
@@ -120,12 +118,9 @@ const VideoSec = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 )}
             </div>
-
-
         </div>
     )
 }
