@@ -13,17 +13,26 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import toast, { Toaster } from 'react-hot-toast';
+import DOMPurify from 'dompurify';
+
 
 const Footer = () => {
 
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState('');
 
     const notify = () => toast.success('Email Submitted');
+    const notifyFaild = () => toast.error('Something went wrong!');
 
     const subscribe = async (e) => {
-        e.preventDefault()
-        notify()
-        setEmail('')
+        e.preventDefault();
+        try {
+            const emailData = DOMPurify.sanitize(email);
+            notify();
+        } catch (error) {
+            notifyFaild();
+        } finally {
+            setEmail('');
+        }
     }
 
     return (
@@ -67,12 +76,12 @@ const Footer = () => {
                     <div className='footer-flex-2'>
                         <div className='para-2'>QUICK LINKS</div>
                         <Link to='/about-us' className='para-3'>About Us</Link>
-                        <div className='para-3'>Track Our Order</div>
+                        <div className='para-3'>Track Your Order</div>
                         <Link to='/contact-us' className='para-3'>Contact Us</Link>
                         <div className='para-3'>Terms of Services</div>
-                        <div className='para-3'>Refund and Term Services</div>
+                        <div className='para-3'>Refund And Return Policy</div>
                         <div className='para-3'>Shipping Policy</div>
-                        <div className='para-3'>Privacy and Policy</div>
+                        <div className='para-3'>Privacy Policy</div>
                     </div>
                     <div className='footer-flex-2'>
                         <div className='para-2'>CATEGORY</div>
@@ -81,6 +90,7 @@ const Footer = () => {
                         <div className='para-3'>Weight Gain</div>
                         <div className='para-3'>Diabetic</div>
                         <div className='para-3'>Sexual</div>
+                        <Link to='/bulk-order' className='para-3'>Bulk Order</Link>
                     </div>
                     <div className='footer-flex-2'>
                         <div className='para-2'>CONNECT WITH US</div>
@@ -103,8 +113,6 @@ const Footer = () => {
                                 <YouTubeIcon />
                             </a>
                         </div>
-
-
                     </div>
                 </div>
                 <div className='border-line-1 mt-3'></div>

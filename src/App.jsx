@@ -26,6 +26,7 @@ const Search = lazy(() => import('./pages/shop/Search'));
 const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
 const AboutUs = lazy(() => import('./pages/static/AboutUs'));
+const BulkOrder = lazy(() => import('./pages/static/BulkOrder'));
 
 
 
@@ -60,6 +61,7 @@ function App() {
           <Route path='/search-results' element={<Layout><Search /></Layout>} />
           <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
           <Route path='/about-us' element={<Layout><AboutUs /></Layout>} />
+          <Route path='/bulk-order' element={<Layout><BulkOrder /></Layout>} />
           <Route path='/loader' element={<Loader />} />
 
           {/* not found */}
