@@ -6,7 +6,6 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DoneIcon from '@mui/icons-material/Done';
-import Sliders from 'react-slick';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
@@ -104,24 +103,25 @@ const Order = () => {
                                                     </div>
 
                                                     <div>
-                                                        <div className='title textSmol'><LocalShippingIcon />Delivery Date</div>
+                                                        <div className='title textSmol'><DoneIcon /> Status</div>
+                                                        <div className='textSmol  fw-600' style={e.status == 'Processing' ? Processing : (e.status == 'Shipped' ? Shipped : (e.status == 'Delivered' && Delivered))} > {e.status}</div>
+                                                    </div>
+
+                                                    <div>
+                                                        <div className='title textSmol'><LocalShippingIcon />Expected Date</div>
                                                         <div className='textBig heading  fw-600'
                                                         >   {e.deliveryDate} </div>
                                                     </div>
 
-                                                    <div>
-                                                        <div className='title textSmol'><DoneIcon /> Status</div>
-                                                        <div className='textSmol  fw-600' style={e.status == 'Processing' ? Processing : (e.status == 'Shipped' ? Shipped : (e.status == 'Delivered' && Delivered))} > {e.status}</div>
-                                                    </div>
+                                                  
                                                 </div>
-
-
                                             </div>
 
-                                            <div className='order-con-one'>
 
-                                                
 
+                                            <div className='order-con-one custom-scroll'>
+
+                                        
                                                 <div className='order-card-product-con '>
                                                     <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
 
