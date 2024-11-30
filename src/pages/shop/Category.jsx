@@ -46,8 +46,6 @@ const Category = () => {
             </div>
 
 
-
-
             {
                 layout == layoutName.list
                     ?

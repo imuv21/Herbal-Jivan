@@ -6,6 +6,9 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DoneIcon from '@mui/icons-material/Done';
+import Sliders from 'react-slick';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 // pagination mui
 import Pagination from '@mui/material/Pagination';
@@ -28,6 +31,45 @@ const Order = () => {
     const PaginationBtn = Math.ceil(totalProduct / limit)
     const offset = (currentPage - 1) * limit
 
+    const NextArrow = (props) => {
+        const { style, onClick } = props;
+        return (
+            <div style={{ ...style, position: 'absolute', top: '50%', display: "flex", alignItems: 'center', justifyContent: 'center', background: "white", borderRadius: '50%', cursor: 'pointer', filter: 'drop-shadow(5px 5px 5px gray)', width: '40px', height: '40px', zIndex: '1', right: '0%' }} onClick={onClick}>
+                <ChevronRightIcon />
+            </div>
+        );
+    };
+    const PrevArrow = (props) => {
+        const { style, onClick } = props;
+        return (
+            <div style={{ ...style, position: 'absolute', top: '50%', display: "flex", alignItems: 'center', justifyContent: 'center', background: "white", borderRadius: '50%', cursor: 'pointer', filter: 'drop-shadow(5px 5px 5px gray)', width: '40px', height: '40px', zIndex: '1' }} onClick={onClick}>
+                <ChevronLeftIcon />
+            </div>
+        );
+    };
+
+    // slick setting
+    const settings = {
+        dots: false,
+        infinite: false,
+        arrow: false,
+        // speed: 400,
+        slidesToShow: 4,
+        slidesToScroll: 2,
+        responsive: [
+            {
+                breakpoint: 2000,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 2,
+                },
+            },
+
+
+        ],
+    };
+
+
     return (
         <Fragment>
             <Helmet>
@@ -45,19 +87,19 @@ const Order = () => {
                                 Orderproducts.slice(offset, (offset * 1) + limit).map((e) => {
                                     return (
                                         <div key={e.orderId} className='wh order-con'>
-                                            <div className='order-con-one'>
-                                                <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
-                                            </div>
+
 
                                             <div className='flexcol order-con-two-wrapper'>
                                                 <div className='order-con-two'>
                                                     <div>
-                                                        <div className='textSmol title'><InventoryIcon /> Product Name</div>
-                                                        <div className='textBig heading fw-600'> {e.productName.length >= 15 ?  e.productName.substring(0,15)+'...' : e.productName }</div>
+                                                        <div className='textSmol title'><InventoryIcon /> Order Id</div>
+                                                        <div className='textBig heading fw-600'>   <div className='textBig fw-500 order-text'>
+                                                            Order id : <span className='fw-600 textBig'>{e.orderId}</span>
+                                                        </div></div>
                                                     </div>
 
                                                     <div>
-                                                        <div className='title textSmol'> <CurrencyRupeeIcon /> Prize</div>
+                                                        <div className='title textSmol'> <CurrencyRupeeIcon />Total Prize</div>
                                                         <div className='textBig heading fw-600'> {e.price}</div>
                                                     </div>
 
@@ -68,19 +110,94 @@ const Order = () => {
                                                     </div>
 
                                                     <div>
-                                                        <div className='title textSmol'><DoneIcon/> Status</div>
+                                                        <div className='title textSmol'><DoneIcon /> Status</div>
                                                         <div className='textSmol  fw-600' style={e.status == 'Processing' ? Processing : (e.status == 'Shipped' ? Shipped : (e.status == 'Delivered' && Delivered))} > {e.status}</div>
                                                     </div>
                                                 </div>
 
-                                                <div className='bottom-info'>
-                                                    <div className='textBig fw-500 order-text'>
-                                                        Order id : <span className='fw-600 textBig'>{e.orderId}</span>
-                                                    </div>
-                                                    <div className='flex g15'>
-                                                        <a href=""><button>View Order </button></a>
-                                                        <a href=""><button className='cancel-btn'>Cancel </button></a>
-                                                    </div>
+
+                                            </div>
+
+                                            <div className='order-con-one'>
+
+                                                
+
+                                                <div className='order-card-product-con '>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+                                                  
+                                                <div className='order-card-product-con '>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+
+                                                <div className='order-card-product-con  '>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div className='order-card-product-con  '>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div className='order-card-product-con  '>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+
+                                                <div className='order-card-product-con '>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+
+                                                <div className='order-card-product-con'>
+                                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg" alt="" />
+
+                                                    <ul className='p-2 flexcol  mt'>
+                                                        <li>Price : <span className='fw-600'>2000</span></li>
+                                                        <li>Quantity : <span className='fw-600'>5</span></li>
+                                                    </ul>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div className='bottom-info '>
+                                                <div className='flex g15'>
+                                                    <a href=""><button>View Order </button></a>
+                                                    <a href=""><button className='cancel-btn'>Cancel </button></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +221,7 @@ const Order = () => {
                         {
                             products?.slice(0, 3).map((e) => {
                                 return (
-                                   <BuyMoreCard name={e.name} id={e.productId} image={e.image} ratings={e.ratings} originalPrice={e.originalPrice} salePrice={e.salePrice}/>
+                                    <BuyMoreCard name={e.name} id={e.productId} image={e.image} ratings={e.ratings} originalPrice={e.originalPrice} salePrice={e.salePrice} />
                                 )
                             })
                         }

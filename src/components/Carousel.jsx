@@ -28,7 +28,6 @@ const Carousel = ({ products }) => {
             </div>
         );
     };
-
     const settings = {
         dots: false,
         infinite: false,

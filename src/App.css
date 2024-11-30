@@ -3080,6 +3080,13 @@ button:focus {
 
 @media screen and (max-width: 550px) {
 
+  .product-slider-cont {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+
   /* popular card */
   .popular-card-wrapper img {
     width: 300px;
