@@ -34,7 +34,7 @@ const ContactUs = () => {
     return (
         <div className='page'>
 
-            <p className='contact-us-title mt-3'>Contact</p>
+            <p className='contact-us-title mt-3'>Contact Us</p>
             <div className='contact-us-wrapper mt-3'>
                 <div className='contact-us-input-con'>
                     <div className='para-4 col-pri'>Get in Touch with Us!</div>

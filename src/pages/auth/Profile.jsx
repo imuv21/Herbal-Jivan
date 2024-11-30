@@ -99,9 +99,9 @@ const Profile = () => {
     return (
         <Fragment>
             <Helmet>
-                <title>Profile | Herbal Jivan - Find Genuine Connections Today</title>
-                <meta name="description" content="JustDate is a modern dating platform designed to help you meet real people seeking meaningful relationships. Join today and start connecting with like-minded individuals for friendship, romance, or commitment." />
-                <link rel="canonical" href="https://justdate.netlify.app/profile" />
+                <title>Profile | Herbal Jivan - Embrace Wellness, Naturally</title>
+                <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
+                <link rel="canonical" href="https://herbaljivan.netlify.app/profile" />
             </Helmet>
 
             <div className="page flexcol wh">

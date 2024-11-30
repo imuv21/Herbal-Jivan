@@ -14,6 +14,8 @@ const Layout = lazy(() => import('./components/Layout'));
 const Login = lazy(() => import('./pages/auth/Login'));
 const Signup = lazy(() => import('./pages/auth/Signup'));
 const Otp = lazy(() => import('./pages/auth/Otp'));
+const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
+const NewPassword = lazy(() => import('./pages/auth/NewPassword'));
 
 //private
 const Profile = lazy(() => import('./pages/auth/Profile'));
@@ -27,13 +29,15 @@ const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
 const AboutUs = lazy(() => import('./pages/static/AboutUs'));
 const BulkOrder = lazy(() => import('./pages/static/BulkOrder'));
-
-
+const Privacy = lazy(() => import('./pages/static/Privacy'));
+const Refund = lazy(() => import('./pages/static/Refund'));
+const Shipping = lazy(() => import('./pages/static/Shipping'));
+const Term = lazy(() => import('./pages/static/Term'));
 
 function App() {
 
   // const user = useSelector((state) => state.auth.user);
-  const user = true;
+  const user = false;
 
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -53,15 +57,22 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/verify-otp' element={<Otp />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/new-password' element={<NewPassword />} />
           </Route>
 
           {/* both */}
           <Route path='/' element={<Layout><Home /></Layout>} />
           <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
           <Route path='/search-results' element={<Layout><Search /></Layout>} />
+
           <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
           <Route path='/about-us' element={<Layout><AboutUs /></Layout>} />
           <Route path='/bulk-order' element={<Layout><BulkOrder /></Layout>} />
+          <Route path='/privacy-policy' element={<Layout><Privacy /></Layout>} />
+          <Route path='/shipping-policy' element={<Layout><Shipping /></Layout>} />
+          <Route path='/return-policy' element={<Layout><Refund /></Layout>} />
+          <Route path='/terms-and-conditions' element={<Layout><Term /></Layout>} />
           <Route path='/loader' element={<Loader />} />
 
           {/* not found */}

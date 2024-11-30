@@ -76,12 +76,11 @@ const Footer = () => {
                     <div className='footer-flex-2'>
                         <div className='para-2'>QUICK LINKS</div>
                         <Link to='/about-us' className='para-3'>About Us</Link>
-                        <div className='para-3'>Track Your Order</div>
                         <Link to='/contact-us' className='para-3'>Contact Us</Link>
-                        <div className='para-3'>Terms of Services</div>
-                        <div className='para-3'>Refund And Return Policy</div>
-                        <div className='para-3'>Shipping Policy</div>
-                        <div className='para-3'>Privacy Policy</div>
+                        <Link to='/terms-and-conditions' className='para-3'>Terms And Conditions</Link>
+                        <Link to='/return-policy' className='para-3'>Refund And Return Policy</Link>
+                        <Link to='/shipping-policy' className='para-3'>Shipping Policy</Link>
+                        <Link to='/privacy-policy' className='para-3'>Privacy Policy</Link>
                     </div>
                     <div className='footer-flex-2'>
                         <div className='para-2'>CATEGORY</div>

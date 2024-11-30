@@ -96,11 +96,11 @@ const Signup = () => {
     return (
         <Fragment>
             <Helmet>
-                <title>Signup | JustDate - Find Genuine Connections Today</title>
-                <meta name="description" content="JustDate is a modern dating platform designed to help you meet real people seeking meaningful relationships. Join today and start connecting with like-minded individuals for friendship, romance, or commitment." />
-                <link rel="canonical" href="https://justdate.netlify.app/signup" />
+                <title>Signup | Herbal Jivan - Embrace Wellness, Naturally</title>
+                <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
+                <link rel="canonical" href="https://herbaljivan.netlify.app/signup" />
             </Helmet>
-            <div className='page flex center' style={{ height: '100vh' }}>
+            <div className='page flex center' style={{ height: '100vh', backgroundColor: 'var(--authCode)' }}>
                 <form className="authBox flexcol center" onSubmit={handleSignup}>
                     <h1 className="heading">Create your account</h1>
 
@@ -134,7 +134,7 @@ const Signup = () => {
                         </div>
                         {confirmPasswordError && <p className="error">{confirmPasswordError.msg}</p>}
                     </div>
-                    <button type='submit' style={{backgroundColor: 'var(--codeFour)', border: 'none'}} disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Signup'}</button>
+                    <button type='submit' style={{ border: 'none', width: '100%'}} disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Signup'}</button>
                     {signError?.length > 0 && <p className="error flex center">Please correct the above errors.</p>}
                     {siGenErrors && <p className="error flex center">{siGenErrors}</p>}
                     <p className="text">Already have an account? <Link className='text hover' to='/login'>Click here</Link></p>

@@ -47,9 +47,11 @@ const Cart = () => {
     }, 0);
 
 
+
     return (
         <Fragment>
             <Helmet>
+                
                 <title>Cart - Embrace Wellness, Naturally</title>
                 <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
                 <link rel="canonical" href="https://herbaljivan.netlify.app/cart" />

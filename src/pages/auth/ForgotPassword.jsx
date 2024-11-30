@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
-const Otp = () => {
+const ForgotPassword = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Otp = () => {
 
                 if (otpResponse.status === 'success') {
                     toast(<div className='flex center g5'> < VerifiedIcon /> {otpResponse.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-                    navigate('/login');
+                    navigate('/new-password');
                 } else {
                     toast(<div className='flex center g5'> < NewReleasesIcon /> {`OTP verification failed ${otpResponse.message}`}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                 }
@@ -102,9 +102,9 @@ const Otp = () => {
     return (
         <Fragment>
             <Helmet>
-                <title>Verify OTP | Herbal Jivan - Embrace Wellness, Naturally</title>
+                <title>Forgot Password | Herbal Jivan - Embrace Wellness, Naturally</title>
                 <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
-                <link rel="canonical" href="https://herbaljivan.netlify.app/verify-otp" />
+                <link rel="canonical" href="https://herbaljivan.netlify.app/forgot-password" />
             </Helmet>
 
             <div className='page flex center' style={{ height: '100vh', backgroundColor: 'var(--authCode)' }}>
@@ -134,4 +134,4 @@ const Otp = () => {
     )
 }
 
-export default Otp
+export default ForgotPassword

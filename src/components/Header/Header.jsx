@@ -54,7 +54,7 @@ const Header = () => {
         };
 
         const handleScroll = () => {
-            if (window.scrollY >= 85) {
+            if (window.scrollY >= 20) {
                 headerMenu.classList.add("on-scroll");
             } else {
                 headerMenu.classList.remove("on-scroll");
