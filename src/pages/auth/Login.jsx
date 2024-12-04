@@ -17,10 +17,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { logError } = useSelector((state) => state.auth);
-  const [formValues, setFormValues] = useState({
-    username: '',
-    password: ''
-  });
+  const [formValues, setFormValues] = useState({ username: '', password: '' });
 
   //password hide and show
   const [passwordVisible, setPasswordVisible] = useState(false);
