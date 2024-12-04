@@ -87,7 +87,7 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${BASE_URL}user/Login`, userData, {
+            const response = await axios.get(`https://herbal-jeevan-9dl6.onrender.com/api/user/Login`, userData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
