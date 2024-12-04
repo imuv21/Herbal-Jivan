@@ -7,7 +7,7 @@ export const signupUser = createAsyncThunk(
     'auth/signupUser',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${BASE_URL}/auth/signup`, userData, {
+            const response = await axios.post(`${BASE_URL}user/signup`, userData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -31,9 +31,9 @@ export const signupUser = createAsyncThunk(
 
 export const verifyOtp = createAsyncThunk(
     'auth/verifyOtp',
-    async ({ email, otp }, { rejectWithValue }) => {
+    async ({ otp, role, email }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${BASE_URL}/auth/verify-otp`, { email, otp }, {
+            const response = await axios.post(`${BASE_URL}verifyOtp?otp=${otp}&role=${role}&username=${email}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -87,22 +87,18 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${BASE_URL}/auth/login`, userData, {
+            const response = await axios.get(`${BASE_URL}user/Login`, userData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-
-            if (response.data.success === false || response.data.status === 'failed') {
-                return rejectWithValue(response.data.errors || { message: response.data.message });
+            if (!response.data.status) {
+                return rejectWithValue({ message: response.data.message });
             }
-            return response.data;
+            return response.data.data;
         } catch (error) {
             if (error.response && error.response.data) {
-                if (error.response.data.message) {
-                    return rejectWithValue({ message: error.response.data.message });
-                }
-                return rejectWithValue(error.response.data.errors);
+                return rejectWithValue({ message: error.response.data.message || error.response.data });
             }
             return rejectWithValue({ message: error.message });
         }
@@ -220,7 +216,9 @@ export const updateShows = createAsyncThunk(
     }
 );
 
+
 const initialState = {
+
     signupData: null,
     user: null,
     token: null,
@@ -268,14 +266,12 @@ const authSlice = createSlice({
             state.signError = null;
             state.siGenErrors = null;
             state.logError = null;
-            state.logGenErrors = null;
             state.otpError = null;
             state.delUserError = null;
             state.upError = null;
             state.upGenErrors = null;
             state.detError = null;
             state.detGenErrors = null;
-
         },
         setSignupData: (state, action) => {
             state.signupData = action.payload;
@@ -328,23 +324,15 @@ const authSlice = createSlice({
             .addCase(loginUser.pending, (state) => {
                 state.logLoading = true;
                 state.logError = null;
-                state.logGenErrors = null;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.logLoading = false;
                 state.logError = null;
-                state.logGenErrors = null;
-                state.user = action.payload.user;
-                state.details = action.payload.user.details;
-                state.token = action.payload.token;
+                state.user = action.payload;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.logLoading = false;
-                if (Array.isArray(action.payload)) {
-                    state.logError = action.payload;
-                } else {
-                    state.logGenErrors = action.payload?.message || "Unknown error occurred";
-                }
+                state.logError = action.payload?.message || 'Something went wrong';
             })
             .addCase(updateProfile.pending, (state) => {
                 state.upLoading = true;
@@ -418,6 +406,7 @@ const authSlice = createSlice({
             })
     },
 });
+
 
 export const { clearErrors, setSignupData } = authSlice.actions;
 export default authSlice.reducer;

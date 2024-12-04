@@ -10,8 +10,11 @@ import VideoSec from '../components/VideoSec';
 import PopularCard from '../components/PopularCard';
 import InfSlider from '../components/InfSlider';
 
+
+
 const Home = () => {
 
+  
   return (
     <Fragment>
       <Helmet>
@@ -22,6 +25,7 @@ const Home = () => {
       <Suspense fallback={<Loader />}>
         <ImageSlider images={images} interval={5000} />
       </Suspense>
+
       <section className='homepage flexcol center'>
 
         <article><h1 className='headingBig'>Best Deals</h1></article>
