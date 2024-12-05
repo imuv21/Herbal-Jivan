@@ -47,12 +47,16 @@ const Login = () => {
         password: DOMPurify.sanitize(formValues.password),
         username: DOMPurify.sanitize(formValues.username),
       };
+      console.log('processing...');
       const response = await dispatch(loginUser(sanitizedFormValues)).unwrap();
       if (response.status === true) {
         toast(<div className='flex center g5'> < VerifiedIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         navigate('/');
+      } else {
+        toast(<div className='flex center g5'> < NewReleasesIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
       }
     } catch (error) {
+      console.log(error);
       toast(<div className='flex center g5'> < NewReleasesIcon /> Error logging in...</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
     } finally {
       setIsSubmitting(false);
@@ -72,17 +76,17 @@ const Login = () => {
         <form className="authBox flexcol center" onSubmit={handleLogin}>
           <h1 className="heading">Login to your account</h1>
 
-          <input type="email" name='username' autoComplete='email' placeholder='Enter your email...' value={formValues.username} onChange={handleChange} />
+          <input type="email" name='username' autoComplete='email' placeholder='Enter your email...' value={formValues.username} onChange={handleChange} required />
 
           <div className="wh relative password">
-            <input type={passwordVisible ? "text" : "password"} className='wh' name='password' autoComplete="new-password" placeholder='Enter your password...' value={formValues.password} onChange={handleChange} />
+            <input type={passwordVisible ? "text" : "password"} className='wh' name='password' autoComplete="new-password" placeholder='Enter your password...' value={formValues.password} onChange={handleChange} required />
             <span onClick={togglePasswordVisibility}>
               {passwordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </span>
           </div>
 
-          <button type='submit' style={{ border: 'none', width: '100%'}} disabled={isSubmitting}>{isSubmitting ? 'Logging in...' : 'Login'}</button>
-     
+          <button type='submit' style={{ border: 'none', width: '100%' }} disabled={isSubmitting}>{isSubmitting ? 'Logging in...' : 'Login'}</button>
+
           <div className="minBox flexcol center">
             <p className="text">Don't have an account?&nbsp;<Link className='text hover' to='/signup'>Click here</Link></p>
             <p className="text">Forgot your password?&nbsp;<Link className='text hover' to='/forgot-password'>Click here</Link></p>

@@ -16,11 +16,11 @@ const Signup = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { signError, siGenErrors } = useSelector((state) => state.auth);
-
+    const { signErrors } = useSelector((state) => state.auth);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formValues, setFormValues] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -43,47 +43,39 @@ const Signup = () => {
         dispatch(clearErrors());
     };
 
-    const getFieldError = (field) => Array.isArray(signError) ? signError.find(error => error.path === field) : null;
-    const firstNameError = getFieldError('firstName');
-    const lastNameError = getFieldError('lastName');
-    const emailError = getFieldError('email');
-    const passwordError = getFieldError('password');
-    const confirmPasswordError = getFieldError('confirmPassword');
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
     const handleSignup = async (e) => {
         e.preventDefault();
         if (isSubmitting) return;
-        if (firstNameError || lastNameError || emailError || passwordError || confirmPasswordError || siGenErrors) {
-            toast(<div className='flex center g5'> < NewReleasesIcon /> Please fix the errors before submitting the form.</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+        if (formValues.password !== formValues.confirmPassword) {
+            toast(<div className='flex center g5'> < NewReleasesIcon /> Passwords do not match.</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
             return;
         }
         setIsSubmitting(true);
 
         try {
             const userData = {
-                firstName: DOMPurify.sanitize(formValues.firstName),
-                lastName: DOMPurify.sanitize(formValues.lastName),
+                firstname: DOMPurify.sanitize(formValues.firstname),
+                lastname: DOMPurify.sanitize(formValues.lastname),
                 email: DOMPurify.sanitize(formValues.email),
                 password: DOMPurify.sanitize(formValues.password),
-                confirmPassword: DOMPurify.sanitize(formValues.confirmPassword),
             };
             const response = await dispatch(signupUser(userData)).unwrap();
-            if (response.status === "success") {
+            if (response.status === true) {
 
                 dispatch(setSignupData({
                     email: userData.email,
-                    firstName: userData.firstName,
-                    lastName: userData.lastName,
+                    firstname: userData.firstname,
+                    lastname: userData.lastname,
                     password: userData.password,
-                    confirmPassword: userData.confirmPassword,
                 }));
 
                 toast(<div className='flex center g5'> < VerifiedIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                 navigate('/verify-otp');
             }
         } catch (error) {
+            console.log(signErrors);
             toast(<div className='flex center g5'> < NewReleasesIcon /> Error signing up...</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+        
         } finally {
             setIsSubmitting(false);
         }
@@ -105,38 +97,33 @@ const Signup = () => {
                     <h1 className="heading">Create your account</h1>
 
                     <div className="minBox flexcol center">
-                        <input type="text" name='firstName' autoComplete="given-name" placeholder='Enter your first name...' value={formValues.firstName} onChange={handleChange} />
-                        {firstNameError && <p className="error">{firstNameError.msg}</p>}
+                        <input type="text" name='firstname' autoComplete="given-name" placeholder='Enter your first name...' value={formValues.firstname} onChange={handleChange} required />
                     </div>
                     <div className="minBox flexcol center">
-                        <input type="text" name='lastName' autoComplete="family-name" placeholder='Enter your last name...' value={formValues.lastName} onChange={handleChange} />
-                        {lastNameError && <p className="error">{lastNameError.msg}</p>}
+                        <input type="text" name='lastname' autoComplete="family-name" placeholder='Enter your last name...' value={formValues.lastname} onChange={handleChange} required />
                     </div>
                     <div className="minBox flexcol center">
-                        <input type="email" name='email' autoComplete='email' placeholder='Enter your email...' value={formValues.email} onChange={handleChange} />
-                        {emailError && <p className="error">{emailError.msg}</p>}
+                        <input type="email" name='email' autoComplete='email' placeholder='Enter your email...' value={formValues.email} onChange={handleChange} required />
                     </div>
+                    {signErrors?.email && <p className="error flex center-start">{signErrors.email}</p>}
                     <div className="minBox flexcol center">
                         <div className="wh relative password">
-                            <input type={passwordVisible ? "text" : "password"} style={{ textTransform: 'none' }} className='wh' name='password' autoComplete="new-password" placeholder='Enter your password...' value={formValues.password} onChange={handleChange} />
+                            <input type={passwordVisible ? "text" : "password"} style={{ textTransform: 'none' }} className='wh' name='password' autoComplete="new-password" placeholder='Enter your password...' value={formValues.password} onChange={handleChange} required />
                             <span onClick={togglePasswordVisibility}>
                                 {passwordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
                             </span>
                         </div>
-                        {passwordError && <p className="error">{passwordError.msg}</p>}
                     </div>
                     <div className="minBox flexcol center">
                         <div className="wh relative password">
-                            <input type={conPasswordVisible ? "text" : "password"} style={{ textTransform: 'none' }} className='wh' name="confirmPassword" autoComplete="new-password" placeholder='Enter your password again...' value={formValues.confirmPassword} onChange={handleChange} />
+                            <input type={conPasswordVisible ? "text" : "password"} style={{ textTransform: 'none' }} className='wh' name="confirmPassword" autoComplete="new-password" placeholder='Enter your password again...' value={formValues.confirmPassword} onChange={handleChange} required />
                             <span onClick={toggleConPasswordVisibility}>
                                 {conPasswordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
                             </span>
                         </div>
-                        {confirmPasswordError && <p className="error">{confirmPasswordError.msg}</p>}
                     </div>
-                    <button type='submit' style={{ border: 'none', width: '100%'}} disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Signup'}</button>
-                    {signError?.length > 0 && <p className="error flex center">Please correct the above errors.</p>}
-                    {siGenErrors && <p className="error flex center">{siGenErrors}</p>}
+                    <button type='submit' style={{ border: 'none', width: '100%' }} disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Signup'}</button>
+                    {signErrors?.length > 0 && <p className="error flex center">Please correct the above errors.</p>}
                     <p className="text">Already have an account? <Link className='text hover' to='/login'>Click here</Link></p>
                 </form>
             </div>

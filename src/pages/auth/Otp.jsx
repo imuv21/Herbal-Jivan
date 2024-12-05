@@ -34,16 +34,16 @@ const Otp = () => {
 
         if (isOtpComplete) {
             try {
-                const otpResponse = await dispatch(verifyOtp({ email: signupData.email, otp: newOtpDigits.join('') })).unwrap();
+                const otpResponse = await dispatch(verifyOtp({ otp: newOtpDigits.join(''), email: signupData.email })).unwrap();
 
-                if (otpResponse.status === 'success') {
-                    toast(<div className='flex center g5'> < VerifiedIcon /> {otpResponse.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+                if (otpResponse.success === true) {
+                    toast(<div className='flex center g5'> < VerifiedIcon /> Email verified. Please login now.</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                     navigate('/login');
                 } else {
-                    toast(<div className='flex center g5'> < NewReleasesIcon /> {`OTP verification failed ${otpResponse.message}`}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+                    toast(<div className='flex center g5'> < NewReleasesIcon /> {`OTP verification failed`}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                 }
             } catch (error) {
-                toast(<div className='flex center g5'> < NewReleasesIcon /> {`OTP verification failed ${error.message}`}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+                toast(<div className='flex center g5'> < NewReleasesIcon /> {`OTP verification failed`}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
             }
         }
     };
@@ -64,7 +64,7 @@ const Otp = () => {
     }, []);
 
     //time
-    const [timeLeft, setTimeLeft] = useState(130);
+    const [timeLeft, setTimeLeft] = useState(190);
     const [timerRunning, setTimerRunning] = useState(true);
     useEffect(() => {
         if (timerRunning) {
@@ -85,16 +85,16 @@ const Otp = () => {
         try {
             const response = await dispatch(signupUser(signupData)).unwrap();
 
-            if (response.status === "success") {
+            if (response.status === true) {
                 toast(<div className='flex center g5'> < VerifiedIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-                setTimeLeft(130);
+                setTimeLeft(190);
                 setTimerRunning(true);
             } else {
-                toast(<div className='flex center g5'> < NewReleasesIcon /> {'Signup failed: ' + response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+                toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
             }
 
         } catch (error) {
-            toast(<div className='flex center g5'> < NewReleasesIcon /> {error.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         }
     };
 

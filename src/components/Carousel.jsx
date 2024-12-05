@@ -7,7 +7,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import defaulImg from '../assets/images/defaultImage.jpg';
 import Loader from './Loader/Loader';
 
-
 const ProductCard = lazy(() => import('./ProductCard'));
 
 const Carousel = ({ products }) => {

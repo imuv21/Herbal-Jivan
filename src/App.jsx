@@ -24,7 +24,7 @@ const Cart = lazy(() => import('./pages/shop/Cart'));
 
 //both
 const Home = lazy(() => import('./pages/Home'));
-// const Search = lazy(() => import('./pages/shop/Search'));
+const Search = lazy(() => import('./pages/shop/Search'));
 const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
 const AboutUs = lazy(() => import('./pages/static/AboutUs'));
@@ -33,13 +33,12 @@ const Privacy = lazy(() => import('./pages/static/Privacy'));
 const Refund = lazy(() => import('./pages/static/Refund'));
 const Shipping = lazy(() => import('./pages/static/Shipping'));
 const Term = lazy(() => import('./pages/static/Term'));
-// const Category = lazy(() => import('./pages/shop/Category'));
+const Category = lazy(() => import('./pages/shop/Category'));
 
 
 function App() {
 
   const user = useSelector((state) => state.auth.user);
-  // const user = false;
 
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -66,8 +65,8 @@ function App() {
           {/* both */}
           <Route path='/' element={<Layout><Home /></Layout>} />
           <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
-          {/* <Route path='/search-results' element={<Layout><Search /></Layout>} /> */}
-          {/* <Route path='/category' element={<Layout><Category /></Layout>} /> */}
+          <Route path='/search-results' element={<Layout><Search /></Layout>} />
+          <Route path='/category' element={<Layout><Category /></Layout>} />
 
           <Route path='/contact-us' element={<Layout><ContactUs /></Layout>} />
           <Route path='/about-us' element={<Layout><AboutUs /></Layout>} />

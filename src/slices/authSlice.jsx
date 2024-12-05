@@ -8,22 +8,19 @@ export const signupUser = createAsyncThunk(
     'auth/signupUser',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${BASE_URL}user/signup`, userData, {
+            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/user/signup`, userData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
 
-            if (response.data.success === false || response.data.status === 'failed') {
-                return rejectWithValue(response.data.errors || { message: response.data.message });
+            if (!response.data.status) {
+                return rejectWithValue(response.data);
             }
             return response.data;
         } catch (error) {
             if (error.response && error.response.data) {
-                if (error.response.data.message) {
-                    return rejectWithValue({ message: error.response.data.message });
-                }
-                return rejectWithValue(error.response.data.errors);
+                return rejectWithValue(error.response.data);
             }
             return rejectWithValue({ message: error.message });
         }
@@ -32,23 +29,20 @@ export const signupUser = createAsyncThunk(
 
 export const verifyOtp = createAsyncThunk(
     'auth/verifyOtp',
-    async ({ otp, role, email }, { rejectWithValue }) => {
+    async ({ otp, email }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${BASE_URL}verifyOtp?otp=${otp}&role=${role}&username=${email}`, {
+            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/verifyOtp?otp=${otp}&role=User&username=${email}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            if (response.data.status === 'failed') {
+            if (response.data.success === false) {
                 return rejectWithValue(response.data.message);
             }
-            return response.data;
+            return response.data.message;
         } catch (error) {
             if (error.response && error.response.data) {
-                if (error.response.data.message) {
-                    return rejectWithValue({ message: error.response.data.message });
-                }
-                return rejectWithValue(error.response.data.errors);
+                return rejectWithValue(error.response.data);
             }
             return rejectWithValue({ message: error.message });
         }
@@ -96,7 +90,7 @@ export const loginUser = createAsyncThunk(
             if (!response.data.status) {
                 return rejectWithValue({ message: response.data.message });
             }
-            return response.data.data;
+            return response.data;
         } catch (error) {
             if (error.response && error.response.data) {
                 return rejectWithValue({ message: error.response.data.message || error.response.data });
@@ -166,27 +160,6 @@ export const updateDetails = createAsyncThunk(
     }
 );
 
-export const logoutUser = createAsyncThunk(
-    'auth/logoutUser',
-    async (_, { rejectWithValue }) => {
-        try {
-            const response = await axios.get(`${BASE_URL}/auth/logout`);
-            if (response.data.status === false) {
-                return rejectWithValue(response.data.errors);
-            }
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.data) {
-                if (error.response.data.message) {
-                    return rejectWithValue({ message: error.response.data.message });
-                }
-                return rejectWithValue(error.response.data.errors);
-            }
-            return rejectWithValue({ message: error.message });
-        }
-    }
-);
-
 export const updateShows = createAsyncThunk(
     'auth/updateShows',
     async (userData, { getState, rejectWithValue }) => {
@@ -220,16 +193,15 @@ export const updateShows = createAsyncThunk(
 
 const initialState = {
 
-    signupData: null,
     user: null,
     token: null,
+
+    signupData: null,
     signLoading: false,
-    signError: null,
-    siGenErrors: null,
+    signErrors: {},
 
     logLoading: false,
     logError: null,
-    logGenErrors: null,
 
     otpLoading: false,
     otpError: null,
@@ -264,8 +236,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         clearErrors: (state) => {
-            state.signError = null;
-            state.siGenErrors = null;
+            state.signErrors = null;
             state.logError = null;
             state.otpError = null;
             state.delUserError = null;
@@ -277,26 +248,25 @@ const authSlice = createSlice({
         setSignupData: (state, action) => {
             state.signupData = action.payload;
         },
+        logout: (state) => {
+            state.user = null;
+            state.token = null;
+            state.signupData = null;
+        },
     },
     extraReducers: (builder) => {
         builder
             .addCase(signupUser.pending, (state) => {
                 state.signLoading = true;
-                state.signError = null;
-                state.siGenErrors = null;
+                state.signErrors = null;
             })
             .addCase(signupUser.fulfilled, (state) => {
                 state.signLoading = false;
-                state.signError = null;
-                state.siGenErrors = null;
+                state.signErrors = null;
             })
             .addCase(signupUser.rejected, (state, action) => {
                 state.signLoading = false;
-                if (Array.isArray(action.payload)) {
-                    state.signError = action.payload;
-                } else {
-                    state.siGenErrors = action.payload?.message || "Unknown error occurred";
-                }
+                state.signErrors = action.payload?.data || {};
             })
             .addCase(verifyOtp.pending, (state) => {
                 state.otpLoading = true;
@@ -330,6 +300,7 @@ const authSlice = createSlice({
                 state.logLoading = false;
                 state.logError = null;
                 state.user = action.payload;
+                state.token = action.payload.token;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.logLoading = false;
@@ -384,11 +355,6 @@ const authSlice = createSlice({
                     state.detGenErrors = action.payload?.message || "Unknown error occurred";
                 }
             })
-            .addCase(logoutUser.fulfilled, (state) => {
-                state.user = null;
-                state.token = null;
-                state.signupData = null;
-            })
             .addCase(updateShows.pending, (state) => {
                 state.upshowLoading = true;
                 state.upshowErrors = null;
@@ -409,5 +375,5 @@ const authSlice = createSlice({
 });
 
 
-export const { clearErrors, setSignupData } = authSlice.actions;
+export const { clearErrors, setSignupData, logout } = authSlice.actions;
 export default authSlice.reducer;
