@@ -34,26 +34,26 @@ const Home = () => {
         <article><h1 className='headingBig'>Shop By Category</h1></article>
 
         <section className="category">
-          <article className='cate-item'>
+          <a href='/category' className='cate-item'>
             <img src={tempImage} alt="JOINT PAIN" />
             <h1 className='heading'>JOINT PAIN</h1>
-          </article>
-          <article className='cate-item'>
+          </a>
+          <a href='/category' className='cate-item'>
             <img src={tempImage} alt="HAIR FALL" />
             <h1 className='heading'>HAIR FALL</h1>
-          </article>
-          <article className='cate-item'>
+          </a>
+          <a href='/category' className='cate-item'>
             <img src={tempImage} alt="WEIGHT GAIN" />
             <h1 className='heading'>WEIGHT GAIN</h1>
-          </article>
-          <article className='cate-item'>
+          </a>
+          <a href='/category' className='cate-item'>
             <img src={tempImage} alt="DIABETIC" />
             <h1 className='heading'>DIABETIC</h1>
-          </article>
-          <article className='cate-item'>
+          </a>
+          <a href='/category' className='cate-item'>
             <img src={tempImage} alt="SEXUAL" />
             <h1 className='heading'>SEXUAL</h1>
-          </article>
+          </a>
         </section>
 
         <VideoSec />

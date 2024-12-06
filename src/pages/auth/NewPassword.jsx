@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { loginUser, clearErrors } from '../../slices/authSlice';
+import { forgotPassword, clearErrors, setEmailData } from '../../slices/authSlice';
 import DOMPurify from 'dompurify';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -11,12 +11,14 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
+
 const NewPassword = () => {
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { logError, logGenErrors } = useSelector((state) => state.auth);
-  const [formValues, setFormValues] = useState({password: '', confirmPassword: ''});
+  const { fopaError } = useSelector((state) => state.auth);
+  const [formValues, setFormValues] = useState({ username: '', password: '', confirmPassword: '' });
 
   //password hide and show
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -34,32 +36,34 @@ const NewPassword = () => {
     dispatch(clearErrors());
   };
 
-  const getFieldError = (field) => Array.isArray(logError) ? logError.find(error => error.path === field) : null;
-  const passwordError = getFieldError('password');
-  const confirmPasswordError = getFieldError('confirmPassword');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
-    if (confirmPasswordError || passwordError || logGenErrors) {
-      toast(<div className='flex center g5'> < NewReleasesIcon /> Please fix the errors in the form.</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+    if (formValues.password !== formValues.confirmPassword) {
+      toast(<div className='flex center g5'> < NewReleasesIcon /> Passwords do not match.</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
       return;
     }
     setIsSubmitting(true);
 
     try {
       const sanitizedFormValues = {
-        confirmPasswordError: DOMPurify.sanitize(formValues.confirmPasswordError),
+        username: DOMPurify.sanitize(formValues.username),
         password: DOMPurify.sanitize(formValues.password),
       };
-      const response = await dispatch(loginUser(sanitizedFormValues)).unwrap();
-      if (response.status === "success") {
+      const response = await dispatch(forgotPassword(sanitizedFormValues)).unwrap();
+      if (response.status === true) {
+
+        dispatch(setEmailData({ email: sanitizedFormValues.username }));
+
         toast(<div className='flex center g5'> < VerifiedIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-        navigate('/login');
+        navigate('/verify-password');
+      } else {
+        toast(<div className='flex center g5'> < NewReleasesIcon /> {response.data || response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
       }
     } catch (error) {
-      toast(<div className='flex center g5'> < NewReleasesIcon /> Error logging in...</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+      toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
     } finally {
       setIsSubmitting(false);
     }
@@ -77,25 +81,23 @@ const NewPassword = () => {
         <form className="authBox flexcol center" onSubmit={handleLogin}>
           <h1 className="heading">Create New Password</h1>
 
+          <input type="email" name='username' autoComplete='email' placeholder='Enter your email...' value={formValues.username} onChange={handleChange} required />
+
           <div className="wh relative password">
-            <input type={passwordVisible ? "text" : "password"} className='wh' name='password' autoComplete="new-password" placeholder='Enter new password...' value={formValues.password} onChange={handleChange} />
+            <input type={passwordVisible ? "text" : "password"} className='wh' name='password' autoComplete="new-password" placeholder='Enter new password...' value={formValues.password} onChange={handleChange} required />
             <span onClick={togglePasswordVisibility}>
               {passwordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </span>
           </div>
-          {passwordError && <p className="error">{passwordError.msg}</p>}
 
           <div className="wh relative password">
-            <input type={conPasswordVisible ? "text" : "password"} className='wh' name='confirmPassword' autoComplete="off" placeholder='Confirm your password...' value={formValues.confirmPassword} onChange={handleChange} />
+            <input type={conPasswordVisible ? "text" : "password"} className='wh' name='confirmPassword' autoComplete="off" placeholder='Confirm your password...' value={formValues.confirmPassword} onChange={handleChange} required />
             <span onClick={toggleConPasswordVisibility}>
               {conPasswordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </span>
           </div>
-          {passwordError && <p className="error">{passwordError.msg}</p>}
 
-          <button type='submit' style={{ border: 'none', width: '100%'}} disabled={isSubmitting}>{isSubmitting ? 'Saving...' : 'Save'}</button>
-          {logError?.length > 0 && <p className="error flex center">Please correct the above errors.</p>}
-          {logGenErrors && <p className="error flex center">{logGenErrors}</p>}
+          <button type='submit' style={{ border: 'none', width: '100%' }} disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
           <div className="minBox flexcol center">
             <p className="text"><Link className='text hover' to='/login'>Back to login</Link></p>
           </div>

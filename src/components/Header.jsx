@@ -91,21 +91,21 @@ const Header = () => {
             </div>
 
             <section className="catHeader">
-                <article className="catItem">
+                <a href='/category' className="catItem">
                     <h1 className='textBig'>JOINT PAIN</h1>
-                </article>
-                <article className="catItem">
+                </a>
+                <a href='/category' className="catItem">
                     <h1 className='textBig'>HAIR FALL</h1>
-                </article>
-                <article className="catItem">
+                </a>
+                <a href='/category' className="catItem">
                     <h1 className='textBig'>WEIGHT GAIN</h1>
-                </article>
-                <article className="catItem">
+                </a>
+                <a href='/category' className="catItem">
                     <h1 className='textBig'>DIABETIC</h1>
-                </article>
-                <article className="catItem">
+                </a>
+                <a href='/category' className="catItem">
                     <h1 className='textBig'>SEXUAL</h1>
-                </article>
+                </a>
             </section>
 
             {mobileMenuOpen && <div className="overlay visible" onClick={toggleMobileMenu}></div>}

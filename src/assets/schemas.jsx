@@ -6,6 +6,64 @@ export const images = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s',
 ];
 
+// 'Placed / Shipped / Out for Delivery / Delivered / Cancelled'
+
+export const orders = [
+    {
+        orderId: 'sdghwkgphirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',              
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+                productId: 'sgrehklidrherhryhyulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphrjtyjirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',              
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+        ],
+    },
+];
+
 export const productDetail = {
     name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
     originalPrice: 1498,
@@ -201,79 +259,6 @@ export const quests = [
     },
 ];
 
-export const Orderproducts = [
-    {
-        price: 19.99,
-        productName: "Wireless Mouse",
-        orderId: "ORD001",
-        status: "Shipped",
-        deliveryDate: "2024-12-01"
-    },
-    {
-        price: 29.99,
-        productName: "Bluetooth Headphones",
-        orderId: "ORD002",
-        status: "Processing",
-        deliveryDate: "2024-12-05"
-    },
-    {
-        price: 49.99,
-        productName: "Laptop Stand",
-        orderId: "ORD003",
-        status: "Delivered",
-        deliveryDate: "2024-11-20"
-    },
-    {
-        price: 99.99,
-        productName: "4K Monitor",
-        orderId: "ORD004",
-        status: "Shipped",
-        deliveryDate: "2024-12-10"
-    },
-    {
-        price: 39.99,
-        productName: "Smartphone Case",
-        orderId: "ORD005",
-        status: "Delivered",
-        deliveryDate: "2024-11-22"
-    },
-    {
-        price: 19.99,
-        productName: "Keyboard",
-        orderId: "ORD006",
-        status: "Processing",
-        deliveryDate: "2024-12-07"
-    },
-    {
-        price: 15.99,
-        productName: "USB-C Charger",
-        orderId: "ORD007",
-        status: "Shipped",
-        deliveryDate: "2024-12-02"
-    },
-    {
-        price: 129.99,
-        productName: "Smartwatch",
-        orderId: "ORD008",
-        status: "Delivered",
-        deliveryDate: "2024-11-18"
-    },
-    {
-        price: 59.99,
-        productName: "Gaming Mouse",
-        orderId: "ORD009",
-        status: "Processing",
-        deliveryDate: "2024-12-03"
-    },
-    {
-        price: 89.99,
-        productName: "Laptop Bag",
-        orderId: "ORD010",
-        status: "Shipped",
-        deliveryDate: "2024-12-08"
-    }
-];
-
 export const Videos = [
     {
         id: "12345",
@@ -327,4 +312,6 @@ export const infslider = [
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462012/Ulinkit/tamronlogo_bqy3bq.png",
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462015/Ulinkit/voltaslogo_lqolss.png",
 ];
+
+
 

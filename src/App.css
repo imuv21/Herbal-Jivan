@@ -8,7 +8,7 @@
   --codeOne: #ffffff;
   --codeTwo: #ebebeb;
   --codeThree: #a1a1a1;
-  --codeFour: #000000;
+  --codeFour: #2e2e2e;
   --codeFive: #0bcc4f;
   --codeSix: #088946;
   --codeSeven: #07763c;
@@ -68,6 +68,11 @@ input {
   border: 1px solid var(--codeFour);
   color: var(--codeFour);
   background: transparent;
+}
+
+input:disabled {
+  background-color: var(--codeTwo);
+  color: var(--codeThree);
 }
 
 select,
@@ -290,6 +295,7 @@ button:focus {
 .textBig {
   font-size: 16px;
   font-weight: 400;
+  transition: var(--trans);
 }
 
 .text {
@@ -461,14 +467,9 @@ button:focus {
   gap: 5px;
   padding: 0px 20px;
   cursor: pointer;
-  transition: var(--trans);
 }
 
-.catItem:hover {
-  color: var(--codeFive);
-}
-
-.cartItem:hover .textBig {
+.catItem:hover .textBig {
   color: var(--codeFive);
 }
 
@@ -2275,6 +2276,110 @@ button:focus {
 }
 
 /* order */
+.orderCont {
+  width: 100%;
+  max-width: 900px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.orderproCont {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background: var(--codeOne);
+  box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
+  border-radius: var(--brTwo);
+  transition: var(--trans);
+}
+
+.orderproCont:hover {
+  transform: translateY(-4px);
+}
+
+.orderview {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.orderBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.orderBtns .cancel {
+  padding: 5px 10px;
+  background-color: var(--codeOne);
+  color: #ff7979;
+  border: 1px solid #ff7979;
+  transition: var(--trans);
+}
+
+.orderBtns .cancel:hover {
+  background-color: #ff7979;
+  color: var(--codeOne);
+}
+
+.orderBtns .view {
+  padding: 5px 10px;
+  background-color: var(--codeOne);
+  color: var(--codeFive);
+  border: 1px solid var(--codeFive);
+  transition: var(--trans);
+}
+
+.orderBtns .view:hover {
+  background-color: var(--codeFive);
+  color: var(--codeOne);
+}
+
+.orderProducts {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.opItem {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid var(--codeTwo);
+  border-radius: var(--brOne);
+}
+.opItem .textSmol {
+  font-size: 10px;
+}
+.opItem img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+  aspect-ratio: 4/3;
+}
+.opDetail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+}
 
 /* search page */
 

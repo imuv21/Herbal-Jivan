@@ -114,6 +114,7 @@ const Signup = () => {
                             </span>
                         </div>
                     </div>
+                    {signErrors?.password && <p className="error flex center-start">{signErrors.password}</p>}
                     <div className="minBox flexcol center">
                         <div className="wh relative password">
                             <input type={conPasswordVisible ? "text" : "password"} style={{ textTransform: 'none' }} className='wh' name="confirmPassword" autoComplete="new-password" placeholder='Enter your password again...' value={formValues.confirmPassword} onChange={handleChange} required />

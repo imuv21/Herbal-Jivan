@@ -20,7 +20,7 @@ const NewPassword = lazy(() => import('./pages/auth/NewPassword'));
 //private
 const Profile = lazy(() => import('./pages/auth/Profile'));
 const Cart = lazy(() => import('./pages/shop/Cart'));
-// const Order = lazy(() => import('./pages/shop/Order'));
+const Order = lazy(() => import('./pages/shop/Order'));
 
 //both
 const Home = lazy(() => import('./pages/Home'));
@@ -50,7 +50,7 @@ function App() {
           <Route element={<Protector user={user} />}>
             <Route path='/profile' element={<Layout><Profile /></Layout>} />
             <Route path='/cart' element={<Layout><Cart /></Layout>} />
-            {/* <Route path='/orders' element={<Layout><Order /></Layout>} /> */}
+            <Route path='/orders' element={<Layout><Order /></Layout>} />
           </Route>
 
           {/* public */}
@@ -58,7 +58,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/verify-otp' element={<Otp />} />
-            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/verify-password' element={<ForgotPassword />} />
             <Route path='/new-password' element={<NewPassword />} />
           </Route>
 

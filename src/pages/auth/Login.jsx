@@ -89,7 +89,7 @@ const Login = () => {
 
           <div className="minBox flexcol center">
             <p className="text">Don't have an account?&nbsp;<Link className='text hover' to='/signup'>Click here</Link></p>
-            <p className="text">Forgot your password?&nbsp;<Link className='text hover' to='/forgot-password'>Click here</Link></p>
+            <p className="text">Forgot your password?&nbsp;<Link className='text hover' to='/new-password'>Click here</Link></p>
           </div>
         </form>
       </div>

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -12,6 +12,7 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 const Profile = () => {
 
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.auth.user);
     const [isClickedFooter, setIsClickedFooter] = useState(false);
     const [isClickedFooterTwo, setIsClickedFooterTwo] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,10 +32,22 @@ const Profile = () => {
     }
 
     const [formValues, setFormValues] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
     });
+
+    useEffect(() => {
+        if (user) {
+            setFormValues(prevValues => ({
+                ...prevValues,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                email: user.email,
+            }));
+        }
+    }, [user]);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
@@ -108,11 +121,11 @@ const Profile = () => {
                 <article><h1 className='heading'>Profile</h1></article>
                 <div className="profile">
                     <div className="flex verify center-start g5">
-                        <p className="name">John Snow</p> <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooter} />
+                        <p className="name">{`${user?.firstname} ${user?.lastname}`}</p> <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooter} />
                     </div>
                     <div className="flexcol start-center">
                         <p className="text" style={{ color: 'var(--codeThree)' }}>Email</p>
-                        <p className="text verify flex center-start g5" >imuv21@gmail.com
+                        <p className="text verify flex center-start g5" >{user?.email}
                             {truef === 1 ? <VerifiedIcon /> : <NewReleasesIcon style={{ color: 'orange' }} />}
                         </p>
                     </div>
@@ -151,13 +164,14 @@ const Profile = () => {
                                 <h2 className="headingSmol" style={{ marginBottom: '15px' }}>Update Profile</h2>
 
                                 <div className="pageBox5 flexcol center">
-                                    <input type="text" name='firstName' autoComplete="given-name" placeholder='Enter your first name...' value={formValues.firstName} onChange={handleInputChange} required />
+                                    <input type="text" name='firstname' autoComplete="given-name" placeholder='Enter your first name...' value={formValues.firstname} onChange={handleInputChange} required />
                                 </div>
                                 <div className="pageBox5 flexcol center">
-                                    <input type="text" name='lastName' autoComplete="family-name" placeholder='Enter your last name...' value={formValues.lastName} onChange={handleInputChange} required />
+                                    <input type="text" name='lastname' autoComplete="family-name" placeholder='Enter your last name...' value={formValues.lastname} onChange={handleInputChange} required />
                                 </div>
                                 <div className="pageBox5 flexcol center">
-                                    <input type="email" name='email' autoComplete='email' placeholder='Enter your email...' value={formValues.email} onChange={handleInputChange} required />
+                                    <input type="email" disabled name='email' className='disabled' autoComplete='email' placeholder='Enter your email...' value={formValues.email} onChange={handleInputChange} />
+                                    <p className="error flex center-start wh">Email used for login can't be changed</p>
                                 </div>
 
                                 <div className="flex wh g10" style={{ marginTop: '15px', justifyContent: 'space-between' }}>
