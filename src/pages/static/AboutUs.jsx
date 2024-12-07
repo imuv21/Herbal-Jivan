@@ -3,6 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
+import ccare from '../../assets/images/customer-care.png';
+import insu from '../../assets/images/insurance.png';
+import tranp from '../../assets/images/transparency.png';
+import svgp from '../../assets/images/bg-pattern.svg';
+
 const AboutUs = () => {
 
     return (
@@ -41,7 +46,7 @@ const AboutUs = () => {
                         <div className='why-choose-card'>
                             <div className='card-icon-wrapper'>
                                 <div className='icon-con'>
-                                    <img src="/src/assets/images/customer-care.png" alt="" />
+                                    <img src={ccare} alt="customer-care" />
                                 </div>
                             </div>
                             <h3 className='headingSmol'>Authenticity</h3>
@@ -53,7 +58,7 @@ const AboutUs = () => {
                         <div className='why-choose-card'>
                             <div className='card-icon-wrapper'>
                                 <div className='icon-con'>
-                                    <img src="/src/assets/images/insurance.png" alt="" />
+                                    <img src={insu} alt="insurance" />
                                 </div>
                             </div>
                             <h3 className='headingSmol'>Transparency</h3>
@@ -65,7 +70,7 @@ const AboutUs = () => {
                         <div className='why-choose-card'>
                             <div className='card-icon-wrapper'>
                                 <div className='icon-con'>
-                                    <img src="/src/assets/images/transparency.png" alt="" />
+                                    <img src={tranp} alt="transparency" />
                                 </div>
                             </div>
                             <h3 className='headingSmol'>Customer Care</h3>
@@ -81,9 +86,9 @@ const AboutUs = () => {
                 <div className='mt-3'>
                     <article><h1 className='headingBig text-center'>Our Values</h1></article>
                     <ul className='our-values-ul row row-cols-1 row-cols-md-2 justify-content-center'>
-                        <li className='col'> <p className='textBig'><span className='textBig'><ArrowForwardIosRoundedIcon/> <h3 className='headingSmol'> Quality </h3> </span>We source only the finest herbs and botanicals, carefully selecting ingredients for their potency and purity. Each product is crafted with attention to detail and undergoes rigorous testing to ensure the highest standards of excellence.</p> </li>
-                        <li className='col'> <p className='textBig'><span className='textBig'><ArrowForwardIosRoundedIcon/> <h3 className='headingSmol'> Sustainability</h3> </span>At Herbal Jivan, we are dedicated to eco-conscious practices. From sourcing our ingredients responsibly to using recyclable packaging, we strive to minimize our environmental footprint and protect the planet.</p> </li>
-                        <li className='col'> <p className='textBig'><span className='textBig'><ArrowForwardIosRoundedIcon/> <h3 className='headingSmol'> Holistic Wellness</h3> </span>We believe in the interconnectedness of mind, body, and spirit. Our products are designed to support your overall well-being, helping you achieve balance, vitality, and harmony in your daily life.</p> </li>
+                        <li className='col'> <p className='textBig'><span className='textBig'><ArrowForwardIosRoundedIcon /> <h3 className='headingSmol'> Quality </h3> </span>We source only the finest herbs and botanicals, carefully selecting ingredients for their potency and purity. Each product is crafted with attention to detail and undergoes rigorous testing to ensure the highest standards of excellence.</p> </li>
+                        <li className='col'> <p className='textBig'><span className='textBig'><ArrowForwardIosRoundedIcon /> <h3 className='headingSmol'> Sustainability</h3> </span>At Herbal Jivan, we are dedicated to eco-conscious practices. From sourcing our ingredients responsibly to using recyclable packaging, we strive to minimize our environmental footprint and protect the planet.</p> </li>
+                        <li className='col'> <p className='textBig'><span className='textBig'><ArrowForwardIosRoundedIcon /> <h3 className='headingSmol'> Holistic Wellness</h3> </span>We believe in the interconnectedness of mind, body, and spirit. Our products are designed to support your overall well-being, helping you achieve balance, vitality, and harmony in your daily life.</p> </li>
                     </ul>
 
                 </div>
@@ -93,7 +98,7 @@ const AboutUs = () => {
                     <div className='join-us-con'>
                         <h3 className='heading c'>Join the Herbal Jivan Community</h3>
                         <p className='mt textBig'>At Herbal Jivan, we’re more than just a company—we’re a community of like-minded individuals who believe in the power of nature to transform lives. Whether you're just beginning your wellness journey or are a seasoned herbal enthusiast, we’re here to support you in achieving your goals.</p>
-                        <img src="/src/assets/images/bg-pattern.svg" alt="" />
+                        <img src={svgp} alt="svgpattern" />
                     </div>
                 </div>
 

@@ -26,6 +26,8 @@ const Order = lazy(() => import('./pages/shop/Order'));
 const Home = lazy(() => import('./pages/Home'));
 const Search = lazy(() => import('./pages/shop/Search'));
 const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
+const Category = lazy(() => import('./pages/shop/Category'));
+
 const ContactUs = lazy(() => import('./pages/static/ContactUs'));
 const AboutUs = lazy(() => import('./pages/static/AboutUs'));
 const BulkOrder = lazy(() => import('./pages/static/BulkOrder'));
@@ -33,7 +35,7 @@ const Privacy = lazy(() => import('./pages/static/Privacy'));
 const Refund = lazy(() => import('./pages/static/Refund'));
 const Shipping = lazy(() => import('./pages/static/Shipping'));
 const Term = lazy(() => import('./pages/static/Term'));
-const Category = lazy(() => import('./pages/shop/Category'));
+
 
 
 function App() {
