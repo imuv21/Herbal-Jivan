@@ -8,7 +8,7 @@ export const signupUser = createAsyncThunk(
     'auth/signupUser',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/user/signup`, userData, {
+            const response = await axios.post(`${BASE_URL}user/signup`, userData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -31,7 +31,7 @@ export const verifyOtp = createAsyncThunk(
     'auth/verifyOtp',
     async ({ otp, email }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/verifyOtp?otp=${otp}&role=User&username=${email}`, {
+            const response = await axios.post(`${BASE_URL}verifyOtp?otp=${otp}&role=User&username=${email}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -53,7 +53,7 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/user/Login`, userData, {
+            const response = await axios.post(`${BASE_URL}user/Login`, userData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -75,7 +75,7 @@ export const forgotPassword = createAsyncThunk(
     'auth/forgotPassword',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/user/forgot-password`, userData, {
+            const response = await axios.post(`${BASE_URL}user/forgot-password`, userData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -97,7 +97,7 @@ export const verifyPassword = createAsyncThunk(
     'auth/verifyPassword',
     async ({ otp, username }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`https://herbal-jeevan-9dl6.onrender.com/api/forgot-password/verify?otp=${otp}&role=USER&username=${username}`, {
+            const response = await axios.post(`${BASE_URL}forgot-password/verify?otp=${otp}&role=USER&username=${username}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
