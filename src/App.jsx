@@ -36,6 +36,12 @@ const Refund = lazy(() => import('./pages/static/Refund'));
 const Shipping = lazy(() => import('./pages/static/Shipping'));
 const Term = lazy(() => import('./pages/static/Term'));
 
+//admin panel
+const Dashboard = lazy(() => import('./admin/pages/Dashboard'));
+const OrderAd = lazy(() => import('./admin/pages/OrderAd'));
+const ProductAd = lazy(() => import('./admin/pages/ProductAd'));
+const UserAd = lazy(() => import('./admin/pages/UserAd'));
+
 
 
 function App() {
@@ -47,6 +53,13 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Toaster />
         <Routes>
+
+          {/* admin panel */}
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="orders-list" element={<OrderAd />} />
+            <Route path="payment" element={<ProductAd />} />
+            <Route path="users-list" element={<UserAd />} />
+          </Route>
 
           {/* private */}
           <Route element={<Protector user={user} />}>

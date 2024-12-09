@@ -14,7 +14,7 @@ export const orders = [
         totalPrice: 5000,
         time: '12:41:17 PM',
         date: '09/17/2024',
-        orderStatus: 'Placed',              
+        orderStatus: 'Placed',
         products: [
             {
                 name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
@@ -44,7 +44,7 @@ export const orders = [
         totalPrice: 5000,
         time: '12:41:17 PM',
         date: '09/17/2024',
-        orderStatus: 'Placed',              
+        orderStatus: 'Placed',
         products: [
             {
                 name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
@@ -311,6 +311,54 @@ export const infslider = [
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462011/Ulinkit/samsunglogo_inbb3m.png",
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462012/Ulinkit/tamronlogo_bqy3bq.png",
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462015/Ulinkit/voltaslogo_lqolss.png",
+];
+
+
+//admin panel
+
+import orderList from './images/icons8-orders-list-100.png';
+import userList from './images/icons8-users-list-100.png';
+import productList from './images/icons8-product-list-100.png';
+import addproduct from './images/icons8-add-new-product-100.png';
+import categoryList from './images/icons8-category-list-100.png';
+import topRated from './images/icons8-top-rated-100.png';
+import bestSeller from './images/icons8-best-seller-100.png';
+import rolemanagement from './images/icons8-role-management-100.png';
+import review from './images/icons8-review-100.png';
+import payment from './images/icons8-money-management-100.png';
+
+export const accordionData = [
+    {
+        header: 'Users',
+        bricks: [
+            { name: 'Orders List', route: '/dashboard/orders-list', icon: orderList },
+            { name: 'Users List', route: '/dashboard/users-list', icon: userList },
+            { name: 'Payment', route: '/dashboard/payment', icon: payment },
+        ],
+    },
+    {
+        header: 'Products',
+        bricks: [
+            { name: 'Add New Product', route: '/dashboard/orders-list', icon: addproduct },
+            { name: 'Products List', route: '/dashboard/users-list', icon: productList },
+            { name: 'Categories List', route: '/dashboard/payment', icon: categoryList },
+        ],
+    },
+    {
+        header: 'Analytics',
+        bricks: [
+            { name: 'Top Rated List', route: '/dashboard/orders-list', icon: topRated },
+            { name: 'Best Sellers List', route: '/dashboard/users-list', icon: bestSeller },
+        ],
+    },
+    {
+        header: 'Management',
+        bricks: [
+            { name: 'Role Management', route: '/dashboard/orders-list', icon: rolemanagement },
+            { name: 'Review Management', route: '/dashboard/users-list', icon: review },
+            { name: 'Payment Management', route: '/dashboard/payment', icon: payment },
+        ],
+    },
 ];
 
 
