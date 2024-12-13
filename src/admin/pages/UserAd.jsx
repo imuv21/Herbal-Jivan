@@ -2,7 +2,8 @@ import React from 'react'
 
 const UserAd = () => {
   return (
-    <div>UserAd</div>
+    <div className='adminPage'>
+    </div>
   )
 }
 

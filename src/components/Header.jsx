@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../slices/authSlice';
 import { toast } from 'react-hot-toast';
+import { categories } from '../assets/schemas';
 import { Menu } from '@mui/icons-material';
 import logo from '../assets/images/tempLogo.png';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
@@ -91,21 +92,11 @@ const Header = () => {
             </div>
 
             <section className="catHeader">
-                <a href='/category' className="catItem">
-                    <h1 className='textBig'>JOINT PAIN</h1>
-                </a>
-                <a href='/category' className="catItem">
-                    <h1 className='textBig'>HAIR FALL</h1>
-                </a>
-                <a href='/category' className="catItem">
-                    <h1 className='textBig'>WEIGHT GAIN</h1>
-                </a>
-                <a href='/category' className="catItem">
-                    <h1 className='textBig'>DIABETIC</h1>
-                </a>
-                <a href='/category' className="catItem">
-                    <h1 className='textBig'>SEXUAL</h1>
-                </a>
+                {categories && categories.length > 0 && categories.map((cat, index) => (
+                    <Link to={`/category?query=${cat.name}`} className="catItem" key={index}>
+                        <h1 className='textBig'>{cat.name}</h1>
+                    </Link>
+                ))}
             </section>
 
             {mobileMenuOpen && <div className="overlay visible" onClick={toggleMobileMenu}></div>}

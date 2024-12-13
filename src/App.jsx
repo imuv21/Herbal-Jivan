@@ -41,6 +41,9 @@ const Dashboard = lazy(() => import('./admin/pages/Dashboard'));
 const OrderAd = lazy(() => import('./admin/pages/OrderAd'));
 const ProductAd = lazy(() => import('./admin/pages/ProductAd'));
 const UserAd = lazy(() => import('./admin/pages/UserAd'));
+const AddNewProduct = lazy(() => import('./admin/pages/AddNewProduct'));
+const ProductList = lazy(() => import('./admin/pages/ProductList'));
+const CategoryList = lazy(() => import('./admin/pages/CategoryList'));
 
 
 
@@ -59,6 +62,9 @@ function App() {
             <Route path="orders-list" element={<OrderAd />} />
             <Route path="payment" element={<ProductAd />} />
             <Route path="users-list" element={<UserAd />} />
+            <Route path="add-new-product" element={<AddNewProduct />} />
+            <Route path="product-list" element={<ProductList />} />
+            <Route path="category-list" element={<CategoryList />} />
           </Route>
 
           {/* private */}

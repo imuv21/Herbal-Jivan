@@ -37,6 +37,10 @@ const Dashboard = () => {
         <section className="dashboard">
 
             <div className="accordion">
+                <div className="admin-logo">
+                    <img src={logo} alt="logo" />
+                </div>
+                
                 <div className='accordionCover'>
                     {accordionData.map((accordion, index) => (
                         <div className="accordion__item" key={index}>
@@ -58,12 +62,9 @@ const Dashboard = () => {
                         </div>
                     ))}
                 </div>
-                <div className="admin-logo">
-                    <img src={logo} alt="logo" />
-                </div>
             </div>
 
-            <div className="anyPage">
+            <div className="adminPage">
                 <Outlet />
             </div>
 

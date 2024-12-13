@@ -1,20 +1,19 @@
 import React, { Fragment, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { products, images, categories } from '../assets/schemas';
 import Loader from '../components/Loader/Loader';
-import { images } from '../assets/schemas';
 import Carousel from '../components/Carousel';
-import { products } from '../assets/schemas';
-import tempImage from '../assets/images/defaultImage.jpg';
-const ImageSlider = lazy(() => import('../components/ImageSlider'));
 import VideoSec from '../components/VideoSec';
 import PopularCard from '../components/PopularCard';
 import InfSlider from '../components/InfSlider';
+const ImageSlider = lazy(() => import('../components/ImageSlider'));
 
 
 
 const Home = () => {
 
-  
+
   return (
     <Fragment>
       <Helmet>
@@ -32,28 +31,13 @@ const Home = () => {
         <Carousel products={products} />
 
         <article><h1 className='headingBig'>Shop By Category</h1></article>
-
         <section className="category">
-          <a href='/category' className='cate-item'>
-            <img src={tempImage} alt="JOINT PAIN" />
-            <h1 className='heading'>JOINT PAIN</h1>
-          </a>
-          <a href='/category' className='cate-item'>
-            <img src={tempImage} alt="HAIR FALL" />
-            <h1 className='heading'>HAIR FALL</h1>
-          </a>
-          <a href='/category' className='cate-item'>
-            <img src={tempImage} alt="WEIGHT GAIN" />
-            <h1 className='heading'>WEIGHT GAIN</h1>
-          </a>
-          <a href='/category' className='cate-item'>
-            <img src={tempImage} alt="DIABETIC" />
-            <h1 className='heading'>DIABETIC</h1>
-          </a>
-          <a href='/category' className='cate-item'>
-            <img src={tempImage} alt="SEXUAL" />
-            <h1 className='heading'>SEXUAL</h1>
-          </a>
+          {categories && categories.length > 0 && categories.map((cat, index) => (
+            <Link to={`/category?query=${cat.name}`} className='cate-item' key={index}>
+              <img src={cat.image} alt={cat.name} />
+              <h1 className='heading'>{cat.name}</h1>
+            </Link>
+          ))}
         </section>
 
         <VideoSec />

@@ -76,8 +76,11 @@ input:disabled {
 }
 
 select,
-textarea,
 input::placeholder {
+  color: var(--codeThree);
+}
+
+textarea::placeholder {
   color: var(--codeThree);
 }
 
@@ -2658,11 +2661,17 @@ button:focus {
   width: 100%;
 }
 
-.anyPage {
+.adminPage {
   width: 100%;
   height: 100%;
-  padding: 20px;
-  background-color: var(--codeThree);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 40px 20px;
+  background-color: var(--codeOne);
+  overflow-y: scroll;
 }
 
 .accordion {
@@ -2671,8 +2680,9 @@ button:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-y: auto;
+  border-right: 1px solid var(--codeTwo);
 }
 
 .accordionCover {
@@ -2685,7 +2695,7 @@ button:focus {
 
 .accordion__item {
   width: 100%;
-  border: 1px solid var(--codeTwo);
+  border-bottom: 1px solid var(--codeTwo);
   overflow: hidden;
 }
 
@@ -2759,7 +2769,7 @@ button:focus {
   aspect-ratio: 1/1;
 }
 .admin-logo {
-  padding: 20px 0px;
+  padding: 32px 0px;
 }
 .admin-logo img {
   width: 150px;
@@ -2767,6 +2777,85 @@ button:focus {
   aspect-ratio: 4/1;
   cursor: pointer;
 }
+
+/* add new product - admin */
+.productForm {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.adminGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: 10px;
+}
+.adminCatGrid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+}
+
+.adminGridItem {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #efefef, #f8f8f8);
+  border-radius: var(--brTwo);
+  transition: var(--trans);
+}
+.adminGridItem .MuiSvgIcon-root {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+  transition: var(--trans);
+  opacity: 0;
+}
+.editIcon {
+  top: 10px;
+  right: 10px;
+  color: var(--codeSix);
+}
+.deleteIcon {
+  top: 35px;
+  right: 10px;
+  color: var(--codeFour);
+}
+.adminGridItem:hover {
+  box-shadow: 5px 5px 10px #d5d5d5, -5px -5px 10px #ffffff;
+}
+.adminGridItem:hover .MuiSvgIcon-root{
+  opacity: 1;
+}
+.adminGridItem img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  aspect-ratio: 4/3;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 /* common */

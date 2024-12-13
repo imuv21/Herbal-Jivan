@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { products } from '../../assets/schemas';
 import Loader from '../../components/Loader/Loader';
 import { useSearchParams } from 'react-router-dom';
+import defaulImg from '../../assets/images/defaultImage.jpg';
 const ProductCard = lazy(() => import('../../components/ProductCard'));
 
 

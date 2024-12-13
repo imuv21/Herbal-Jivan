@@ -339,9 +339,9 @@ export const accordionData = [
     {
         header: 'Products',
         bricks: [
-            { name: 'Add New Product', route: '/dashboard/orders-list', icon: addproduct },
-            { name: 'Products List', route: '/dashboard/users-list', icon: productList },
-            { name: 'Categories List', route: '/dashboard/payment', icon: categoryList },
+            { name: 'Add New Product', route: '/dashboard/add-new-product', icon: addproduct },
+            { name: 'Products List', route: '/dashboard/product-list', icon: productList },
+            { name: 'Categories List', route: '/dashboard/category-list', icon: categoryList },
         ],
     },
     {
@@ -362,4 +362,28 @@ export const accordionData = [
 ];
 
 
+//  category list
+import tempImage from './images/defaultImage.jpg';
 
+export const categories = [
+    {
+        name: 'JOINT PAIN',
+        image: tempImage
+    },
+    {
+        name: 'HAIR FALL',
+        image: tempImage
+    },
+    {
+        name: 'WEIGHT GAIN',
+        image: tempImage
+    },
+    {
+        name: 'DIABETIC',
+        image: tempImage
+    },
+    {
+        name: 'SEXUAL',
+        image: tempImage
+    },
+];

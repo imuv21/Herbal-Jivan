@@ -231,7 +231,6 @@ const ProductDetails = () => {
 
         <section className='pdCont'>
           <article className="pdContImg">
-
             <div className="slider-containerpd">
               {transitions((style, i) => (
                 <animated.div className="slide" style={style}>

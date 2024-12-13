@@ -29,14 +29,13 @@ const Profile = () => {
         event.preventDefault();
         setIsClickedFooter(false);
         setIsClickedFooterTwo(false);
-    }
+    };
 
     const [formValues, setFormValues] = useState({
         firstname: '',
         lastname: '',
         email: '',
     });
-
     useEffect(() => {
         if (user) {
             setFormValues(prevValues => ({
@@ -85,7 +84,6 @@ const Profile = () => {
         number: '',
         default: false,
     });
-
     const handleAddressChange = (e) => {
         const { name, value, type, checked } = e.target;
         setAddressValues({
@@ -119,6 +117,7 @@ const Profile = () => {
 
             <div className="page flexcol wh">
                 <article><h1 className='heading'>Profile</h1></article>
+
                 <div className="profile">
                     <div className="flex verify center-start g5">
                         <p className="name">{`${user?.firstname} ${user?.lastname}`}</p> <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooter} />
@@ -216,6 +215,7 @@ const Profile = () => {
                         </div>
                     )}
                 </div>
+                
             </div>
         </Fragment>
     )
