@@ -195,7 +195,6 @@ const CategoryList = () => {
                     </div>
                 )}
             </div>
-
         </Fragment>
     )
 }

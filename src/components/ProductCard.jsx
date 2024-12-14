@@ -1,6 +1,5 @@
 import React from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import tempimg from '../assets/images/korean-ginseng.webp';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
@@ -20,7 +19,7 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
 
     return (
         <a className='show-img-detail-sub' href={`/product-details/${id}`}>
-            <img className='product-img-size' src={tempimg} alt={`${name}`} />
+            <img className='product-img-size' src={image} alt={`${name}`} />
             <div className="discount-icon">{discountPercentage.toFixed(0)}% OFF</div>
             <div className='product-detail-info'>
                 <div className="starCont">

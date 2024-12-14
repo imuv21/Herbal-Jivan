@@ -1,13 +1,15 @@
+import tempImage from './images/defaultImage.jpg';
+import proimg from './images/korean-ginseng.webp';
 
+// image slider
+import bannerOne from './images/banner1.jpeg';
 export const images = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpa-OPGCHyX-GPQRrwoR289o79lh94R-ERw&s',
-    'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+    bannerOne, 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
     'https://images8.alphacoders.com/136/thumb-350-1363709.webp',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s',
 ];
 
-// 'Placed / Shipped / Out for Delivery / Delivered / Cancelled'
-
+// Orders => 'Placed / Shipped / Delivered / Cancelled'
 export const orders = [
     {
         orderId: 'sdghwkgphirghrh',
@@ -20,21 +22,21 @@ export const orders = [
                 name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
                 salePrice: 953,
                 quantity: 3,
-                image: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+                image: tempImage,
                 productId: 'sgrehkliutrjrtlrhtbtr',
             },
             {
                 name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
                 salePrice: 5458,
                 quantity: 2,
-                image: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
+                image: tempImage,
                 productId: 'sgrehkltyjjyuiulrhtbtr',
             },
             {
                 name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
                 salePrice: 953,
                 quantity: 3,
-                image: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+                image: tempImage,
                 productId: 'sgrehklidrherhryhyulrhtbtr',
             },
         ],
@@ -50,20 +52,290 @@ export const orders = [
                 name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
                 salePrice: 953,
                 quantity: 3,
-                image: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
+                image: tempImage,
                 productId: 'sgrehkliutrjrtlrhtbtr',
             },
             {
                 name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
                 salePrice: 5458,
                 quantity: 2,
-                image: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
+                image: tempImage,
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphrjtyjirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: tempImage,
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphrjtyjirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: tempImage,
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: tempImage,
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehklidrherhryhyulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphrjtyjirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: tempImage,
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphrjtyjirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: tempImage,
+                productId: 'sgrehkltyjjyuiulrhtbtr',
+            },
+        ],
+    },
+    {
+        orderId: 'sdghwkgphrjtyjirghrh',
+        totalPrice: 5000,
+        time: '12:41:17 PM',
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+        products: [
+            {
+                name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+                salePrice: 953,
+                quantity: 3,
+                image: tempImage,
+                productId: 'sgrehkliutrjrtlrhtbtr',
+            },
+            {
+                name: 'Organic Ashwagandha - Stress Relief and Immunity Booster',
+                salePrice: 5458,
+                quantity: 2,
+                image: tempImage,
                 productId: 'sgrehkltyjjyuiulrhtbtr',
             },
         ],
     },
 ];
 
+export const ordersList = [
+    {
+        orderId: 'sdghwkgphirghrh',
+        email: 'john@gmail.com',
+        numberOfProducts: 4,
+        totalPrice: 43634,
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'kjwueirhguerwfh',
+        email: 'alice@gmail.com',
+        numberOfProducts: 2,
+        totalPrice: 12345,
+        date: '10/12/2024',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'dskjfhwueyrhgui',
+        email: 'mike@gmail.com',
+        numberOfProducts: 5,
+        totalPrice: 56789,
+        date: '11/20/2024',
+        orderStatus: 'Delivered',
+    },
+    {
+        orderId: 'sdlfkjerwueyfbv',
+        email: 'susan@gmail.com',
+        numberOfProducts: 3,
+        totalPrice: 23456,
+        date: '12/05/2024',
+        orderStatus: 'Cancelled',
+    },
+    {
+        orderId: 'aslfkjwueyrbfvi',
+        email: 'peter@gmail.com',
+        numberOfProducts: 1,
+        totalPrice: 9876,
+        date: '12/10/2024',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'wjerhguwyerbgvf',
+        email: 'emma@gmail.com',
+        numberOfProducts: 6,
+        totalPrice: 65432,
+        date: '01/15/2025',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'mskdjfhwuyrgvbf',
+        email: 'olivia@gmail.com',
+        numberOfProducts: 7,
+        totalPrice: 76543,
+        date: '01/22/2025',
+        orderStatus: 'Delivered',
+    },
+    {
+        orderId: 'ndklfjghweurygv',
+        email: 'liam@gmail.com',
+        numberOfProducts: 4,
+        totalPrice: 45678,
+        date: '02/05/2025',
+        orderStatus: 'Cancelled',
+    },
+    {
+        orderId: 'zxcmnweiufygrbv',
+        email: 'ava@gmail.com',
+        numberOfProducts: 3,
+        totalPrice: 23478,
+        date: '02/10/2025',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'qpoweirutyvbnmf',
+        email: 'isabella@gmail.com',
+        numberOfProducts: 8,
+        totalPrice: 87654,
+        date: '02/15/2025',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'tyuioerwpaklmnz',
+        email: 'noah@gmail.com',
+        numberOfProducts: 5,
+        totalPrice: 54321,
+        date: '03/01/2025',
+        orderStatus: 'Delivered',
+    },
+    {
+        orderId: 'ghjklwertyuiops',
+        email: 'mia@gmail.com',
+        numberOfProducts: 2,
+        totalPrice: 13579,
+        date: '03/05/2025',
+        orderStatus: 'Cancelled',
+    },
+    {
+        orderId: 'vbnamwerqtyzxcv',
+        email: 'james@gmail.com',
+        numberOfProducts: 9,
+        totalPrice: 98765,
+        date: '03/15/2025',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'asdfghjklzxcvbnm',
+        email: 'amelia@gmail.com',
+        numberOfProducts: 6,
+        totalPrice: 65498,
+        date: '03/20/2025',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'poiuytrewqlkjhgf',
+        email: 'elijah@gmail.com',
+        numberOfProducts: 3,
+        totalPrice: 34789,
+        date: '04/01/2025',
+        orderStatus: 'Delivered',
+    },
+];
+
+
+// products
 export const productDetail = {
     name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
     originalPrice: 1498,
@@ -73,22 +345,21 @@ export const productDetail = {
     threestar: 18,
     fourstar: 35,
     fivestar: 57,
-    imageOne: 'https://herbalmax.in/cdn/shop/files/1st-image-color-background-l_glutathione_1.png?v=1731665236&width=823',
-    imageTwo: 'https://herbalmax.in/cdn/shop/files/710u_e-myWL._SL1500_d5ce55f8-708e-4cf6-b3e6-61d8cb83889a.png?v=1731665232&width=823',
-    imageThree: 'https://herbalmax.in/cdn/shop/files/60-l-glutathione-tablet-for-glowing-skin-reduce-pigmentation-for-original-imah3abwqhztgtp3.jpg?v=1731665236&width=823',
-    imageFour: 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823',
-    imageFive: 'https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823',
+    imageOne: proimg,
+    imageTwo: proimg,
+    imageThree: proimg,
+    imageFour: proimg,
+    imageFive: proimg,
     productId: 'sgrehkliulrhtbtr',
     info: 'Vitamin B12 Capsules are designed to support your daily energy levels and mental focus. Each easy-to-swallow capsule provides essential nutrients, including Vitamin B12, which may help you maintain a more vibrant, energetic lifestyle. Simple, effective, and easy to incorporate into your routine.',
 };
-
 export const products = [
     {
         name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
         originalPrice: 1498,
         salePrice: 953,
         ratings: 2,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehkliulrhtbtr',
     },
     {
@@ -96,7 +367,7 @@ export const products = [
         originalPrice: 1299,
         salePrice: 899,
         ratings: 2.2,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrertrghtbtr',
     },
     {
@@ -104,7 +375,7 @@ export const products = [
         originalPrice: 1599,
         salePrice: 1049,
         ratings: 2.3,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrhtbjyjytr',
     },
     {
@@ -112,7 +383,7 @@ export const products = [
         originalPrice: 999,
         salePrice: 699,
         ratings: 2.7,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrhtdfgbbtr',
     },
     {
@@ -120,7 +391,7 @@ export const products = [
         originalPrice: 1899,
         salePrice: 1399,
         ratings: 2.8,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrliuythhtbtr',
     },
     {
@@ -128,7 +399,7 @@ export const products = [
         originalPrice: 1199,
         salePrice: 849,
         ratings: 0,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrgefgdhtbtr',
     },
     {
@@ -136,7 +407,7 @@ export const products = [
         originalPrice: 1099,
         salePrice: 799,
         ratings: 1,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrhlkyjtbtr',
     },
     {
@@ -144,7 +415,7 @@ export const products = [
         originalPrice: 1399,
         salePrice: 999,
         ratings: 5,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrytkuykehrhtbtr',
     },
     {
@@ -152,7 +423,7 @@ export const products = [
         originalPrice: 1599,
         salePrice: 1149,
         ratings: 2.5,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehtryhdgrhtbtr',
     },
     {
@@ -160,29 +431,28 @@ export const products = [
         originalPrice: 799,
         salePrice: 599,
         ratings: 3.9,
-        image: 'https://c4.wallpaperflare.com/wallpaper/410/867/750/vector-forest-sunset-forest-sunset-forest-wallpaper-thumb.jpg',
+        image: proimg,
         productId: 'sgrehrhii6ktbtr',
     },
 ];
-
 export const reviews = [
     {
         rating: 4,
         name: 'Alice Johnson',
         review: 'The product worked well for me. The herbal ingredients seem effective.',
-        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+        reviewImages: [proimg, proimg],
     },
     {
         rating: 5,
         name: 'Michael Brown',
         review: 'Excellent quality! I feel more energetic after using it. Highly recommend.',
-        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+        reviewImages: [proimg, proimg],
     },
     {
         rating: 3,
         name: 'Sophia Lee',
         review: 'Decent product, but I expected better packaging. Hope it improves.',
-        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+        reviewImages: [proimg, proimg],
     },
     {
         rating: 2,
@@ -206,7 +476,7 @@ export const reviews = [
         rating: 1,
         name: 'Olivia Garcia',
         review: 'Disappointed. The product didn’t work as advertised. Waste of money.',
-        reviewImages: ['https://herbalmax.in/cdn/shop/files/last_6657254ff358b.jpg?v=1731665229&width=823', 'https://herbalmax.in/cdn/shop/files/71z4kkYfsuL._SL1500_9b73925c-bcca-44a7-892f-2e8119492a22.png?v=1731665232&width=823'],
+        reviewImages: [proimg, proimg],
     },
     {
         rating: 5,
@@ -215,7 +485,6 @@ export const reviews = [
         reviewImages: [],
     },
 ];
-
 export const quests = [
     {
         name: 'John Doe',
@@ -259,6 +528,7 @@ export const quests = [
     },
 ];
 
+// videos, sliders
 export const Videos = [
     {
         id: "12345",
@@ -286,7 +556,6 @@ export const Videos = [
         price: 24.99
     },
 ];
-
 export const infslider = [
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461998/Ulinkit/Anmol-Logo_xtcnxq.png",
     "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462000/Ulinkit/boat_logo_copy_w7ra0u.png",
@@ -315,7 +584,6 @@ export const infslider = [
 
 
 //admin panel
-
 import orderList from './images/icons8-orders-list-100.png';
 import userList from './images/icons8-users-list-100.png';
 import productList from './images/icons8-product-list-100.png';
@@ -332,7 +600,7 @@ export const accordionData = [
         header: 'Users',
         bricks: [
             { name: 'Orders List', route: '/dashboard/orders-list', icon: orderList },
-            { name: 'Users List', route: '/dashboard/users-list', icon: userList },
+            { name: 'Users List', route: '/dashboard/user-list', icon: userList },
             { name: 'Payment', route: '/dashboard/payment', icon: payment },
         ],
     },
@@ -363,8 +631,6 @@ export const accordionData = [
 
 
 //  category list
-import tempImage from './images/defaultImage.jpg';
-
 export const categories = [
     {
         name: 'JOINT PAIN',
@@ -385,5 +651,82 @@ export const categories = [
     {
         name: 'SEXUAL',
         image: tempImage
+    },
+];
+
+
+// users list
+export const users = [
+    {
+        firstname: "John",
+        lastname: "Doe",
+        email: "john@email.com",
+        userId: "sghwogwudfdj",
+    },
+    {
+        firstname: "Jane",
+        lastname: "Smith",
+        email: "jane@email.com",
+        userId: "djhw837shjdy",
+    },
+    {
+        firstname: "Alice",
+        lastname: "Johnson",
+        email: "alice@email.com",
+        userId: "y73hsh29dhjs",
+    },
+    {
+        firstname: "Bob",
+        lastname: "Brown",
+        email: "bob@email.com",
+        userId: "83ndjs837hds",
+    },
+    {
+        firstname: "Emily",
+        lastname: "Davis",
+        email: "emily@email.com",
+        userId: "92hsdhs92jdk",
+    },
+    {
+        firstname: "Chris",
+        lastname: "Wilson",
+        email: "chris@email.com",
+        userId: "k83jdh92jdhs",
+    },
+    {
+        firstname: "Mia",
+        lastname: "Martinez",
+        email: "mia@email.com",
+        userId: "jshd7382jsnd",
+    },
+    {
+        firstname: "Liam",
+        lastname: "Garcia",
+        email: "liam@email.com",
+        userId: "837shdhw8shd",
+    },
+    {
+        firstname: "Sophia",
+        lastname: "Anderson",
+        email: "sophia@email.com",
+        userId: "92jdhshd8shd",
+    },
+    {
+        firstname: "Ethan",
+        lastname: "Thomas",
+        email: "ethan@email.com",
+        userId: "hd83hsh8djsn",
+    },
+    {
+        firstname: "Ava",
+        lastname: "Hernandez",
+        email: "ava@email.com",
+        userId: "73jdhs92hd8s",
+    },
+    {
+        firstname: "Noah",
+        lastname: "Lee",
+        email: "noah@email.com",
+        userId: "s8dh2hd82ndj",
     },
 ];

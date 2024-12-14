@@ -1,7 +1,7 @@
 import React, { useState, useRef, Fragment } from 'react';
 import { accordionData } from '../../assets/schemas';
 import { useNavigate, Outlet } from 'react-router-dom';
-import logo from '../../assets/images/tempLogo.png';
+import logo from '../../assets/images/logo.jpeg';
 
 const Dashboard = () => {
 

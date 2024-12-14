@@ -441,7 +441,7 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 150px;
+  padding: 10px 150px;
 }
 
 .catHeader {
@@ -545,7 +545,7 @@ button:focus {
 .logo {
   width: 150px;
   object-fit: contain;
-  aspect-ratio: 4/1;
+  aspect-ratio: 4/1.5;
   cursor: pointer;
 }
 
@@ -2284,13 +2284,72 @@ button:focus {
 /* order */
 .orderCont {
   width: 100%;
-  max-width: 900px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.orders {
+  width: 100%;
   gap: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
+.youMayAlso {
+  position: sticky;
+  top: 70px;
+  width: 100%;
+  max-width: 300px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ymalProducts {
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background: var(--codeOne);
+  box-shadow: 2px 2px 5px #c7c7c7, -2px -2px 5px var(--codeTwo);
+  border-radius: var(--brTwo);
+}
+
+/* small card */
+.smallCard {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--codeTwo);
+}
+
+.smallCard img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.smallCardDetail {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 
 .orderproCont {
   width: 100%;
@@ -2654,6 +2713,7 @@ button:focus {
 }
 
 
+
 /* accordion and panel - admin panel - dashboard*/
 .dashboard {
   display: flex;
@@ -2768,9 +2828,11 @@ button:focus {
   object-fit: contain;
   aspect-ratio: 1/1;
 }
+
 .admin-logo {
   padding: 32px 0px;
 }
+
 .admin-logo img {
   width: 150px;
   object-fit: contain;
@@ -2778,7 +2840,8 @@ button:focus {
   cursor: pointer;
 }
 
-/* add new product - admin */
+
+/* products section - admin */
 .productForm {
   width: 100%;
   max-width: 500px;
@@ -2788,13 +2851,15 @@ button:focus {
   justify-content: flex-start;
   gap: 20px;
 }
+
 .adminGrid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
   gap: 10px;
 }
-.adminCatGrid{
+
+.adminCatGrid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -2815,6 +2880,7 @@ button:focus {
   border-radius: var(--brTwo);
   transition: var(--trans);
 }
+
 .adminGridItem .MuiSvgIcon-root {
   position: absolute;
   width: 20px;
@@ -2824,22 +2890,27 @@ button:focus {
   transition: var(--trans);
   opacity: 0;
 }
+
 .editIcon {
   top: 10px;
   right: 10px;
   color: var(--codeSix);
 }
+
 .deleteIcon {
   top: 35px;
   right: 10px;
   color: var(--codeFour);
 }
+
 .adminGridItem:hover {
   box-shadow: 5px 5px 10px #d5d5d5, -5px -5px 10px #ffffff;
 }
-.adminGridItem:hover .MuiSvgIcon-root{
+
+.adminGridItem:hover .MuiSvgIcon-root {
   opacity: 1;
 }
+
 .adminGridItem img {
   width: 100px;
   height: auto;
@@ -2848,8 +2919,71 @@ button:focus {
 }
 
 
+/* users section - admin */
+.usersList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 
+.userRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--codeTwo);
+}
 
+.userRow:first-child {
+  border-bottom: 2px solid var(--codeTwo);
+}
+
+.index,
+.seeBtns {
+  gap: 5px;
+  padding: 10px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.email {
+  width: 100%;
+  gap: 5px;
+  padding: 10px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.datePriceNum {
+  width: 600px;
+  gap: 5px;
+  padding: 10px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.index {
+  width: 500px;
+}
+.seeBtns {
+  width: 100%;
+}
+.seeBtns button {
+  padding: 5px 10px;
+}
 
 
 
@@ -3108,7 +3242,7 @@ button:focus {
   }
 
   .header {
-    padding: 20px;
+    padding: 10px 20px;
   }
 
   .catHeader {
@@ -3160,6 +3294,10 @@ button:focus {
 }
 
 @media screen and (max-width: 750px) {
+
+  .youMayAlso {
+    display: none;
+  }
 
   .searchCont {
     width: 100%;
@@ -3515,7 +3653,6 @@ button:focus {
   }
 
   .header {
-    padding: 15px 20px;
     border-bottom: var(--border);
   }
 

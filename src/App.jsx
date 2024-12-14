@@ -38,18 +38,16 @@ const Term = lazy(() => import('./pages/static/Term'));
 
 //admin panel
 const Dashboard = lazy(() => import('./admin/pages/Dashboard'));
-const OrderAd = lazy(() => import('./admin/pages/OrderAd'));
-const ProductAd = lazy(() => import('./admin/pages/ProductAd'));
-const UserAd = lazy(() => import('./admin/pages/UserAd'));
 const AddNewProduct = lazy(() => import('./admin/pages/AddNewProduct'));
 const ProductList = lazy(() => import('./admin/pages/ProductList'));
 const CategoryList = lazy(() => import('./admin/pages/CategoryList'));
-
-
+const UsersList = lazy(() => import('./admin/pages/UsersList'));
+const OrdersList = lazy(() => import('./admin/pages/OrdersList'));
 
 function App() {
 
-  const user = useSelector((state) => state.auth.user);
+  // const user = useSelector((state) => state.auth.user);
+  const user = true;
 
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -59,12 +57,11 @@ function App() {
 
           {/* admin panel */}
           <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="orders-list" element={<OrderAd />} />
-            <Route path="payment" element={<ProductAd />} />
-            <Route path="users-list" element={<UserAd />} />
             <Route path="add-new-product" element={<AddNewProduct />} />
             <Route path="product-list" element={<ProductList />} />
             <Route path="category-list" element={<CategoryList />} />
+            <Route path="user-list" element={<UsersList />} />
+            <Route path="orders-list" element={<OrdersList />} />
           </Route>
 
           {/* private */}

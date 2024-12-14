@@ -5,7 +5,7 @@ import { logout } from '../slices/authSlice';
 import { toast } from 'react-hot-toast';
 import { categories } from '../assets/schemas';
 import { Menu } from '@mui/icons-material';
-import logo from '../assets/images/tempLogo.png';
+import logo from '../assets/images/logo.jpeg';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
