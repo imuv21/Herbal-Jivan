@@ -37,6 +37,7 @@ const Shipping = lazy(() => import('./pages/static/Shipping'));
 const Term = lazy(() => import('./pages/static/Term'));
 
 //admin panel
+const AdminLogin = lazy(() => import('./admin/pages/AdminLogin'));
 const Dashboard = lazy(() => import('./admin/pages/Dashboard'));
 const AddNewProduct = lazy(() => import('./admin/pages/AddNewProduct'));
 const EditProduct = lazy(() => import('./admin/pages/EditProduct'));
@@ -105,6 +106,7 @@ function App() {
 
           {/* both */}
           <Route path='/' element={<Layout><Home /></Layout>} />
+          <Route path='/admin/login' element={<AdminLogin />} />
           <Route path='/product-details/:id' element={<Layout><ProductDetails /></Layout>} />
           <Route path='/search-results' element={<Layout><Search /></Layout>} />
           <Route path='/category' element={<Layout><Category /></Layout>} />
