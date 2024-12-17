@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { categories } from '../../assets/schemas';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';

@@ -9,6 +9,7 @@ export const images = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s',
 ];
 
+
 // Orders => 'Placed / Shipped / Delivered / Cancelled'
 export const orders = [
     {
@@ -435,6 +436,7 @@ export const products = [
         productId: 'sgrehrhii6ktbtr',
     },
 ];
+
 export const reviews = [
     {
         rating: 4,
@@ -485,6 +487,65 @@ export const reviews = [
         reviewImages: [],
     },
 ];
+export const reviewsAdmin = [
+    {
+        reviewId: "r1",
+        productId: "p1",
+        rating: 4,
+        review: 'The product worked well for me. The herbal ingredients seem effective.',
+        reviewImages: [proimg, proimg],
+    },
+    {
+        reviewId: "r2",
+        productId: "p2",
+        rating: 5,
+        review: 'Excellent quality! I feel more energetic after using it. Highly recommend.',
+        reviewImages: [proimg, proimg],
+    },
+    {
+        reviewId: "r3",
+        productId: "p1",
+        rating: 3,
+        review: 'Decent product, but I expected better packaging. Hope it improves.',
+        reviewImages: [proimg, proimg],
+    },
+    {
+        reviewId: "r4",
+        productId: "p3",
+        rating: 2,
+        review: 'Not satisfied. It didn’t meet my expectations. Maybe it works for others.',
+        reviewImages: [],
+    },
+    {
+        reviewId: "r5",
+        productId: "p2",
+        rating: 5,
+        review: 'Amazing results! Quick delivery and great customer service. Loved it.',
+        reviewImages: [],
+    },
+    {
+        reviewId: "r6",
+        productId: "p1",
+        rating: 4,
+        review: 'Very good product. It’s helping me with my health goals. Worth the price.',
+        reviewImages: [],
+    },
+    {
+        reviewId: "r7",
+        productId: "p3",
+        rating: 1,
+        review: 'Disappointed. The product didn’t work as advertised. Waste of money.',
+        reviewImages: [proimg, proimg],
+    },
+    {
+        reviewId: "r8",
+        productId: "p2",
+        rating: 5,
+        review: 'Fantastic product! I’ve been using it for weeks and see great results.',
+        reviewImages: [],
+    },
+];
+
 export const quests = [
     {
         name: 'John Doe',
@@ -494,7 +555,7 @@ export const quests = [
     {
         name: 'Alice Johnson',
         question: 'How long does it take to see results?',
-        reply: 'Results may vary, but most users notice improvements within 2-4 weeks of consistent use.',
+        reply: '',
     },
     {
         name: 'Michael Brown',
@@ -504,7 +565,7 @@ export const quests = [
     {
         name: 'Emma Davis',
         question: 'Can it be used alongside other supplements?',
-        reply: 'Yes, it can be taken with other supplements, but we recommend consulting your healthcare provider first.',
+        reply: '',
     },
     {
         name: 'Chris Wilson',
@@ -514,7 +575,7 @@ export const quests = [
     {
         name: 'Sophia Lee',
         question: 'What is the best time to take this supplement?',
-        reply: 'It is best taken in the morning with breakfast or as directed by your physician.',
+        reply: '',
     },
     {
         name: 'David Smith',
@@ -527,6 +588,57 @@ export const quests = [
         reply: 'This product is recommended for adults. Consult a pediatrician for child-specific advice.',
     },
 ];
+export const questsAdmin = [
+    {
+        questionId: "q1",
+        productId: "p1",
+        question: 'Does it work on our body?',
+        reply: 'Yes, it can help boost natural production of glutathione in the body.',
+    },
+    {
+        questionId: "q2",
+        productId: "p2",
+        question: 'How long does it take to see results?',
+        reply: '',
+    },
+    {
+        questionId: "q3",
+        productId: "p1",
+        question: 'Is it safe for daily use?',
+        reply: 'Yes, the product is formulated with natural ingredients and is safe for daily use as recommended.',
+    },
+    {
+        questionId: "q4",
+        productId: "p2",
+        question: 'Can it be used alongside other supplements?',
+        reply: '',
+    },
+    {
+        questionId: "q5",
+        productId: "p3",
+        question: 'Is this product suitable for vegetarians?',
+        reply: 'Yes, this product is 100% vegetarian-friendly.',
+    },
+    {
+        questionId: "q6",
+        productId: "p1",
+        question: 'What is the best time to take this supplement?',
+        reply: '',
+    },
+    {
+        questionId: "q7",
+        productId: "p3",
+        question: 'Are there any side effects?',
+        reply: '',
+    },
+    {
+        questionId: "q8",
+        productId: "p2",
+        question: 'Can children use this product?',
+        reply: 'This product is recommended for adults. Consult a pediatrician for child-specific advice.',
+    },
+];
+
 
 // videos, sliders
 export const Videos = [
@@ -592,8 +704,9 @@ import categoryList from './images/icons8-category-list-100.png';
 import topRated from './images/icons8-top-rated-100.png';
 import bestSeller from './images/icons8-best-seller-100.png';
 import rolemanagement from './images/icons8-role-management-100.png';
-import review from './images/icons8-review-100.png';
 import payment from './images/icons8-money-management-100.png';
+import featured from './images/featured.png';
+import newAdmin from './images/newAdmin.png';
 
 export const accordionData = [
     {
@@ -601,7 +714,6 @@ export const accordionData = [
         bricks: [
             { name: 'Orders List', route: '/dashboard/orders-list', icon: orderList },
             { name: 'Users List', route: '/dashboard/user-list', icon: userList },
-            { name: 'Payment', route: '/dashboard/payment', icon: payment },
         ],
     },
     {
@@ -615,18 +727,67 @@ export const accordionData = [
     {
         header: 'Analytics',
         bricks: [
-            { name: 'Top Rated List', route: '/dashboard/orders-list', icon: topRated },
-            { name: 'Best Sellers List', route: '/dashboard/users-list', icon: bestSeller },
+            { name: 'Top Rated Products', route: '/dashboard/top-rated-products', icon: topRated },
+            { name: 'Best Sellers Products', route: '/dashboard/best-seller-products', icon: bestSeller },
+            { name: 'Featured Products', route: '/dashboard/featured-products', icon: featured },
         ],
     },
     {
         header: 'Management',
         bricks: [
-            { name: 'Role Management', route: '/dashboard/orders-list', icon: rolemanagement },
-            { name: 'Review Management', route: '/dashboard/users-list', icon: review },
-            { name: 'Payment Management', route: '/dashboard/payment', icon: payment },
+            { name: 'Add New Admin', route: '/dashboard/add-new-admin', icon: newAdmin },
+            { name: 'Role Management', route: '/dashboard/role-management', icon: rolemanagement },
         ],
     },
+];
+
+
+// admin list
+export const adminList = [
+    {
+        adminName: 'blabal21',
+        adminPassword: 'Thisisfake@21'
+    },
+    {
+        adminName: 'adminJohn',
+        adminPassword: 'JohnDoe@123'
+    },
+    {
+        adminName: 'superAdminMike',
+        adminPassword: 'MikeRules@456'
+    },
+    {
+        adminName: 'adminSarah',
+        adminPassword: 'Sarah123!@#'
+    },
+    {
+        adminName: 'masterAdmin007',
+        adminPassword: 'Bond007$Admin'
+    },
+    {
+        adminName: 'rootAdminAlex',
+        adminPassword: 'AlexRocks@2024'
+    },
+    {
+        adminName: 'adminEmma',
+        adminPassword: 'Emma_Admin@77'
+    },
+    {
+        adminName: 'globalAdminLily',
+        adminPassword: 'LilyTop@456'
+    },
+    {
+        adminName: 'techAdminRaj',
+        adminPassword: 'RajTech#100'
+    },
+    {
+        adminName: 'supportAdminAnna',
+        adminPassword: 'Support@Admin99'
+    },
+    {
+        adminName: 'bossAdminTom',
+        adminPassword: 'TomBoss@321'
+    }
 ];
 
 

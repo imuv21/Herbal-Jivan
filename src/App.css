@@ -1085,6 +1085,7 @@ button:focus {
   border-radius: 5px;
   padding: 10px;
   width: 100%;
+  transition: var(--trans);
 }
 
 .product-img-size {
@@ -2890,6 +2891,37 @@ button:focus {
   transition: var(--trans);
   opacity: 0;
 }
+.adminGridItem .MuiSvgIcon-root:hover {
+  transform: scale(1.2);
+}
+.show-img-detail-sub-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  gap: 10px;
+  opacity: 0;
+  transition: var(--trans);
+  z-index: 10;
+}
+.show-img-detail-sub-admin .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.show-img-detail-sub-admin .MuiSvgIcon-root:hover {
+  transform: scale(1.2);
+}
+.show-img-detail-sub:hover .show-img-detail-sub-admin {
+  opacity: 1;
+}
+
 
 .editIcon {
   top: 10px;
@@ -2910,6 +2942,7 @@ button:focus {
 .adminGridItem:hover .MuiSvgIcon-root {
   opacity: 1;
 }
+
 
 .adminGridItem img {
   width: 100px;
@@ -2932,7 +2965,7 @@ button:focus {
 .userRow {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 10px;
   border-bottom: 1px solid var(--codeTwo);
@@ -2943,7 +2976,8 @@ button:focus {
 }
 
 .index,
-.seeBtns {
+.seeBtns,
+.seeBtnsTwo {
   gap: 5px;
   padding: 10px 0px;
   font-size: 14px;
@@ -2976,15 +3010,75 @@ button:focus {
   justify-content: center;
 }
 .index {
-  width: 500px;
+  width: 100%;
+  max-width: 100px;
 }
 .seeBtns {
   width: 100%;
+  max-width: 220px;
 }
-.seeBtns button {
+.seeBtnsTwo {
+  width: 100%;
+  max-width: 160px;
+}
+.seeBtns button,
+.seeBtnsTwo button {
   padding: 5px 10px;
 }
+.backSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.backSection .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.reviewAdCont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+.reviewAd {
+  width: 100%;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.reviewAdImages {
+  width: 100%;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.reviewAdImages img {
+  width: 100px;
+  object-fit: contain;
+  aspect-ratio: 2/1.5;
+  outline: 1px solid var(--codeTwo);
+}
 
+/* role management - admin */
+.passwordAdmin span {
+  position: absolute;
+  right: 10px;
+  top: 35px;
+}
+.passwordAdmin span .MuiSvgIcon-root {
+  color: var(--codeThree);
+  cursor: pointer;
+}
 
 
 

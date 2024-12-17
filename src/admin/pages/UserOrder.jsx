@@ -1,19 +1,31 @@
 import React, { Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ordersList } from '../../assets/schemas';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
-const OrdersList = () => {
 
+const UserOrder = () => {
+
+    const navigate = useNavigate();
+
+    const back = () => {
+        navigate('/dashboard/user-list');
+    }
 
     return (
         <Fragment>
             <article className="sortCat">
-                <h1 className="heading">Orders List</h1>
+                <div className="backSection">
+                    <ArrowBackIosNewIcon onClick={back} /> <h1 className="heading">Orders List</h1>
+                </div>
                 <select name="sort">
-                    <option value="Placed">Placed</option>
-                    <option value="Shipped">Shipped</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="Cancelled">Cancelled</option>
+                    <option value="featured">Featured</option>
+                    <option value="bestselling">Best Selling</option>
+                    <option value="atoz">Alphabetically A to Z</option>
+                    <option value="ztoa">Alphabetically Z to A</option>
+                    <option value="atoz">Price High to Low</option>
+                    <option value="atoz">Price Low to High</option>
                 </select>
             </article>
 
@@ -21,7 +33,7 @@ const OrdersList = () => {
                 <div className="userRow">
                     <div className="index fw-600">index</div>
                     <div className="email fw-600">order ID</div>
-                    <div className="email fw-600">email</div>
+                    <div className="email fw-600">Address</div>
                     <div className="datePriceNum fw-600">total products</div>
                     <div className="datePriceNum fw-600">total price</div>
                     <div className="datePriceNum fw-600">date</div>
@@ -51,4 +63,4 @@ const OrdersList = () => {
     )
 }
 
-export default OrdersList
+export default UserOrder

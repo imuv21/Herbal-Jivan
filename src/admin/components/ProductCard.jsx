@@ -1,12 +1,16 @@
 import React from 'react';
-import tempimg from '../../assets/images/korean-ginseng.webp';
+import { useNavigate } from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 
 const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => {
 
+    const navigate = useNavigate();
     const discountPercentage = ((originalPrice - salePrice) / originalPrice) * 100;
     const getStars = (ratings) => {
         const fullStars = Math.floor(ratings);
@@ -18,9 +22,18 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
     };
     const { fullStars, halfStar, emptyStars } = getStars(ratings);
 
+    const gotoEdit = (id, e) => {
+        e.preventDefault();
+        navigate(`/dashboard/edit-product/${id}`);
+    }
+    const see = (id, e) => {
+        e.preventDefault();
+        navigate(`/dashboard/product-list/product-details/${id}`)
+    }
+
     return (
-        <a className='show-img-detail-sub' href={`/dashboard/admin-product-details/${id}`}>
-            <img className='product-img-size' src={tempimg} alt={`${name}`} />
+        <div className='show-img-detail-sub' >
+            <img className='product-img-size' src={image} alt={`${name}`} />
             <div className="discount-icon">{discountPercentage.toFixed(0)}% OFF</div>
             <div className='product-detail-info'>
                 <div className="starCont">
@@ -41,7 +54,12 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
                     <p className='product-price'>Rs. {Number(salePrice).toFixed(2)}₹</p>
                 </div>
             </div>
-        </a>
+            <div className="show-img-detail-sub-admin">
+                <EditIcon style={{ color: 'var(--codeSix)' }} onClick={(e) => gotoEdit(id, e)} />
+                <RemoveRedEyeIcon style={{ color: 'var(--codeThree)' }} onClick={(e) => see(id, e)} />
+                <DeleteIcon />
+            </div>
+        </div>
     )
 };
 

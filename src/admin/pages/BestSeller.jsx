@@ -4,19 +4,16 @@ import { products } from '../../assets/schemas';
 import defaulImg from '../../assets/images/defaultImage.jpg';
 
 
-const ProductList = () => {
+const BestSeller = () => {
     return (
         <Fragment>
             <article className="sortCat">
-                <h1 className="heading">Products List</h1>
+                <h1 className="heading">Best Seller Products</h1>
                 <select name="sort">
-                    <option value="atoz">Alphabetically A to Z</option>
-                    <option value="ztoa">Alphabetically Z to A</option>
-                    <option value="atoz">Price High to Low</option>
-                    <option value="atoz">Price Low to High</option>
+                    <option value="atoz">High to Low</option>
+                    <option value="atoz">Low to High</option>
                 </select>
             </article>
-
             <div className="adminGrid">
                 {products && products.length > 0 && products.map((pro, index) => (
                     <Fragment key={index}>
@@ -28,4 +25,4 @@ const ProductList = () => {
     )
 }
 
-export default ProductList
+export default BestSeller

@@ -39,10 +39,22 @@ const Term = lazy(() => import('./pages/static/Term'));
 //admin panel
 const Dashboard = lazy(() => import('./admin/pages/Dashboard'));
 const AddNewProduct = lazy(() => import('./admin/pages/AddNewProduct'));
+const EditProduct = lazy(() => import('./admin/pages/EditProduct'));
 const ProductList = lazy(() => import('./admin/pages/ProductList'));
+const TopRated = lazy(() => import('./admin/pages/TopRated'));
+const BestSeller = lazy(() => import('./admin/pages/BestSeller'));
+const Featured = lazy(() => import('./admin/pages/Featured'));
 const CategoryList = lazy(() => import('./admin/pages/CategoryList'));
 const UsersList = lazy(() => import('./admin/pages/UsersList'));
 const OrdersList = lazy(() => import('./admin/pages/OrdersList'));
+const UserOrder = lazy(() => import('./admin/pages/UserOrder'));
+const Reviews = lazy(() => import('./admin/pages/Reviews'));
+const Questions = lazy(() => import('./admin/pages/Questions'));
+const ProductDetailAdmin = lazy(() => import('./admin/pages/ProductDetailAdmin'));
+const AddAdmin = lazy(() => import('./admin/pages/AddAdmin'));
+const EditAdmin = lazy(() => import('./admin/pages/EditAdmin'));
+const RoleManagement = lazy(() => import('./admin/pages/RoleManagement'));
+
 
 function App() {
 
@@ -58,10 +70,21 @@ function App() {
           {/* admin panel */}
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="add-new-product" element={<AddNewProduct />} />
-            <Route path="product-list" element={<ProductList />} />
+            <Route path="edit-product/:id" element={<EditProduct />} />
             <Route path="category-list" element={<CategoryList />} />
-            <Route path="user-list" element={<UsersList />} />
             <Route path="orders-list" element={<OrdersList />} />
+            <Route path="user-list" element={<UsersList />} />
+            <Route path="user-list/user-orders/:id" element={<UserOrder />} />
+            <Route path="user-list/user-reviews/:id" element={<Reviews />} />
+            <Route path="user-list/user-questions/:id" element={<Questions />} />
+            <Route path="product-list" element={<ProductList />} />
+            <Route path="product-list/product-details/:id" element={<ProductDetailAdmin />} />
+            <Route path="top-rated-products" element={<TopRated />} />
+            <Route path="best-seller-products" element={<BestSeller />} />
+            <Route path="featured-products" element={<Featured />} />
+            <Route path="add-new-admin" element={<AddAdmin />} />
+            <Route path="edit-admin" element={<EditAdmin />} />
+            <Route path="role-management" element={<RoleManagement />} />
           </Route>
 
           {/* private */}

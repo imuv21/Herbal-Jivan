@@ -435,7 +435,7 @@ const ProductDetails = () => {
                     <AccountCircleIcon /> <p className="textBig">{item.name}</p>
                   </div>
                   <p className="text">{item.question}</p>
-                  <div className="reply"><p className='textBig'>Herbal Jivan:</p><p className="text">{item.reply}</p></div>
+                  <div className="reply"><p className='textBig'>Herbal Jivan:</p> <p className="text">{item.reply ? `${item.reply}` : `No reply yet!`}</p></div>
                 </div>
               )
             })}
