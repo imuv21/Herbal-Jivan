@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { reviewsAdmin } from '../../assets/schemas';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-const Reviews = () => {
+
+const ReviewsList = () => {
 
     const navigate = useNavigate();
-
-    const back = () => {
-        navigate('/dashboard/user-list');
-    }
     const seeProduct = (id) => {
         navigate(`/dashboard/product-list/product-details/${id}`);
     }
@@ -18,7 +14,7 @@ const Reviews = () => {
         <Fragment>
             <article className="sortCat">
                 <div className="backSection">
-                    <ArrowBackIosNewIcon onClick={back} /> <h1 className="heading">Reviews</h1>
+                    <h1 className="heading">Reviews List</h1>
                 </div>
                 <select name="sort">
                     <option value="Pending">Pending</option>
@@ -63,4 +59,4 @@ const Reviews = () => {
     )
 }
 
-export default Reviews
+export default ReviewsList

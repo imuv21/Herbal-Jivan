@@ -4,12 +4,12 @@ import { images, imagesMobile } from '../assets/schemas';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
-
 const ImageSlider = ({ interval }) => {
     const [index, setIndex] = useState(0);
-    const [currentImages, setCurrentImages] = useState(images);
+    const [currentImages, setCurrentImages] = useState(images); // Start with desktop images by default
 
     useEffect(() => {
+        // Function to check screen width and update images
         const updateImages = () => {
             if (window.matchMedia('(max-width: 720px)').matches) {
                 setCurrentImages(imagesMobile);
@@ -17,10 +17,11 @@ const ImageSlider = ({ interval }) => {
                 setCurrentImages(images);
             }
         };
-        updateImages();
-        window.addEventListener('resize', updateImages);
 
-        return () => window.removeEventListener('resize', updateImages);
+        updateImages(); // Check initially
+        window.addEventListener('resize', updateImages); // Listen for resize events
+
+        return () => window.removeEventListener('resize', updateImages); // Cleanup on unmount
     }, []);
 
     useEffect(() => {
@@ -54,7 +55,11 @@ const ImageSlider = ({ interval }) => {
             </div>
             <div className="dots">
                 {currentImages.map((_, i) => (
-                    <span key={i} className={`dot ${i === index ? 'active' : ''}`} onClick={() => setIndex(i)}></span>
+                    <span
+                        key={i}
+                        className={`dot ${i === index ? 'active' : ''}`}
+                        onClick={() => setIndex(i)}
+                    ></span>
                 ))}
             </div>
         </div>

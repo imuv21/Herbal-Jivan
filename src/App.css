@@ -722,7 +722,7 @@ button:focus {
 .footer {
   width: 100%;
   background-color: var(--codeSeven);
-  padding: 30px 100px 0px 100px;
+  padding: 20px 100px 0px 100px;
 }
 
 .footer-flex-1 {
@@ -747,9 +747,8 @@ button:focus {
   filter: drop-shadow(2px 2px 2px var(--codeFour));
 }
 
-
 .footer-img {
-  font-size: 80px;
+  font-size: 60px;
   color: var(--codeOne);
 }
 
@@ -858,8 +857,7 @@ button:focus {
   justify-content: space-between;
   text-align: center;
   flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap: 30px;
+  gap: 10px;
 }
 
 
@@ -2226,7 +2224,6 @@ button:focus {
 
   100% {
     transform: translateX(calc(-100px * 11));
-
   }
 }
 
@@ -2966,19 +2963,29 @@ button:focus {
 .userRow {
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--codeTwo);
+}
+.userRow:first-child {
+  border-bottom: 2px solid var(--codeTwo);
+}
+
+.userRowTwo {
+  width: 100%;
+  display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: 10px;
   border-bottom: 1px solid var(--codeTwo);
 }
-
-.userRow:first-child {
+.userRowTwo:first-child {
   border-bottom: 2px solid var(--codeTwo);
 }
 
 .index,
-.seeBtns,
-.seeBtnsTwo {
+.seeBtns {
   gap: 5px;
   padding: 10px 0px;
   font-size: 14px;
@@ -2999,6 +3006,7 @@ button:focus {
   align-items: center;
   justify-content: flex-start;
 }
+
 .datePriceNum {
   width: 600px;
   gap: 5px;
@@ -3018,12 +3026,11 @@ button:focus {
   width: 100%;
   max-width: 220px;
 }
-.seeBtnsTwo {
-  width: 100%;
-  max-width: 160px;
+
+.seeBtns button {
+  padding: 5px 10px;
 }
-.seeBtns button,
-.seeBtnsTwo button {
+.seeBtns select {
   padding: 5px 10px;
 }
 .backSection {
@@ -3039,7 +3046,7 @@ button:focus {
   cursor: pointer;
 }
 .reviewAdCont {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3298,10 +3305,6 @@ button:focus {
 
   .input-width {
     width: 200px;
-  }
-
-  .footer-img {
-    font-size: 60px;
   }
 
   .para-1 {
@@ -3614,10 +3617,6 @@ button:focus {
     padding: 5px;
   }
 
-  .footer {
-    padding: 20px;
-  }
-
   .footer-img {
     font-size: 50px;
   }
@@ -3644,24 +3643,12 @@ button:focus {
     gap: 20px;
   }
 
-  .footer-img {
-    font-size: 50px;
-  }
-
   .foSize {
     font-size: 12px;
   }
 
-  .footer {
-    padding: 20px;
-  }
-
   .input-width {
     width: 100%;
-  }
-
-  .footer-img {
-    font-size: 50px;
   }
 
   .para-1 {

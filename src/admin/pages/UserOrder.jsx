@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ordersList } from '../../assets/schemas';
+import { userOrdersList } from '../../assets/schemas';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
@@ -20,12 +20,10 @@ const UserOrder = () => {
                     <ArrowBackIosNewIcon onClick={back} /> <h1 className="heading">Orders List</h1>
                 </div>
                 <select name="sort">
-                    <option value="featured">Featured</option>
-                    <option value="bestselling">Best Selling</option>
-                    <option value="atoz">Alphabetically A to Z</option>
-                    <option value="ztoa">Alphabetically Z to A</option>
-                    <option value="atoz">Price High to Low</option>
-                    <option value="atoz">Price Low to High</option>
+                    <option value="Placed">Placed</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
                 </select>
             </article>
 
@@ -40,11 +38,11 @@ const UserOrder = () => {
                     <div className="datePriceNum fw-600">status</div>
                 </div>
 
-                {ordersList && ordersList.length > 0 && ordersList.map((order, index) => (
+                {userOrdersList && userOrdersList.length > 0 && userOrdersList.map((order, index) => (
                     <div className="userRow" key={index}>
                         <div className="index">{index + 1}</div>
-                        <div className="email">{order.orderId}</div>
-                        <div className="email">{order.email}</div>
+                        <div className="email">{order.orderId?.length > 20 ? `${order.orderId.substring(0, 20)}...` : order.orderId}</div>
+                        <div className="email">{order.address?.length > 20 ? `${order.address.substring(0, 20)}...` : order.address}</div>
                         <div className="datePriceNum">{order.numberOfProducts}</div>
                         <div className="datePriceNum">Rs. {Number(order.totalPrice).toFixed(2)}</div>
                         <div className="datePriceNum">{order.date}</div>

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { loginUser, clearErrors } from '../../slices/authSlice';
+import { loginAdmin, clearErrors } from '../../slices/authSlice';
 import DOMPurify from 'dompurify';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -17,7 +17,7 @@ const AdminLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { logError } = useSelector((state) => state.auth);
-  const [formValues, setFormValues] = useState({ adminName: '', adminPassword: '' });
+  const [formValues, setFormValues] = useState({ username: '', password: '' });
 
   //password hide and show
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -44,11 +44,11 @@ const AdminLogin = () => {
 
     try {
       const sanitizedFormValues = {
-        adminPassword: DOMPurify.sanitize(formValues.adminPassword),
-        adminName: DOMPurify.sanitize(formValues.adminName),
+        password: DOMPurify.sanitize(formValues.password),
+        username: DOMPurify.sanitize(formValues.username),
       };
       console.log('processing...');
-      const response = await dispatch(loginUser(sanitizedFormValues)).unwrap();
+      const response = await dispatch(loginAdmin(sanitizedFormValues)).unwrap();
       if (response.status === true) {
         toast(<div className='flex center g5'> < VerifiedIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         navigate('/dashboard/user-list');
@@ -66,18 +66,18 @@ const AdminLogin = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Login | Herbal Jivan - Embrace Wellness, Naturally</title>
+        <title>Admin Login | Herbal Jivan - Embrace Wellness, Naturally</title>
         <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
-        <link rel="canonical" href="https://herbaljivan.netlify.app/login" />
+        <link rel="canonical" href="https://herbaljivan.netlify.app/admin/login" />
       </Helmet>
       <div className='page flex center' style={{ height: '100vh', backgroundColor: 'var(--authCode)' }}>
         <form className="authBox flexcol center" onSubmit={handleLogin}>
           <h1 className="heading">Admin Login</h1>
 
-          <input type="email" name='adminName' autoComplete='email' placeholder='Enter your email...' value={formValues.adminName} onChange={handleChange} required />
+          <input type="email" name='username' autoComplete='email' placeholder='Enter your email...' value={formValues.username} onChange={handleChange} required />
 
           <div className="wh relative password">
-            <input type={passwordVisible ? "text" : "password"} className='wh' name='adminPassword' autoComplete="new-password" placeholder='Enter your password...' value={formValues.adminPassword} onChange={handleChange} required />
+            <input type={passwordVisible ? "text" : "password"} className='wh' name='password' autoComplete="new-password" placeholder='Enter your password...' value={formValues.password} onChange={handleChange} required />
             <span onClick={togglePasswordVisibility}>
               {passwordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </span>

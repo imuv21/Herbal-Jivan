@@ -1,11 +1,11 @@
 import React, { useState, Fragment } from 'react';
 import { toast } from 'react-hot-toast';
+import { categories } from '../../assets/schemas';
 import DOMPurify from 'dompurify';
 import UploadIcon from "@mui/icons-material/Upload";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
-
 
 
 const AddNewProduct = () => {
@@ -31,7 +31,7 @@ const AddNewProduct = () => {
                     style: { color: 'red' },
                 });
                 toast(<div className='flex center g5'> < NewReleasesIcon /> File size exceeds 10 MB.</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-                
+
                 return false;
             }
             return true;
@@ -109,6 +109,17 @@ const AddNewProduct = () => {
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Product Name</p>
                     <input type="text" name='name' placeholder='Enter product name' required />
+                </div>
+                <div className="flexcol g10 start-center wh">
+                    <p className="text">Select Category</p>
+                    <select name="category" required>
+                        <option value="">Select category</option>
+                        {
+                            categories && categories.length > 0 && categories.map((category, index) => (
+                                <option key={index} value={category.name}>{category.name}</option>
+                            ))
+                        }
+                    </select>
                 </div>
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Original Price</p>

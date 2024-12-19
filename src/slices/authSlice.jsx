@@ -71,6 +71,28 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export const loginAdmin = createAsyncThunk(
+    'auth/loginAdmin',
+    async (userData, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${BASE_URL}admin/Login`, userData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (!response.data.status) {
+                return rejectWithValue({ message: response.data.message });
+            }
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data) {
+                return rejectWithValue({ message: error.response.data.message || error.response.data });
+            }
+            return rejectWithValue({ message: error.message });
+        }
+    }
+);
+
 export const forgotPassword = createAsyncThunk(
     'auth/forgotPassword',
     async (userData, { rejectWithValue }) => {
@@ -202,6 +224,21 @@ const authSlice = createSlice({
                 state.token = action.payload.token;
             })
             .addCase(loginUser.rejected, (state, action) => {
+                state.logLoading = false;
+                state.logError = action.payload?.message || 'Something went wrong';
+            })
+
+            .addCase(loginAdmin.pending, (state) => {
+                state.logLoading = true;
+                state.logError = null;
+            })
+            .addCase(loginAdmin.fulfilled, (state, action) => {
+                state.logLoading = false;
+                state.logError = null;
+                state.user = action.payload;
+                state.token = action.payload.token;
+            })
+            .addCase(loginAdmin.rejected, (state, action) => {
                 state.logLoading = false;
                 state.logError = action.payload?.message || 'Something went wrong';
             })

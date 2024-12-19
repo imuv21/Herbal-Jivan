@@ -1,7 +1,7 @@
 import React, { Fragment, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { products, images, categories } from '../assets/schemas';
+import { products, categories } from '../assets/schemas';
 import Loader from '../components/Loader/Loader';
 import Carousel from '../components/Carousel';
 import VideoSec from '../components/VideoSec';
@@ -22,7 +22,7 @@ const Home = () => {
         <link rel="canonical" href="https://herbaljivan.netlify.app" />
       </Helmet>
       <Suspense fallback={<Loader />}>
-        <ImageSlider images={images} interval={5000} />
+        <ImageSlider interval={5000} />
       </Suspense>
 
       <section className='homepage flexcol center'>

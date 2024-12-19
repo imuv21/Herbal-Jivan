@@ -4,8 +4,16 @@ import proimg from './images/korean-ginseng.webp';
 // image slider
 import bannerOne from './images/banner1.jpeg';
 import bannerTwo from './images/banner2.jpeg';
+import bannerThree from './images/bannerthree.png';
+import bannerOnem from './images/bannerOnem.png';
+import bannerTwom from './images/bannertwom.jpeg';
+import bannerThreem from './images/bannerthreem.png';
+
 export const images = [
-    bannerOne, bannerTwo, 'https://images8.alphacoders.com/136/thumb-350-1363709.webp', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s'
+    bannerOne, bannerTwo, bannerThree, bannerTwo
+];
+export const imagesMobile = [
+    bannerOnem, bannerTwom, bannerThreem, bannerOnem
 ];
 
 
@@ -334,6 +342,129 @@ export const ordersList = [
     },
 ];
 
+export const userOrdersList = [
+    {
+        orderId: 'sdghwkgphirghrh',
+        address: '123 Main St, Cityvilleddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+        numberOfProducts: 4,
+        totalPrice: 43634,
+        date: '09/17/2024',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'kjwueirhguerwfh',
+        address: '456 Elm St, Townsville',
+        numberOfProducts: 2,
+        totalPrice: 12345,
+        date: '10/12/2024',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'dskjfhwueyrhgui',
+        address: '789 Oak St, Villageville',
+        numberOfProducts: 5,
+        totalPrice: 56789,
+        date: '11/20/2024',
+        orderStatus: 'Delivered',
+    },
+    {
+        orderId: 'sdlfkjerwueyfbv',
+        address: '321 Pine St, Hamletville',
+        numberOfProducts: 3,
+        totalPrice: 23456,
+        date: '12/05/2024',
+        orderStatus: 'Cancelled',
+    },
+    {
+        orderId: 'aslfkjwueyrbfvi',
+        address: '654 Maple St, Boroughville',
+        numberOfProducts: 1,
+        totalPrice: 9876,
+        date: '12/10/2024',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'wjerhguwyerbgvf',
+        address: '987 Birch St, Hamletville',
+        numberOfProducts: 6,
+        totalPrice: 65432,
+        date: '01/15/2025',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'mskdjfhwuyrgvbf',
+        address: '123 Cedar St, Cityville',
+        numberOfProducts: 7,
+        totalPrice: 76543,
+        date: '01/22/2025',
+        orderStatus: 'Delivered',
+    },
+    {
+        orderId: 'ndklfjghweurygv',
+        address: '456 Willow St, Townsville',
+        numberOfProducts: 4,
+        totalPrice: 45678,
+        date: '02/05/2025',
+        orderStatus: 'Cancelled',
+    },
+    {
+        orderId: 'zxcmnweiufygrbv',
+        address: '789 Aspen St, Villageville',
+        numberOfProducts: 3,
+        totalPrice: 23478,
+        date: '02/10/2025',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'qpoweirutyvbnmf',
+        address: '321 Redwood St, Hamletville',
+        numberOfProducts: 8,
+        totalPrice: 87654,
+        date: '02/15/2025',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'tyuioerwpaklmnz',
+        address: '654 Spruce St, Boroughville',
+        numberOfProducts: 5,
+        totalPrice: 54321,
+        date: '03/01/2025',
+        orderStatus: 'Delivered',
+    },
+    {
+        orderId: 'ghjklwertyuiops',
+        address: '987 Cherry St, Hamletville',
+        numberOfProducts: 2,
+        totalPrice: 13579,
+        date: '03/05/2025',
+        orderStatus: 'Cancelled',
+    },
+    {
+        orderId: 'vbnamwerqtyzxcv',
+        address: '123 Poplar St, Cityville',
+        numberOfProducts: 9,
+        totalPrice: 98765,
+        date: '03/15/2025',
+        orderStatus: 'Placed',
+    },
+    {
+        orderId: 'asdfghjklzxcvbnm',
+        address: '456 Hickory St, Townsville',
+        numberOfProducts: 6,
+        totalPrice: 65498,
+        date: '03/20/2025',
+        orderStatus: 'Shipped',
+    },
+    {
+        orderId: 'poiuytrewqlkjhgf',
+        address: '789 Cypress St, Villageville',
+        numberOfProducts: 3,
+        totalPrice: 34789,
+        date: '04/01/2025',
+        orderStatus: 'Delivered',
+    },
+];
+
 
 // products
 export const productDetail = {
@@ -436,6 +567,8 @@ export const products = [
     },
 ];
 
+
+// Reviews => 'Pending / Approved'
 export const reviews = [
     {
         rating: 4,
@@ -491,8 +624,9 @@ export const reviewsAdmin = [
         reviewId: "r1",
         productId: "p1",
         rating: 4,
-        review: 'The product worked well for me. The herbal ingredients seem effective.',
+        review: 'The product worked well for me. The herbal ingredients seem effective.The product worked well for me. The herbal ingredients seem effective.The product worked well for me. The herbal ingredients seem effective.The product worked well for me. The herbal ingredients seem effective.The product worked well for me. The herbal ingredients seem effective.The product worked well for me. The herbal ingredients seem effective.The product worked well for me. The herbal ingredients seem effective.',
         reviewImages: [proimg, proimg],
+        reviewStatus: 'Pending',
     },
     {
         reviewId: "r2",
@@ -500,6 +634,7 @@ export const reviewsAdmin = [
         rating: 5,
         review: 'Excellent quality! I feel more energetic after using it. Highly recommend.',
         reviewImages: [proimg, proimg],
+        reviewStatus: 'Approved',
     },
     {
         reviewId: "r3",
@@ -507,6 +642,7 @@ export const reviewsAdmin = [
         rating: 3,
         review: 'Decent product, but I expected better packaging. Hope it improves.',
         reviewImages: [proimg, proimg],
+        reviewStatus: 'Pending',
     },
     {
         reviewId: "r4",
@@ -514,6 +650,7 @@ export const reviewsAdmin = [
         rating: 2,
         review: 'Not satisfied. It didn’t meet my expectations. Maybe it works for others.',
         reviewImages: [],
+        reviewStatus: 'Approved',
     },
     {
         reviewId: "r5",
@@ -521,6 +658,7 @@ export const reviewsAdmin = [
         rating: 5,
         review: 'Amazing results! Quick delivery and great customer service. Loved it.',
         reviewImages: [],
+        reviewStatus: 'Pending',
     },
     {
         reviewId: "r6",
@@ -528,6 +666,7 @@ export const reviewsAdmin = [
         rating: 4,
         review: 'Very good product. It’s helping me with my health goals. Worth the price.',
         reviewImages: [],
+        reviewStatus: 'Approved',
     },
     {
         reviewId: "r7",
@@ -535,6 +674,7 @@ export const reviewsAdmin = [
         rating: 1,
         review: 'Disappointed. The product didn’t work as advertised. Waste of money.',
         reviewImages: [proimg, proimg],
+        reviewStatus: 'Pending',
     },
     {
         reviewId: "r8",
@@ -542,6 +682,7 @@ export const reviewsAdmin = [
         rating: 5,
         review: 'Fantastic product! I’ve been using it for weeks and see great results.',
         reviewImages: [],
+        reviewStatus: 'Approved',
     },
 ];
 
@@ -591,8 +732,8 @@ export const questsAdmin = [
     {
         questionId: "q1",
         productId: "p1",
-        question: 'Does it work on our body?',
-        reply: 'Yes, it can help boost natural production of glutathione in the body.',
+        question: 'Does it work on our body?Does it work on our body?Does it work on our body?Does it work on our body?Does it work on our body?Does it work on our body?Does it work on our body?Does it work on our body?Does it work on our body?',
+        reply: 'Yes, it can help boost natural production of glutathione in the body. Yes, it can help boost natural production of glutathione in the body.Yes, it can help boost natural production of glutathione in the body.Yes, it can help boost natural production of glutathione in the body.Yes, it can help boost natural production of glutathione in the body.Yes, it can help boost natural production of glutathione in the body.',
     },
     {
         questionId: "q2",
@@ -668,34 +809,36 @@ export const Videos = [
     },
 ];
 export const infslider = [
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461998/Ulinkit/Anmol-Logo_xtcnxq.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462000/Ulinkit/boat_logo_copy_w7ra0u.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461999/Ulinkit/apple2_y1pwpw.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462001/Ulinkit/Bombay-Dyeing-Logo_jvp2dh.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/motorolalogo_mxbke1.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/hplogo_laukjw.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/red_bull_logo.png_2.png_2_-_Copy_tvabwj.jpg",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/n_ubudr9.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462011/Ulinkit/samsunglogo_inbb3m.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462012/Ulinkit/tamronlogo_bqy3bq.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462015/Ulinkit/voltaslogo_lqolss.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/ajio_t3cxio.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/amazon_qzsflz.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602523/herbal%20jivan/1mg_dcrm9x.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602533/herbal%20jivan/flipkart_dx3mvo.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602545/herbal%20jivan/Meesho_jgcqz7.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/ajio_t3cxio.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/amazon_qzsflz.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602523/herbal%20jivan/1mg_dcrm9x.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602533/herbal%20jivan/flipkart_dx3mvo.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602545/herbal%20jivan/Meesho_jgcqz7.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602523/herbal%20jivan/1mg_dcrm9x.png",
 
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461998/Ulinkit/Anmol-Logo_xtcnxq.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462000/Ulinkit/boat_logo_copy_w7ra0u.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716461999/Ulinkit/apple2_y1pwpw.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462001/Ulinkit/Bombay-Dyeing-Logo_jvp2dh.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/motorolalogo_mxbke1.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462005/Ulinkit/hplogo_laukjw.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/red_bull_logo.png_2.png_2_-_Copy_tvabwj.jpg",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462006/Ulinkit/n_ubudr9.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462011/Ulinkit/samsunglogo_inbb3m.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462012/Ulinkit/tamronlogo_bqy3bq.png",
-    "https://res.cloudinary.com/dey1tujp8/image/upload/v1716462015/Ulinkit/voltaslogo_lqolss.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/ajio_t3cxio.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/amazon_qzsflz.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602523/herbal%20jivan/1mg_dcrm9x.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602533/herbal%20jivan/flipkart_dx3mvo.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602545/herbal%20jivan/Meesho_jgcqz7.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/ajio_t3cxio.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602522/herbal%20jivan/amazon_qzsflz.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602523/herbal%20jivan/1mg_dcrm9x.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602533/herbal%20jivan/flipkart_dx3mvo.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602545/herbal%20jivan/Meesho_jgcqz7.png",
+    "https://res.cloudinary.com/dey1tujp8/image/upload/v1734602523/herbal%20jivan/1mg_dcrm9x.png",
 ];
 
 
 //admin panel
 import orderList from './images/icons8-orders-list-100.png';
+import reviewsList from './images/reviews.png';
+import questionsList from './images/question.png';
 import userList from './images/icons8-users-list-100.png';
 import productList from './images/icons8-product-list-100.png';
 import addproduct from './images/icons8-add-new-product-100.png';
@@ -711,6 +854,8 @@ export const accordionData = [
         header: 'Users',
         bricks: [
             { name: 'Orders List', route: '/dashboard/orders-list', icon: orderList },
+            { name: 'Reviews List', route: '/dashboard/reviews-list', icon: reviewsList },
+            { name: 'Questions List', route: '/dashboard/questions-list', icon: questionsList },
             { name: 'Users List', route: '/dashboard/user-list', icon: userList },
         ],
     },

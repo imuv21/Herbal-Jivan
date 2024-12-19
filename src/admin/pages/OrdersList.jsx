@@ -31,8 +31,8 @@ const OrdersList = () => {
                 {ordersList && ordersList.length > 0 && ordersList.map((order, index) => (
                     <div className="userRow" key={index}>
                         <div className="index">{index + 1}</div>
-                        <div className="email">{order.orderId}</div>
-                        <div className="email">{order.email}</div>
+                        <div className="email">{order.orderId?.length > 20 ? `${order.orderId.substring(0, 20)}...` : order.orderId}</div>
+                        <div className="email">{order.email?.length > 20 ? `${order.email.substring(0, 20)}...` : order.email}</div>
                         <div className="datePriceNum">{order.numberOfProducts}</div>
                         <div className="datePriceNum">Rs. {Number(order.totalPrice).toFixed(2)}</div>
                         <div className="datePriceNum">{order.date}</div>

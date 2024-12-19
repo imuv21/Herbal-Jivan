@@ -5,10 +5,9 @@ import { questsAdmin } from '../../assets/schemas';
 import DOMPurify from 'dompurify';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
-const Questions = () => {
+const QuestionsList = () => {
 
     const navigate = useNavigate();
     const [isClickedFooter, setIsClickedFooter] = useState(false);
@@ -25,19 +24,13 @@ const Questions = () => {
         event.preventDefault();
         setIsClickedFooter(false);
     };
-
-    const back = () => {
-        navigate('/dashboard/user-list');
-    }
     const seeProduct = (id) => {
         navigate(`/dashboard/product-list/product-details/${id}`);
     }
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (isSubmitted) return;
@@ -60,12 +53,11 @@ const Questions = () => {
         }
     };
 
-
     return (
         <Fragment>
             <article className="sortCat">
                 <div className="backSection">
-                    <ArrowBackIosNewIcon onClick={back} /> <h1 className="heading">Questions</h1>
+                  <h1 className="heading">Questions List</h1>
                 </div>
                 <select name="sort">
                     <option value="atoz">Replied</option>
@@ -118,4 +110,4 @@ const Questions = () => {
     )
 }
 
-export default Questions
+export default QuestionsList
