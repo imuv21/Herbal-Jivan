@@ -1890,6 +1890,7 @@ button:focus {
 }
 
 .cate-item {
+  width: 350px;
   height: 280px;
   position: relative;
   display: flex;
@@ -1910,7 +1911,7 @@ button:focus {
 }
 
 .cate-item img:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .cate-item .heading {

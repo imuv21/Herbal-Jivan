@@ -35,7 +35,7 @@ const Home = () => {
           {categories && categories.length > 0 && categories.map((cat, index) => (
             <Link to={`/category?query=${cat.name}`} className='cate-item' key={index}>
               <img src={cat.image} alt={cat.name} />
-              <h1 className='heading'>{cat.name}</h1>
+              {/* <h1 className='heading'>{cat.name}</h1> */}
             </Link>
           ))}
         </section>

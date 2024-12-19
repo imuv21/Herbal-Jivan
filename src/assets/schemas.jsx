@@ -3,10 +3,9 @@ import proimg from './images/korean-ginseng.webp';
 
 // image slider
 import bannerOne from './images/banner1.jpeg';
+import bannerTwo from './images/banner2.jpeg';
 export const images = [
-    bannerOne, 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-    'https://images8.alphacoders.com/136/thumb-350-1363709.webp',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s',
+    bannerOne, bannerTwo, 'https://images8.alphacoders.com/136/thumb-350-1363709.webp', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYL6nIvJP72d-YQO2iUXcwZfh8875iKYUyTg&s'
 ];
 
 
@@ -704,7 +703,6 @@ import categoryList from './images/icons8-category-list-100.png';
 import topRated from './images/icons8-top-rated-100.png';
 import bestSeller from './images/icons8-best-seller-100.png';
 import rolemanagement from './images/icons8-role-management-100.png';
-import payment from './images/icons8-money-management-100.png';
 import featured from './images/featured.png';
 import newAdmin from './images/newAdmin.png';
 
@@ -792,26 +790,32 @@ export const adminList = [
 
 
 //  category list
+import jointpain from './images/jointpain.png';
+import hairfall from './images/HAIRFALL.png';
+import weight from './images/WEIGHTGAIN.png';
+import diab from './images/DIABETES.png';
+import sexual from './images/SEXUAL.png';
+
 export const categories = [
     {
         name: 'JOINT PAIN',
-        image: tempImage
+        image: jointpain
     },
     {
         name: 'HAIR FALL',
-        image: tempImage
+        image: hairfall
     },
     {
         name: 'WEIGHT GAIN',
-        image: tempImage
+        image: weight
     },
     {
         name: 'DIABETIC',
-        image: tempImage
+        image: diab
     },
     {
         name: 'SEXUAL',
-        image: tempImage
+        image: sexual
     },
 ];
 
