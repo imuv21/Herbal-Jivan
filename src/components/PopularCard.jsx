@@ -1,5 +1,7 @@
 import React from 'react';
 import popularImage from '../assets/images/Plump-Skin.png';
+import pithree from '../assets/images/tablettwo.png';
+
 
 const PopularCard = () => {
     return (
@@ -7,7 +9,7 @@ const PopularCard = () => {
 
             <a href=""> <img src={popularImage} alt="imageone" /></a>
 
-            <a href=""> <img src={popularImage} alt="imagetwo" /></a>
+            <a href=""> <img src={pithree} alt="imagetwo" /></a>
 
         </div>
     )
