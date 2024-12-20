@@ -70,7 +70,7 @@ function App() {
         <Routes>
 
           {/* admin routes (public) */}
-          <Route element={<Protector user={!user} redirect='/dashboard/user-list' />}>
+          <Route element={<Protector user={!user} redirect='/' />}>
             <Route path='/admin/login' element={<AdminLogin />} />
           </Route>
 
@@ -99,7 +99,7 @@ function App() {
           </Route>
 
           {/* user routes (private) */}
-          <Route element={<Protector user={user} requiredRole="USER" redirect="/" />}>
+          <Route element={<Protector user={user} requiredRole="USER" redirect="/login" />}>
             <Route path='/profile' element={<Layout><Profile /></Layout>} />
             <Route path='/cart' element={<Layout><Cart /></Layout>} />
             <Route path='/orders' element={<Layout><Order /></Layout>} />
@@ -127,7 +127,6 @@ function App() {
           <Route path='/shipping-policy' element={<Layout><Shipping /></Layout>} />
           <Route path='/return-policy' element={<Layout><Refund /></Layout>} />
           <Route path='/terms-and-conditions' element={<Layout><Term /></Layout>} />
-          <Route path='/loader' element={<Loader />} />
 
           {/* not found */}
           <Route path='*' element={<div className='page flex center wh'>The path does not exist!</div>} />

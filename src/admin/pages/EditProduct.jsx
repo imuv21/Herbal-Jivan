@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { categories } from '../../assets/schemas';
 import DOMPurify from 'dompurify';
 import UploadIcon from "@mui/icons-material/Upload";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -117,6 +118,17 @@ const EditProduct = () => {
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Product Name</p>
                     <input type="text" name='name' placeholder='Enter product name' required />
+                </div>
+                <div className="flexcol g10 start-center wh">
+                    <p className="text">Select Category</p>
+                    <select name="category" required>
+                        <option value="">Select category</option>
+                        {
+                            categories && categories.length > 0 && categories.map((category, index) => (
+                                <option key={index} value={category.name}>{category.name}</option>
+                            ))
+                        }
+                    </select>
                 </div>
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Original Price</p>

@@ -3078,6 +3078,7 @@ button:focus {
 }
 
 /* role management - admin */
+
 .passwordAdmin span {
   position: absolute;
   right: 10px;

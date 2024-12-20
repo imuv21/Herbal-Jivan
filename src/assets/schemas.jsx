@@ -469,6 +469,7 @@ export const userOrdersList = [
 // products
 export const productDetail = {
     name: 'L-Glutathione - for Skin Brightening and Antioxidant Support',
+    stock: 156,
     originalPrice: 1498,
     salePrice: 953,
     onestar: 42,
@@ -483,6 +484,8 @@ export const productDetail = {
     imageFive: proimg,
     productId: 'sgrehkliulrhtbtr',
     info: 'Vitamin B12 Capsules are designed to support your daily energy levels and mental focus. Each easy-to-swallow capsule provides essential nutrients, including Vitamin B12, which may help you maintain a more vibrant, energetic lifestyle. Simple, effective, and easy to incorporate into your routine.',
+    reviews: [],
+    questions: []
 };
 export const products = [
     {
