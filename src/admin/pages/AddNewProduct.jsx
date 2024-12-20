@@ -75,6 +75,7 @@ const AddNewProduct = () => {
                 name: formData.get('name'),
                 originalPrice: parseFloat(formData.get('originalPrice')),
                 salePrice: parseFloat(formData.get('salePrice')),
+                stock: parseFloat(formData.get('stock')),
                 info: formData.get('info'),
             };
 
@@ -82,6 +83,7 @@ const AddNewProduct = () => {
                 name: DOMPurify.sanitize(productData.name),
                 originalPrice: productData.originalPrice,
                 salePrice: productData.salePrice,
+                stock: productData.stock,
                 info: DOMPurify.sanitize(productData.info),
                 images: reviewImages,
             };
@@ -128,6 +130,10 @@ const AddNewProduct = () => {
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Sale Price</p>
                     <input type="number" name='salePrice' placeholder='Enter sale price (₹)' required />
+                </div>
+                <div className="flexcol g10 start-center wh">
+                    <p className="text">Product Stock</p>
+                    <input type="number" name='stock' placeholder='Enter product stock' required />
                 </div>
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Product Information</p>

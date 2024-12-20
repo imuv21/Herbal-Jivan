@@ -2873,13 +2873,15 @@ button:focus {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  gap: 20px;
+  gap: 8px;
   cursor: pointer;
   background: linear-gradient(145deg, #efefef, #f8f8f8);
   border-radius: var(--brTwo);
   transition: var(--trans);
 }
-
+.adminGridItem .text {
+  text-transform: capitalize;
+}
 .adminGridItem .MuiSvgIcon-root {
   position: absolute;
   width: 20px;
@@ -3089,6 +3091,24 @@ button:focus {
   cursor: pointer;
 }
 
+/* new admin css */
+.wannabeAdmin {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 5px;
+  border: 1px solid var(--codeTwo);
+}
+.wannabeAdmin button {
+  white-space: nowrap;
+  padding: 5px 10px;
+}
+.wannabeAdmin .text {
+  text-transform: capitalize;
+  font-size: 12px;
+}
 
 
 

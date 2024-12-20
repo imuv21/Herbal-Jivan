@@ -5,10 +5,7 @@ import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import UploadIcon from "@mui/icons-material/Upload";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 const RoleManagement = () => {
@@ -32,7 +29,6 @@ const RoleManagement = () => {
         lastname: '',
         email: '',
     });
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
@@ -65,9 +61,6 @@ const RoleManagement = () => {
     const gotoadmin = () => {
         navigate('/dashboard/add-new-admin');
     }
-    const gotoeditadmin = () => {
-        navigate('/dashboard/edit-admin');
-    }
 
 
     return (
@@ -80,9 +73,8 @@ const RoleManagement = () => {
             <div className="adminGrid">
                 {adminList && adminList.length > 0 && adminList.map((admin, index) => (
                     <div className="adminGridItem" key={index}>
-                        <p className="text fw-600">{admin.adminName}</p>
-                        <p className='text'>{admin.adminPassword.length > 2 ? `${admin.adminPassword.substring(0, 2)}******` : `********`}</p>
-                        <EditIcon className='editIcon' onClick={gotoeditadmin} />
+                        <p className="text fw-600">{admin.adminName?.length > 20 ? `${admin.adminName.substring(0, 20)}...` : admin.adminName}</p>
+                        <p className='text'>{admin.adminEmail?.length > 20 ? `${admin.adminEmail.substring(0, 20)}...` : admin.adminEmail}</p>
                         <DeleteIcon className='deleteIcon' onClick={handleClickFooter} />
                     </div>
                 ))}

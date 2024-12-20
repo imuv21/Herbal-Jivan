@@ -891,50 +891,51 @@ export const accordionData = [
 // admin list
 export const adminList = [
     {
-        adminName: 'blabal21',
-        adminPassword: 'Thisisfake@21'
+        adminName: 'blabal21ddsgddfhdhjrektykuluylyitlyul',
+        adminEmail: 'blabal21@example.com'
     },
     {
         adminName: 'adminJohn',
-        adminPassword: 'JohnDoe@123'
+        adminEmail: 'john@example.com'
     },
     {
         adminName: 'superAdminMike',
-        adminPassword: 'MikeRules@456'
+        adminEmail: 'mike@example.com'
     },
     {
         adminName: 'adminSarah',
-        adminPassword: 'Sarah123!@#'
+        adminEmail: 'sarah@example.com'
     },
     {
         adminName: 'masterAdmin007',
-        adminPassword: 'Bond007$Admin'
+        adminEmail: 'bond007@example.com'
     },
     {
         adminName: 'rootAdminAlex',
-        adminPassword: 'AlexRocks@2024'
+        adminEmail: 'alex@example.com'
     },
     {
         adminName: 'adminEmma',
-        adminPassword: 'Emma_Admin@77'
+        adminEmail: 'emma@example.com'
     },
     {
         adminName: 'globalAdminLily',
-        adminPassword: 'LilyTop@456'
+        adminEmail: 'lily@example.com'
     },
     {
         adminName: 'techAdminRaj',
-        adminPassword: 'RajTech#100'
+        adminEmail: 'raj@example.com'
     },
     {
         adminName: 'supportAdminAnna',
-        adminPassword: 'Support@Admin99'
+        adminEmail: 'anna@example.com'
     },
     {
         adminName: 'bossAdminTom',
-        adminPassword: 'TomBoss@321'
+        adminEmail: 'tom@example.com'
     }
 ];
+
 
 
 //  category list
