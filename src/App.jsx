@@ -74,7 +74,7 @@ function App() {
           </Route>
 
           {/* admin routes (private) */}
-          {/* <Route element={<Protector user={user} requiredRole="ADMIN" redirect="/admin/login" />}>
+          <Route element={<Protector user={user} requiredRole="ADMIN" redirect="/admin/login" />}>
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="add-new-product" element={<AddNewProduct />} />
               <Route path="edit-product/:id" element={<EditProduct />} />
@@ -94,26 +94,6 @@ function App() {
               <Route path="add-new-admin" element={<AddAdmin />} />
               <Route path="role-management" element={<RoleManagement />} />
             </Route>
-          </Route> */}
-
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="add-new-product" element={<AddNewProduct />} />
-            <Route path="edit-product/:id" element={<EditProduct />} />
-            <Route path="category-list" element={<CategoryList />} />
-            <Route path="orders-list" element={<OrdersList />} />
-            <Route path="reviews-list" element={<ReviewsList />} />
-            <Route path="questions-list" element={<QuestionsList />} />
-            <Route path="user-list" element={<UsersList />} />
-            <Route path="user-list/user-orders/:id" element={<UserOrder />} />
-            <Route path="user-list/user-reviews/:id" element={<Reviews />} />
-            <Route path="user-list/user-questions/:id" element={<Questions />} />
-            <Route path="product-list" element={<ProductList />} />
-            <Route path="product-list/product-details/:id" element={<ProductDetailAdmin />} />
-            <Route path="top-rated-products" element={<TopRated />} />
-            <Route path="best-seller-products" element={<BestSeller />} />
-            <Route path="featured-products" element={<Featured />} />
-            <Route path="add-new-admin" element={<AddAdmin />} />
-            <Route path="role-management" element={<RoleManagement />} />
           </Route>
 
           {/* user routes (private) */}

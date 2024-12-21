@@ -1,5 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../slices/productSlice';
 import { categories } from '../../assets/schemas';
 import DOMPurify from 'dompurify';
 import UploadIcon from "@mui/icons-material/Upload";
@@ -10,6 +12,7 @@ import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
 const AddNewProduct = () => {
 
+    const dispatch = useDispatch();
     const MAX_IMAGES = 5;
     const MAX_FILE_SIZE = 10 * 1024 * 1024;
     const [reviewImages, setReviewImages] = useState([]);
@@ -25,13 +28,7 @@ const AddNewProduct = () => {
                 return false;
             }
             if (file.size > MAX_FILE_SIZE) {
-                toast(<div className='flex center g5'><NewReleasesIcon /> </div>, {
-                    duration: 3000,
-                    position: 'top-center',
-                    style: { color: 'red' },
-                });
                 toast(<div className='flex center g5'> < NewReleasesIcon /> File size exceeds 10 MB.</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-
                 return false;
             }
             return true;
@@ -60,7 +57,7 @@ const AddNewProduct = () => {
         setReviewImages((prev) => prev.filter((_, i) => i !== index));
     };
 
-    const productSubmit = (e) => {
+    const productSubmit = async (e) => {
         e.preventDefault();
         if (isSubmitting) return;
         if (reviewImages.length < 2) {
@@ -70,30 +67,26 @@ const AddNewProduct = () => {
         setIsSubmitting(true);
 
         try {
-            const formData = new FormData(e.target);
-            const productData = {
-                name: formData.get('name'),
-                originalPrice: parseFloat(formData.get('originalPrice')),
-                salePrice: parseFloat(formData.get('salePrice')),
-                stock: parseFloat(formData.get('stock')),
-                info: formData.get('info'),
-            };
+            const formData = new FormData();
+            formData.append(
+                "productData",
+                JSON.stringify({
+                    name: DOMPurify.sanitize(e.target.name.value),
+                    categoryPath: DOMPurify.sanitize(e.target.categoryPath.value),
+                    originalPrice: parseFloat(e.target.originalPrice.value),
+                    salePrice: parseFloat(e.target.salePrice.value),
+                    info: DOMPurify.sanitize(e.target.info.value),
+                })
+            );
+            reviewImages.forEach((image) => formData.append("productImage", image));
+            const result = await dispatch(addProduct(formData)).unwrap();
 
-            const sanData = {
-                name: DOMPurify.sanitize(productData.name),
-                originalPrice: productData.originalPrice,
-                salePrice: productData.salePrice,
-                stock: productData.stock,
-                info: DOMPurify.sanitize(productData.info),
-                images: reviewImages,
-            };
-
-            console.log("Submitted Product Data:", sanData);
-            toast(<div className='flex center g5'> < VerifiedIcon /> Product submitted successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            console.log("Submitted Product Data:", formData);
+            toast(<div className='flex center g5'> < VerifiedIcon /> {result.message || "Product added successfully!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
 
         } catch (error) {
             console.log(error);
-            toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            toast(<div className='flex center g5'> < NewReleasesIcon /> {error.message || "Something went wrong!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         } finally {
             setReviewImages([]);
             setPreviewImages([]);
@@ -106,7 +99,6 @@ const AddNewProduct = () => {
     return (
         <Fragment>
             <article className='flex center-start wh'><h1 className="heading">Add New Product</h1></article>
-
             <form onSubmit={productSubmit} className='productForm'>
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Product Name</p>
@@ -114,7 +106,7 @@ const AddNewProduct = () => {
                 </div>
                 <div className="flexcol g10 start-center wh">
                     <p className="text">Select Category</p>
-                    <select name="category" required>
+                    <select name="categoryPath" required>
                         <option value="">Select category</option>
                         {
                             categories && categories.length > 0 && categories.map((category, index) => (
@@ -132,14 +124,9 @@ const AddNewProduct = () => {
                     <input type="number" name='salePrice' placeholder='Enter sale price (₹)' required />
                 </div>
                 <div className="flexcol g10 start-center wh">
-                    <p className="text">Product Stock</p>
-                    <input type="number" name='stock' placeholder='Enter product stock' required />
-                </div>
-                <div className="flexcol g10 start-center wh">
                     <p className="text">Product Information</p>
                     <textarea name="info" placeholder='Enter product information' required />
                 </div>
-
                 <label htmlFor="file-upload" className="upload-label">
                     <UploadIcon />
                     <span>Upload Images</span>
@@ -155,12 +142,21 @@ const AddNewProduct = () => {
                         ))}
                     </div>
                 }
-
                 <button type='submit' disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
             </form>
-
         </Fragment>
     )
 }
 
 export default AddNewProduct
+
+
+
+
+
+{/* <div className="flexcol g10 start-center wh">
+                    <p className="text">Product Stock</p>
+                    <input type="number" name='stock' placeholder='Enter product stock' required />
+                </div> */}
+                // stock: parseFloat(formData.get('stock')),
+                // stock: productData.stock,

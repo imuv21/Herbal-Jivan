@@ -15,6 +15,7 @@ const Profile = () => {
     const user = useSelector((state) => state.auth.user);
     const [isClickedFooter, setIsClickedFooter] = useState(false);
     const [isClickedFooterTwo, setIsClickedFooterTwo] = useState(false);
+    const [isClickedFooterThree, setIsClickedFooterThree] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleClickFooter = (event) => {
@@ -25,10 +26,15 @@ const Profile = () => {
         event.preventDefault();
         setIsClickedFooterTwo(true);
     };
+    const handleClickFooterThree = (event) => {
+        event.preventDefault();
+        setIsClickedFooterThree(true);
+    };
     const closepopup = (event) => {
         event.preventDefault();
         setIsClickedFooter(false);
         setIsClickedFooterTwo(false);
+        setIsClickedFooterThree(false);
     };
 
     const [formValues, setFormValues] = useState({
@@ -82,7 +88,7 @@ const Profile = () => {
         city: '',
         pincode: '',
         number: '',
-        default: false,
+        default: false
     });
     const handleAddressChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -94,7 +100,7 @@ const Profile = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (isClickedFooter || isClickedFooterTwo) {
+            if (isClickedFooter || isClickedFooterTwo || isClickedFooterThree) {
                 setIsClickedFooter(false);
                 setIsClickedFooterTwo(false);
             }
@@ -103,7 +109,7 @@ const Profile = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [isClickedFooter, isClickedFooterTwo]);
+    }, [isClickedFooter, isClickedFooterTwo, isClickedFooterThree]);
     const truef = 1;
 
 
@@ -137,19 +143,19 @@ const Profile = () => {
                     <div className="addresses">
                         <div className="addressCard">
                             <div className="flex center-space wh">
-                                <p className="text" style={{ color: '#565656' }}>Default address</p>  <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooterTwo} />
+                                <p className="text" style={{ color: '#565656' }}>Default address</p>  <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooterThree} />
                             </div>
                             <p className="text">Jayants PG, Parathe wali galiNear Amity University, Sector 126, 201301, Noida, Uttar Pradesh, India</p>
                         </div>
                         <div className="addressCard">
                             <div className="flex center-space wh">
-                                <p className="text" style={{ color: '#565656' }}>Address 2</p>  <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooterTwo} />
+                                <p className="text" style={{ color: '#565656' }}>Address 2</p>  <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooterThree} />
                             </div>
                             <p className="text">Jayants PG, Parathe wali galiNear Amity University, Sector 126, 201301, Noida, Uttar Pradesh, India</p>
                         </div>
                         <div className="addressCard">
                             <div className="flex center-space wh">
-                                <p className="text" style={{ color: '#565656' }}>Address 3</p>  <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooterTwo} />
+                                <p className="text" style={{ color: '#565656' }}>Address 3</p>  <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooterThree} />
                             </div>
                             <p className="text">Jayants PG, Parathe wali galiNear Amity University, Sector 126, 201301, Noida, Uttar Pradesh, India</p>
                         </div>
@@ -215,7 +221,40 @@ const Profile = () => {
                         </div>
                     )}
                 </div>
-                
+
+                <div className={`popup-btn ${isClickedFooterThree ? 'clicked' : ''}`}>
+                    {isClickedFooterThree && (
+                        <div className="popup">
+                            <form className="popup-wrapper" onSubmit={handleSubmit}>
+                                <h2 className="headingSmol" style={{ marginBottom: '15px' }}>Edit Address</h2>
+
+                                <div className="pageBox5 flexcol center">
+                                    <input type="text" name="address" autoComplete="street-address" placeholder="Enter your address..." value={addressValues.address} onChange={handleAddressChange} required />
+                                </div>
+                                <div className="pageBox5 flexcol center">
+                                    <input type="text" name="landmark" autoComplete="off" placeholder="Enter any landmark (optional)..." value={addressValues.landmark} onChange={handleAddressChange} />
+                                </div>
+                                <div className="pageBox5 flexcol center">
+                                    <input type="text" name="city" autoComplete="address-level2" placeholder="Enter your city..." value={addressValues.city} onChange={handleAddressChange} required />
+                                </div>
+                                <div className="pageBox5 flexcol center">
+                                    <input type="text" name="pincode" autoComplete="postal-code" placeholder="Enter your pincode..." value={addressValues.pincode} onChange={handleAddressChange} required />
+                                </div>
+                                <div className="pageBox5 flexcol center">
+                                    <input type="text" name="number" autoComplete="tel" placeholder="Enter your number..." value={addressValues.number} onChange={handleAddressChange} required />
+                                </div>
+                                <div className="pageBox5 flex center-start" style={{ marginTop: '5px' }}>
+                                    <input type="checkbox" name='default' checked={addressValues.default} onChange={handleAddressChange} /> <div className="text">Make it default address</div>
+                                </div>
+
+                                <div className="flex wh g10" style={{ marginTop: '15px', justifyContent: 'space-between' }}>
+                                    <button type='submit' className="applyBtn" disabled={isSubmitted}>{isSubmitted ? 'Updating...' : 'Update'}</button>
+                                    <button type="button" className="applyBtn" onClick={closepopup}>Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    )}
+                </div>
             </div>
         </Fragment>
     )
