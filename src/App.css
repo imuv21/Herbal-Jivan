@@ -1292,17 +1292,19 @@ button:focus {
 .slider-containerpd {
   position: relative;
   width: 100%;
-  height: 70vh;
+  height: 500px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: 1px solid hotpink;
 }
 
 .slide-imagepd {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
+  aspect-ratio: 4/3;
 }
 
 .slider-containerpd:hover .arrows {
@@ -3401,6 +3403,10 @@ button:focus {
 
 @media screen and (max-width: 830px) {
 
+  .slider-containerpd {
+    height: 450px;
+  }
+
   .slider-container {
     height: 350px;
   }
@@ -3707,6 +3713,9 @@ button:focus {
 }
 
 @media screen and (max-width: 550px) {
+  .slider-containerpd {
+    height: 400px;
+  }
 
   .sortCat {
     flex-direction: column;
@@ -3780,6 +3789,9 @@ button:focus {
 }
 
 @media screen and (max-width: 400px) {
+  .slider-containerpd {
+    height: 350px;
+  }
   .slider-container {
     height: 400px;
   }
