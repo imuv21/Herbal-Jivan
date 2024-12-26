@@ -933,12 +933,26 @@ button:focus {
 }
 
 .addresses {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.addressIcons {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
+}
+.addressIcons .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
+  color: var(--codeFour);
+  cursor: pointer;
 }
 
 
@@ -2740,9 +2754,25 @@ button:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   overflow-y: auto;
   border-right: 1px solid var(--codeTwo);
+}
+
+.logoutBtn {
+  margin-bottom: 20px;
+  padding: 7px 20px;
+  gap: 10px;
+  background-color: var(--codeOne);
+  color: var(--codeSix);
+}
+.logoutBtn:hover {
+  background-color: var(--codeSix);
+  color: var(--codeOne);
+}
+.logoutBtn .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
 }
 
 .accordionCover {

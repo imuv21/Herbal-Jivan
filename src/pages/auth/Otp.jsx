@@ -36,7 +36,7 @@ const Otp = () => {
             try {
                 const otpResponse = await dispatch(verifyOtp({ otp: newOtpDigits.join(''), email: signupData.email })).unwrap();
 
-                if (otpResponse.success === true) {
+                if (otpResponse.success) {
                     toast(<div className='flex center g5'> < VerifiedIcon /> Email verified. Please login now.</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                     navigate('/login');
                 } else {

@@ -75,18 +75,29 @@ const AddNewProduct = () => {
                     categoryPath: DOMPurify.sanitize(e.target.categoryPath.value),
                     originalPrice: parseFloat(e.target.originalPrice.value),
                     salePrice: parseFloat(e.target.salePrice.value),
+                    stock: parseFloat(e.target.stock.value),
                     info: DOMPurify.sanitize(e.target.info.value),
                 })
             );
-            reviewImages.forEach((image) => formData.append("productImage", image));
-            const result = await dispatch(addProduct(formData)).unwrap();
 
-            console.log("Submitted Product Data:", formData);
-            toast(<div className='flex center g5'> < VerifiedIcon /> {result.message || "Product added successfully!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            reviewImages.forEach((file) => {
+                formData.append("productImage", file);
+            });
+
+            // reviewImages.forEach((file, index) => {
+            //     formData.append(`productImage[${index}]`, file);
+            // });
+
+            // reviewImages.forEach((file) => {
+            //     formData.append("productImage[]", file);
+            // });
+
+            const result = await dispatch(addProduct(formData)).unwrap();
+            toast(<div className='flex center g5'> < VerifiedIcon /> {"Product added successfully!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
 
         } catch (error) {
             console.log(error);
-            toast(<div className='flex center g5'> < NewReleasesIcon /> {error.message || "Something went wrong!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            toast(<div className='flex center g5'> < NewReleasesIcon /> {"Something went wrong!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         } finally {
             setReviewImages([]);
             setPreviewImages([]);
@@ -124,8 +135,12 @@ const AddNewProduct = () => {
                     <input type="number" name='salePrice' placeholder='Enter sale price (₹)' required />
                 </div>
                 <div className="flexcol g10 start-center wh">
+                    <p className="text">Product Stock</p>
+                    <input type="number" name='stock' placeholder='Enter product stock' required />
+                </div>
+                <div className="flexcol g10 start-center wh">
                     <p className="text">Product Information</p>
-                    <textarea name="info" placeholder='Enter product information' required />
+                    <textarea name="info" placeholder='Enter product information' data-gramm="false" required />
                 </div>
                 <label htmlFor="file-upload" className="upload-label">
                     <UploadIcon />
@@ -150,13 +165,3 @@ const AddNewProduct = () => {
 
 export default AddNewProduct
 
-
-
-
-
-{/* <div className="flexcol g10 start-center wh">
-                    <p className="text">Product Stock</p>
-                    <input type="number" name='stock' placeholder='Enter product stock' required />
-                </div> */}
-                // stock: parseFloat(formData.get('stock')),
-                // stock: productData.stock,
