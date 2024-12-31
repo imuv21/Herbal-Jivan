@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { getAddress, addAddress, deleteAddress } from '../../slices/productSlice';
+import { getAddress, addAddress, deleteAddress, editAddress } from '../../slices/productSlice';
 import DOMPurify from 'dompurify';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
@@ -20,72 +20,60 @@ const Profile = () => {
     const [isClickedFooter, setIsClickedFooter] = useState(false);
     const [isClickedFooterTwo, setIsClickedFooterTwo] = useState(false);
     const [isClickedFooterThree, setIsClickedFooterThree] = useState(false);
+    const [editId, setEditId] = useState(null); 
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleClickFooter = (event) => {
-        event.preventDefault();
-        setIsClickedFooter(true);
-    };
     const handleClickFooterTwo = (event) => {
         event.preventDefault();
         setIsClickedFooterTwo(true);
     };
-    const handleClickFooterThree = (event) => {
-        event.preventDefault();
-        setIsClickedFooterThree(true);
-    };
-    const closepopup = (event) => {
-        event.preventDefault();
-        setIsClickedFooter(false);
-        setIsClickedFooterTwo(false);
-        setIsClickedFooterThree(false);
-    };
-
-    const [formValues, setFormValues] = useState({
-        firstname: '',
-        lastname: '',
-        email: '',
-    });
-    useEffect(() => {
-        if (user) {
-            setFormValues(prevValues => ({
-                ...prevValues,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                email: user.email,
-            }));
-        }
-    }, [user]);
 
     useEffect(() => {
         dispatch(getAddress());
     }, [dispatch]);
 
+    const [formValues, setFormValues] = useState({
+        firstname: '',
+        lastname: ''
+    });
+    const handleClickFooter = (event, profile) => {
+        event.preventDefault();
+        setFormValues({
+            firstname: profile.firstname,
+            lastname: profile.lastname,
+            email: profile.email
+        });
+        setIsClickedFooter(true);
+    };
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
-        dispatch(clearErrors());
     };
-    const handleSubmit = async (event) => {
+    const profileSubmit = async (event) => {
         event.preventDefault();
         if (isSubmitted) return;
         setIsSubmitted(true);
         try {
             const userData = {
-                firstName: DOMPurify.sanitize(formValues.firstName),
-                lastName: DOMPurify.sanitize(formValues.lastName),
-                interests: DOMPurify.sanitize(formValues.interests),
+                firstname: DOMPurify.sanitize(formValues.firstname),
+                lastname: DOMPurify.sanitize(formValues.lastname)
             };
-            const response = await dispatch(updateProfile(userData)).unwrap();
-            if (response.status === "success") {
-                toast(<div className='flex center g5'> < VerifiedIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            console.log(userData);
+            const response = await dispatch(addAddress(userData)).unwrap();
+            if (response.status) {
+                toast(<div className='flex center g5'> < VerifiedIcon /> Profile updated successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                 setIsClickedFooter(false);
             } else {
-                toast(<div className='flex center g5'> < NewReleasesIcon /> {response.message}</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+                toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
             }
         } catch (error) {
+            console.log(error);
             toast(<div className='flex center g5'> < NewReleasesIcon /> Error updating profile!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         } finally {
+            setFormValues({
+                firstname: '',
+                lastname: ''
+            });
             setIsSubmitted(false);
         }
     };
@@ -98,6 +86,20 @@ const Profile = () => {
         phoneNumber: '',
         isDefault: false
     });
+    const closepopup = (event) => {
+        event.preventDefault();
+        setIsClickedFooter(false);
+        setIsClickedFooterTwo(false);
+        setIsClickedFooterThree(false);
+        setAddressValues({
+            address: '',
+            landmark: '',
+            city: '',
+            pincode: '',
+            phoneNumber: '',
+            isDefault: false
+        });
+    };
     const handleAddressChange = (e) => {
         const { name, value, type, checked } = e.target;
         setAddressValues({
@@ -121,30 +123,92 @@ const Profile = () => {
             const response = await dispatch(addAddress(userData)).unwrap();
             if (response.status) {
                 toast(<div className='flex center g5'> < VerifiedIcon /> Address added successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-                setIsClickedFooter(false);
+                setIsClickedFooterTwo(false);
+                dispatch(getAddress());
             } else {
                 toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
             }
         } catch (error) {
             console.log(error);
-            toast(<div className='flex center g5'> < NewReleasesIcon /> Error updating profile!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            toast(<div className='flex center g5'> < NewReleasesIcon /> Error submitting address!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         } finally {
+            setAddressValues({
+                address: '',
+                landmark: '',
+                city: '',
+                pincode: '',
+                phoneNumber: '',
+                isDefault: false
+            });
             setIsSubmitted(false);
         }
-    }
+    };
+
+    const handleClickFooterThree = (event, address) => {
+        event.preventDefault();
+        setEditId(address.id); 
+        setAddressValues({
+            address: address.address,
+            landmark: address.landmark,
+            city: address.city,
+            pincode: address.pincode,
+            phoneNumber: address.phoneNumber,
+            isDefault: address.isDefault || false
+        });
+        setIsClickedFooterThree(true);
+    };
+    const editAddressSubmit = async (event) => {
+        event.preventDefault();
+        if (isSubmitted) return;
+        setIsSubmitted(true);
+        try {
+            const userData = {
+                ...(editId && { id: editId }),
+                address: DOMPurify.sanitize(addressValues.address),
+                landmark: DOMPurify.sanitize(addressValues.landmark),
+                city: DOMPurify.sanitize(addressValues.city),
+                pincode: DOMPurify.sanitize(addressValues.pincode),
+                phoneNumber: DOMPurify.sanitize(addressValues.phoneNumber),
+                isDefault: addressValues.isDefault
+            };
+            console.log(userData);
+            const response = await dispatch(editAddress(userData)).unwrap();
+            if (response.status) {
+                toast(<div className='flex center g5'> < VerifiedIcon /> Address updated successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+                setIsClickedFooterThree(false);
+                dispatch(getAddress());
+            } else {
+                toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            }
+        } catch (error) {
+            console.log(error);
+            toast(<div className='flex center g5'> < NewReleasesIcon /> Error updating address!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+        } finally {
+            setAddressValues({
+                address: '',
+                landmark: '',
+                city: '',
+                pincode: '',
+                phoneNumber: '',
+                isDefault: false
+            });
+            setEditId(null);
+            setIsSubmitted(false);
+        }
+    };
+
     const deleteAddressHandle = async (id) => {
         try {
-            const response = await dispatch(deleteAddress(id)).unwrap();
-            if (response === "Address Deleted!!") {
-                toast(<div className='flex center g5'> < VerifiedIcon /> Address successfully deleted!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            const { status } = await dispatch(deleteAddress(id)).unwrap();
+            if (status) {
+                toast(<div className='flex center g5'> < VerifiedIcon /> Address deleted sucessfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
                 dispatch(getAddress());
             }
-
         } catch (error) {
             console.log(error);
             toast(<div className='flex center g5'> < NewReleasesIcon /> Error updating profile!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
         }
-    }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -174,7 +238,7 @@ const Profile = () => {
 
                 <div className="profile">
                     <div className="flex verify center-start g5">
-                        <p className="name">{`${user?.firstname} ${user?.lastname}`}</p> <EditIcon style={{ cursor: 'pointer' }} onClick={handleClickFooter} />
+                        <p className="name">{`${user?.firstname} ${user?.lastname}`}</p> <EditIcon style={{ cursor: 'pointer' }} onClick={(e) => handleClickFooter(e, user)} />
                     </div>
                     <div className="flexcol start-center">
                         <p className="text" style={{ color: 'var(--codeThree)' }}>Email</p>
@@ -195,19 +259,34 @@ const Profile = () => {
                         {!getaddRessLoading && !getaddRessError && addresses && addresses.length > 0 && addresses.map((address, index) => (
                             <div className="addressCard" key={index}>
                                 <div className="flex center-space wh">
-                                    <p className="text" style={{ color: '#565656' }}>Address {index + 1}</p>
+                                    <p className="text" style={{ color: '#565656' }}>{ address.isDefault ? `Default Address` : `Address ${index + 1}`}</p>
                                     <div className="addressIcons">
-                                        <EditIcon onClick={handleClickFooterThree} />
+                                        <EditIcon onClick={(e) => handleClickFooterThree(e, address)} />
                                         <DeleteIcon onClick={() => deleteAddressHandle(address.id)} />
                                     </div>
                                 </div>
-                                <p className="text">
-                                    {address.landmark},
-                                    {address.address},
-                                    {address.city},
-                                    {address.pincode},
-                                    {address.phoneNumber}
-                                </p>
+                                <div className="addressDetails">
+                                    <div className="addressRow">
+                                        <div className="addressHeading">Address:</div>
+                                        <p className="textSmol">{address.address}</p>
+                                    </div>
+                                    <div className="addressRow">
+                                        <div className="addressHeading">City:</div>
+                                        <p className="textSmol">{address.city}</p>
+                                    </div>
+                                    <div className="addressRow">
+                                        <div className="addressHeading">Landmark:</div>
+                                        <p className="textSmol">{address.landmark}</p>
+                                    </div>
+                                    <div className="addressRow">
+                                        <div className="addressHeading">Pincode:</div>
+                                        <p className="textSmol">{address.pincode}</p>
+                                    </div>
+                                    <div className="addressRow">
+                                        <div className="addressHeading">Number:</div>
+                                        <p className="textSmol">{address.phoneNumber}</p>
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -216,7 +295,7 @@ const Profile = () => {
                 <div className={`popup-btn ${isClickedFooter ? 'clicked' : ''}`}>
                     {isClickedFooter && (
                         <div className="popup">
-                            <form className="popup-wrapper" onSubmit={handleSubmit}>
+                            <form className="popup-wrapper" onSubmit={profileSubmit}>
                                 <h2 className="headingSmol" style={{ marginBottom: '15px' }}>Update Profile</h2>
 
                                 <div className="pageBox5 flexcol center">
@@ -276,7 +355,7 @@ const Profile = () => {
                 <div className={`popup-btn ${isClickedFooterThree ? 'clicked' : ''}`}>
                     {isClickedFooterThree && (
                         <div className="popup">
-                            <form className="popup-wrapper" onSubmit={handleSubmit}>
+                            <form className="popup-wrapper" onSubmit={editAddressSubmit}>
                                 <h2 className="headingSmol" style={{ marginBottom: '15px' }}>Edit Address</h2>
 
                                 <div className="pageBox5 flexcol center">
@@ -292,10 +371,10 @@ const Profile = () => {
                                     <input type="text" name="pincode" autoComplete="postal-code" placeholder="Enter your pincode..." value={addressValues.pincode} onChange={handleAddressChange} required />
                                 </div>
                                 <div className="pageBox5 flexcol center">
-                                    <input type="text" name="number" autoComplete="tel" placeholder="Enter your number..." value={addressValues.number} onChange={handleAddressChange} required />
+                                    <input type="text" name="phoneNumber" autoComplete="tel" placeholder="Enter your number..." value={addressValues.phoneNumber} onChange={handleAddressChange} required />
                                 </div>
                                 <div className="pageBox5 flex center-start" style={{ marginTop: '5px' }}>
-                                    <input type="checkbox" name='default' checked={addressValues.default} onChange={handleAddressChange} /> <div className="text">Make it default address</div>
+                                    <input type="checkbox" name='isDefault' checked={addressValues.isDefault} onChange={handleAddressChange} /> <div className="text">Make it default address</div>
                                 </div>
 
                                 <div className="flex wh g10" style={{ marginTop: '15px', justifyContent: 'space-between' }}>

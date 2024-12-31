@@ -1,15 +1,26 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Sliders from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { fetchProducts } from '../slices/productSlice';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import defaulImg from '../assets/images/defaultImage.jpg';
 import Loader from './Loader/Loader';
 
 const ProductCard = lazy(() => import('./ProductCard'));
 
-const Carousel = ({ products }) => {
+
+const Carousel = () => {
+
+    const dispatch = useDispatch();
+    const { products, getProLoading, getProError } = useSelector((state) => state.product);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(10);
+
+    useEffect(() => {
+        dispatch(fetchProducts({ page, size }));
+    }, [dispatch, page, size]);
 
     const NextArrow = (props) => {
         const { style, onClick } = props;
@@ -81,10 +92,12 @@ const Carousel = ({ products }) => {
     return (
         <div className={`product-slider-cont`}>
             <Sliders {...settings}>
-                {Array.isArray(products) && products.map((pro) => (
+                {getProLoading && <p className="text">Loading products...</p>}
+                {getProError && <p className="text">Error loading products...</p>}
+                {!getProLoading && !getProError && Array.isArray(products) && products.map((pro) => (
                     <div className='show-img-detail-sup' key={pro.productId}>
                         <Suspense fallback={<Loader />}>
-                            <ProductCard name={pro.name} id={pro.productId} image={pro.image ? pro.image : defaulImg} ratings={pro.ratings} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
+                            <ProductCard name={pro.name} id={pro.productId} images={pro.images} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
                         </Suspense>
                     </div>
                 ))}

@@ -1,68 +1,88 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import { getCart, updateCart, removeCart } from '../../slices/cartSlice';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
 import cartImg from '../../assets/images/defaultImage.jpg';
-import { products } from '../../assets/schemas';
+
 
 
 const Cart = () => {
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const dispatch = useDispatch();
+    const { cartItems, totalSellPrice, getLoading, getError, updLoading, updError } = useSelector((state) => state.cart);
+    const [quantities, setQuantities] = useState({});
+    const [isRemove, setIsRemove] = useState(false);
 
-    const pageSize = 3;
-    const total_results = products?.length;
-    const total_pages = Math.ceil(total_results / pageSize);
+    useEffect(() => {
+        dispatch(getCart());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (cartItems) {
+            const initialQuantities = cartItems.reduce((acc, item, index) => {
+                acc[index] = item.quantity || 1;
+                return acc;
+            }, {});
+            setQuantities(initialQuantities);
+        }
+    }, [cartItems]);
+
+    const updateCartQuantity = (productId, quantity) => {
+        dispatch(updateCart({ productId, quantity }));
+    };
 
     //quantity
-    const [quantities, setQuantities] = useState(
-        products.reduce((acc, _, index) => {
-            acc[index] = 1;
-            return acc;
-        }, {})
-    );
-    const increase = (index) => {
-        setQuantities((prev) => ({
-            ...prev, [index]: prev[index] + 1,
-        }));
-    };
-    const decrease = (index) => {
-        setQuantities((prev) => ({
-            ...prev, [index]: prev[index] > 1 ? prev[index] - 1 : 1,
-        }));
-    };
-    const handleQuantity = (index, e) => {
-        const value = parseInt(e.target.value, 10) || 1;
-        setQuantities((prev) => ({
-            ...prev, [index]: value > 0 ? value : 1,
-        }));
+    const increase = (index, productId) => {
+        setQuantities((prev) => {
+            const newQuantities = { ...prev, [index]: prev[index] + 1 };
+            updateCartQuantity(productId, newQuantities[index]);
+            return newQuantities;
+        });
     };
 
-    //discount totalprice
+    const decrease = (index, productId) => {
+        setQuantities((prev) => {
+            const newQuantities = { ...prev, [index]: Math.max(1, prev[index] - 1) };
+            updateCartQuantity(productId, newQuantities[index]);
+            return newQuantities;
+        });
+    };
+
+    const removeCart = (productId) => {
+        if (isRemove) return;
+        setIsRemove(true);
+        try {
+            dispatch(removeCart(productId));
+            toast(<div className='flex center g5'> < VerifiedIcon /> Product removed successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+        
+        } catch (error) {
+            toast(<div className='flex center g5'> < NewReleasesIcon /> Error removing product!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+        }
+    }
+
+    const handleQuantity = (index, productId, e) => {
+        const value = parseInt(e.target.value, 10) || 1;
+        setQuantities((prev) => {
+            const newQuantities = { ...prev, [index]: value > 0 ? value : 1 };
+            updateCartQuantity(productId, newQuantities[index]);
+            return newQuantities;
+        });
+    };
+
+    //discount
     const discount = (ogPrice, salePrice) => {
         const discountPercentage = ((ogPrice - salePrice) / ogPrice) * 100;
         return discountPercentage.toFixed(0);
     }
+
     const totalPrice = (salePrice, quantity) => {
-        const totalPrice = (salePrice || 0) * quantity;
-        return totalPrice.toFixed(2);
-    }
-
-    const subTotal = products.reduce((sum, item, index) => {
-        return sum + (item.salePrice || 0) * (quantities[index] || 1);
-    }, 0);
-
-
-    //pagination
-    const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= total_pages) {
-            setCurrentPage(newPage);
-        }
+        return ((salePrice || 0) * quantity).toFixed(2);
     };
-    const paginatedItems = products.slice(
-        (currentPage - 1) * pageSize,
-        currentPage * pageSize
-    );
 
 
     return (
@@ -78,30 +98,36 @@ const Cart = () => {
                 <section className='cartCont'>
 
                     <article className='cartProducts'>
-                        {paginatedItems && paginatedItems.length > 0 && paginatedItems.map((item, index) => (
-                            <article key={index} className='cartproCont'>
-                                <img src={item.image || cartImg} className='cartImg' alt={`${item.name}-${index}`} />
-                                <div className='cartDetailCont'>
-                                    <div className="cartDetail">
-                                        <p className="text">{item.name}</p>
-                                        <div className='cartPriceBox'>
-                                            <p className='product-discounThree'>Rs. {Number(item.originalPrice).toFixed(2)}₹</p>
-                                            <p className='product-priceThree'>Rs. {Number(item.salePrice).toFixed(2)}₹</p>
-                                            <div className='discount-iconThree'>{discount(item.originalPrice, item.salePrice)}% OFF</div>
+                        {(getLoading || updLoading) && <p className="text">Loading products...</p>}
+                        {(getError || updError) && <p className="text">Error loading products...</p>}
+                        {!getLoading && !updLoading && !getError && !updError && cartItems && cartItems.length > 0 ?
+                            (cartItems.map((item, index) => (
+                                <article key={index} className='cartproCont'>
+                                    <img src={item.image?.imageUrl || cartImg} className='cartImg' alt={`${item.itemName}-${index}`} />
+                                    <div className='cartDetailCont'>
+                                        <div className="cartDetail">
+                                            <p className="text">{item.itemName}</p>
+                                            <div className='cartPriceBox'>
+                                                <p className='product-discounThree'>Rs. {Number(item.unitPrice).toFixed(2)}₹</p>
+                                                <p className='product-priceThree'>Rs. {Number(item.sellPrice).toFixed(2)}₹</p>
+                                                <div className='discount-iconThree'>{discount(item.unitPrice, item.sellPrice)}% OFF</div>
+                                            </div>
+                                            <button onClick={() => removeItem(item.productId)}>Remove</button>
                                         </div>
-                                        <button>Remove</button>
-                                    </div>
-                                    <div className="cartBtnsCont">
-                                        <p className='product-priceThree'>Rs. {totalPrice(item.salePrice, quantities[index])}₹</p>
-                                        <div className="plusMinusCartCont">
-                                            <div onClick={() => increase(index)}><AddIcon /></div>
-                                            <input type="number" value={quantities[index]} onChange={(e) => handleQuantity(index, e)} min={1} />
-                                            <div onClick={() => decrease(index)}><RemoveIcon /></div>
+                                        <div className="cartBtnsCont">
+                                            {totalSellPrice && <p className='product-priceThreeTwo'>Rs. {totalPrice(item.sellPrice, quantities[index])}₹</p>}
+                                            <div className="plusMinusCartCont">
+                                                <div onClick={() => increase(index, item.productId)}><AddIcon /></div>
+                                                <input type="number" value={quantities[index]} onChange={(e) => handleQuantity(index, item.productId, e)} min={1} disabled={updLoading} />
+                                                <div onClick={() => decrease(index, item.productId)}><RemoveIcon /></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-                        ))}
+                                </article>
+                            )))
+                            :
+                            <p className='text'>There are no products in the cart!</p>
+                        }
                     </article>
 
                     <article className='cartCalc'>
@@ -113,7 +139,7 @@ const Cart = () => {
                         <div className="flexcol start-center wh g5">
                             <div className="flex center-space wh">
                                 <p className="textBig">Subtotal</p>
-                                <p className="textBig">Rs. {subTotal}₹</p>
+                                {totalSellPrice && <p className="textBig">Rs. {Number(totalSellPrice).toFixed(2)}₹</p>}
                             </div>
                             <p className="textSmol">Tax included. Shipping calculated at checkout.</p>
                         </div>
@@ -121,18 +147,6 @@ const Cart = () => {
                     </article>
 
                 </section>
-
-                {total_results > pageSize && (
-                    <div className="pagination">
-                        <button disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>
-                            Previous
-                        </button>
-                        <span>{`Page ${currentPage} of ${total_pages}`}</span>
-                        <button disabled={currentPage === total_pages} onClick={() => handlePageChange(currentPage + 1)}>
-                            Next
-                        </button>
-                    </div>
-                )}
             </section>
         </Fragment>
     );

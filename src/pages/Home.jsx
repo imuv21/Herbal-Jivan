@@ -1,7 +1,7 @@
 import React, { Fragment, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { products, categories } from '../assets/schemas';
+import { categories } from '../assets/schemas';
 import Loader from '../components/Loader/Loader';
 import Carousel from '../components/Carousel';
 import VideoSec from '../components/VideoSec';
@@ -12,6 +12,8 @@ const ImageSlider = lazy(() => import('../components/ImageSlider'));
 
 
 const Home = () => {
+
+
 
 
   return (
@@ -28,7 +30,7 @@ const Home = () => {
       <section className='homepage flexcol center'>
 
         <article><h1 className='headingBig'>Best Deals</h1></article>
-        <Carousel products={products} />
+        <Carousel />
 
         <article><h1 className='headingBig'>Shop By Category</h1></article>
         <section className="category">
@@ -45,7 +47,7 @@ const Home = () => {
         <PopularCard />
 
         <article><h1 className='headingBig'>Daily Wellness</h1></article>
-        <Carousel products={products} />
+        <Carousel />
 
         <InfSlider />
 

@@ -1,31 +1,55 @@
-import React, { Fragment, lazy, Suspense, useState } from 'react';
+import React, { Fragment, lazy, Suspense, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
-import { products } from '../../assets/schemas';
+import { useDispatch, useSelector } from 'react-redux';
+import { categoryProducts } from '../../slices/categorySlice';
 import Loader from '../../components/Loader/Loader';
-import defaulImg from '../../assets/images/defaultImage.jpg';
+
 const ProductCard = lazy(() => import('../../components/ProductCard'));
+
 
 const Category = () => {
 
+    const dispatch = useDispatch();
+    const { products, totalItems, totalPages, numberOfElements, isFirst, isLast, hasNext, hasPrevious, getProLoading, getProError } = useSelector((state) => state.category);
     const [categoryParams] = useSearchParams();
     const categoryName = categoryParams.get('query');
-    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(5);
 
-    const pageSize = 5;
-    const total_results = products?.length;
-    const total_pages = Math.ceil(total_results / pageSize);
+    useEffect(() => {
+        dispatch(categoryProducts({ page, size, category: categoryName }));
+    }, [dispatch, page, size, categoryName]);
 
     //pagination
     const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= total_pages) {
-            setCurrentPage(newPage);
+        if (newPage >= 0 && newPage < totalPages) {
+            setPage(newPage);
         }
     };
-    const paginatedItems = products.slice(
-        (currentPage - 1) * pageSize,
-        currentPage * pageSize
-    );
+
+    const getPageNumbers = (currentPage, totalPages) => {
+        const pageNumbers = [];
+        const maxPageButtons = 5;
+
+        let startPage = Math.max(0, currentPage - 2);
+        let endPage = Math.min(totalPages - 1, currentPage + 2);
+
+        if (endPage - startPage < maxPageButtons - 1) {
+            if (startPage === 0) {
+                endPage = Math.min(totalPages - 1, startPage + maxPageButtons - 1);
+            } else if (endPage === totalPages - 1) {
+                startPage = Math.max(0, endPage - maxPageButtons + 1);
+            }
+        }
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbers.push(i);
+        }
+        return pageNumbers;
+    };
+
+    const pageNumbers = getPageNumbers(page, totalPages);
+
 
     return (
         <Fragment>
@@ -38,7 +62,11 @@ const Category = () => {
             <section className='page flexcol center'>
 
                 <div className="sortCat">
-                    <h1 className="heading">{categoryName}</h1>
+                    <div className="flexcol">
+                        <h1 className="heading">{categoryName}</h1>
+                        <p className="text">Showing {numberOfElements} of {totalItems} products</p>
+                    </div>
+
                     <select name="sort">
                         <option value="featured">Featured</option>
                         <option value="bestselling">Best Selling</option>
@@ -50,24 +78,42 @@ const Category = () => {
                 </div>
 
                 <div className="categoryGrid">
-                    {paginatedItems && paginatedItems.length > 0 && paginatedItems.map((pro) => (
+                    {getProLoading && <p className="text">Loading products...</p>}
+                    {getProError && <p className="text">Error loading products...</p>}
+                    {!getProLoading && !getProError && products && products.length > 0 && products.map((pro) => (
                         <Fragment key={pro.productId}>
                             <Suspense fallback={<Loader />}>
-                                <ProductCard name={pro.name} id={pro.productId} image={pro.image ? pro.image : defaulImg} ratings={pro.ratings} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
+                                <ProductCard name={pro.name} id={pro.productId} images={pro.images} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
                             </Suspense>
                         </Fragment>
                     ))}
                 </div>
 
-                {total_results > pageSize && (
+                {!getProLoading && !getProError && totalItems > size && (
                     <div className="pagination">
-                        <button disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>
-                            Previous
-                        </button>
-                        <span>{`Page ${currentPage} of ${total_pages}`}</span>
-                        <button disabled={currentPage === total_pages} onClick={() => handlePageChange(currentPage + 1)}>
-                            Next
-                        </button>
+                        <div className="flex wh" style={{ gap: '10px' }}>
+                            <button className='pagination-btn' onClick={() => handlePageChange(0)} disabled={isFirst}>
+                                First Page
+                            </button>
+                            <button className='pagination-btn' onClick={() => handlePageChange(page - 1)} disabled={!hasPrevious}>
+                                Previous
+                            </button>
+                        </div>
+                        <div className="flex wh" style={{ gap: '10px' }}>
+                            {pageNumbers.map(index => (
+                                <button key={index} className={`pagination-btn ${index === page ? 'active' : ''}`} onClick={() => handlePageChange(index)}>
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="flex wh" style={{ gap: '10px' }}>
+                            <button className='pagination-btn' onClick={() => handlePageChange(page + 1)} disabled={!hasNext}>
+                                Next
+                            </button>
+                            <button className='pagination-btn' onClick={() => handlePageChange(totalPages - 1)} disabled={isLast}>
+                                Last Page
+                            </button>
+                        </div>
                     </div>
                 )}
             </section>

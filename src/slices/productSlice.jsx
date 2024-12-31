@@ -32,10 +32,9 @@ export const addProduct = createAsyncThunk(
 
 export const fetchProducts = createAsyncThunk(
     'product/fetchProducts',
-    async (params = { page: 0, size: 10 }, { rejectWithValue }) => {
-        const { page, size } = params;
+    async ({ page, size }, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${BASE_URL}/api/product/getproducts`, {
+            const response = await axios.get(`${BASE_URL}product/getproducts`, {
                 params: { page, size },
             });
             return response.data;
@@ -47,6 +46,19 @@ export const fetchProducts = createAsyncThunk(
             } else {
                 return rejectWithValue(error.message);
             }
+        }
+    }
+);
+
+export const fetchProductDetails = createAsyncThunk(
+    'product/fetchProductDetails',
+    async (productId, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${BASE_URL}product/product/${productId}`
+            );
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data || error.message);
         }
     }
 );
@@ -119,7 +131,7 @@ export const deleteAddress = createAsyncThunk(
             );
 
             if (response.data.status) {
-                return addressId;
+                return { addressId, status: response.data.status };
             } else {
                 return rejectWithValue(response.data.message || 'Failed to delete address');
             }
@@ -127,6 +139,32 @@ export const deleteAddress = createAsyncThunk(
             return rejectWithValue(
                 error.response?.data?.message || 'Error occurred while deleting address'
             );
+        }
+    }
+);
+
+export const editAddress = createAsyncThunk(
+    'product/editAddress',
+    async (formData, { rejectWithValue, getState }) => {
+        try {
+            const { auth } = getState();
+            const token = auth.token;
+            const response = await axios.post(`${BASE_URL}user/update-address`, formData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.data.status) {
+                return rejectWithValue({ message: response.data.message });
+            }
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data) {
+                return rejectWithValue({ message: error.response.data.message || error.response.data });
+            }
+            return rejectWithValue({ message: error.message });
         }
     }
 );
@@ -151,6 +189,10 @@ const initialState = {
     hasNext: false,
     hasPrevious: false,
 
+    pDetails: null,
+    pdLoading: false,
+    pdError: null,
+
     addRessLoading: false,
     addRessError: null,
 
@@ -160,6 +202,9 @@ const initialState = {
 
     delAddLoading: false,
     delAddError: null,
+
+    editAddLoading: false,
+    editAddError: null,
 };
 
 const productSlice = createSlice({
@@ -207,13 +252,30 @@ const productSlice = createSlice({
                 state.getProError = action.payload;
             })
 
+            .addCase(fetchProductDetails.pending, (state) => {
+                state.pdLoading = true;
+                state.pdError = null;
+            })
+            .addCase(fetchProductDetails.fulfilled, (state, action) => {
+                state.pdLoading = false;
+                state.pdError = null;
+                state.pDetails = action.payload;
+            })
+            .addCase(fetchProductDetails.rejected, (state, action) => {
+                state.pdLoading = false;
+                state.pdError = action.payload || 'Something went wrong';
+            })
+
             .addCase(addAddress.pending, (state) => {
                 state.addRessLoading = true;
                 state.addRessError = null;
             })
-            .addCase(addAddress.fulfilled, (state) => {
+            .addCase(addAddress.fulfilled, (state, action) => {
                 state.addRessLoading = false;
                 state.addRessError = null;
+                if (action.payload) {
+                    state.addresses = [...state.addresses, action.payload];
+                }
             })
             .addCase(addAddress.rejected, (state, action) => {
                 state.addRessLoading = false;
@@ -248,6 +310,24 @@ const productSlice = createSlice({
             .addCase(deleteAddress.rejected, (state, action) => {
                 state.delAddLoading = false;
                 state.delAddError = action.payload;
+            })
+
+            .addCase(editAddress.pending, (state) => {
+                state.editAddLoading = true;
+                state.editAddError = null;
+            })
+            .addCase(editAddress.fulfilled, (state, action) => {
+                state.editAddLoading = false;
+                state.editAddError = null;
+                if (action.payload.data) {
+                    state.addresses = state.addresses.map(address =>
+                        address.id === action.payload.data.id ? action.payload.data : address
+                    );
+                }
+            })
+            .addCase(editAddress.rejected, (state, action) => {
+                state.editAddLoading = false;
+                state.editAddError = action.payload;
             })
     },
 });

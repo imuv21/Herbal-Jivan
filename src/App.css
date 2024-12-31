@@ -152,6 +152,10 @@ button:focus {
 
 /* ////////////// General styling ////////////// */
 
+.cap {
+  text-transform: capitalize;
+}
+
 .wh {
   width: 100%;
 }
@@ -932,6 +936,35 @@ button:focus {
   transform: translateY(-4px);
 }
 
+.addressDetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.addressRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.addressRow .textSmol {
+  width: 100%;
+  text-transform: capitalize;
+}
+.addressHeading {
+  width: 90px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
 .addresses {
   width: 100%;
   display: flex;
@@ -956,30 +989,38 @@ button:focus {
 }
 
 
-/* pagination */
+/* pagination btns */
 .pagination {
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 10px;
 }
-
-.pagination button:disabled {
+.pagination-btn {
+  width: fit-content;
+  white-space: nowrap;
+  padding: 7px 10px;
+  color: var(--codeFive);
+  background-color: var(--codeOne);
+}
+.pagination-btn:disabled {
   background-color: var(--codeTwo);
   color: var(--codeThree);
   border: 1px solid var(--codeThree);
   cursor: not-allowed;
 }
-
-.pagination span {
-  font-size: 1.2rem;
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--codeFive);
+  color: var(--codeOne);
+}
+.pagination-btn.active {
+  background-color: var(--codeSeven);
+  color: var(--codeOne);
+}
+.pagination-btn.active:hover {
+  background-color: var(--codeSix);
 }
 
-.pagination button:hover:not(:disabled) {
-  background-color: var(--codeOne);
-  color: var(--codeFour);
-}
 
 
 /* image slider */
@@ -1270,6 +1311,20 @@ button:focus {
 
 
 /* product detail page  */
+.stock {
+  width: fit-content;
+  height: 25px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--codeOne);
+  font-size: 10px;
+  line-height: 0px;
+  border-radius: 20px;
+  background-color: #ff7979;
+  padding: 0px 10px;
+}
 .proDetext {
   color: gray;
   line-height: 24px;
@@ -1469,6 +1524,11 @@ button:focus {
   color: var(--codeSix);
   white-space: nowrap;
 }
+.product-priceThreeTwo {
+  font-size: 15px;
+  color: var(--codeSix);
+  white-space: nowrap;
+}
 
 .product-discounThree {
   text-decoration: line-through;
@@ -1557,6 +1617,12 @@ button:focus {
   max-width: 200px;
   background-color: var(--codeSix);
   border: none;
+}
+.payBtn:disabled {
+  background-color: var(--codeTwo);
+  color: var(--codeThree);
+  border: 1px solid var(--codeThree);
+  cursor: not-allowed;
 }
 
 .estimated img {
@@ -3282,6 +3348,9 @@ button:focus {
     font-size: 10px;
     font-weight: 400;
   }
+  .addressHeading {
+    font-size: 10px;
+  }
 
   .proDetext {
     color: gray;
@@ -3633,6 +3702,11 @@ button:focus {
     color: var(--codeSix);
     white-space: nowrap;
   }
+  .product-priceThreeTwo {
+    font-size: 12px;
+    color: var(--codeSix);
+    white-space: nowrap;
+  }
 
   .product-discounThree {
     text-decoration: line-through;
@@ -3702,11 +3776,6 @@ button:focus {
 
   .para-3 {
     font-size: 12px;
-  }
-
-  .pagination {
-    justify-content: center;
-    align-items: center;
   }
 
   .footer-nav-item {
