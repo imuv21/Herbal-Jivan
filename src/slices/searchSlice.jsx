@@ -6,10 +6,10 @@ const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const searchProducts = createAsyncThunk(
     'search/searchProducts',
-    async ({ page = 0, size = 10, search = '' }, { rejectWithValue }) => {
+    async ({ page = 0, size = 10, search = '', sort = "PRICE_LOW_TO_HIGH" }, { rejectWithValue }) => {
         try {
             const response = await axios.get(`${BASE_URL}product/getproducts`, {
-                params: { page, size, search },
+                params: { page, size, search, sort },
             });
             return response.data;
         } catch (error) {

@@ -32,12 +32,13 @@ export const addProduct = createAsyncThunk(
 
 export const fetchProducts = createAsyncThunk(
     'product/fetchProducts',
-    async ({ page, size }, { rejectWithValue }) => {
+    async ({ page, size, sort = "PRICE_LOW_TO_HIGH" }, { rejectWithValue }) => {
         try {
             const response = await axios.get(`${BASE_URL}product/getproducts`, {
-                params: { page, size },
+                params: { page, size, sort },
             });
             return response.data;
+
         } catch (error) {
             if (error.response) {
                 return rejectWithValue(error.response.data.message || 'Error fetching products');
@@ -46,6 +47,34 @@ export const fetchProducts = createAsyncThunk(
             } else {
                 return rejectWithValue(error.message);
             }
+        }
+    }
+);
+
+export const deleteProduct = createAsyncThunk(
+    'product/deleteProduct',
+    async (productId, { rejectWithValue, getState }) => {
+        try {
+            const { auth } = getState();
+            const token = auth.token;
+
+            const response = await axios.delete(`${BASE_URL}product/deleteProduct/${productId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            if (response.data.status) {
+                return { productId, status: response.data.status };
+            } else {
+                return rejectWithValue(response.data.message || 'Failed to delete address');
+            }
+        } catch (error) {
+            return rejectWithValue(
+                error.response?.data?.message || 'Error occurred while deleting address'
+            );
         }
     }
 );
@@ -169,6 +198,54 @@ export const editAddress = createAsyncThunk(
     }
 );
 
+export const addQuestion = createAsyncThunk(
+    'product/addQuestion',
+    async ({ productId, question }, { rejectWithValue, getState }) => {
+        try {
+            const { auth } = getState();
+            const token = auth.token;
+            const response = await axios.post(`${BASE_URL}product/add-question`, null, {
+                params: { productId, question },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(
+                error.response?.data?.message || 'Error occurred while adding the question'
+            );
+        }
+    }
+);
+
+export const addReview = createAsyncThunk(
+    'product/addReview',
+    async (formData, { rejectWithValue, getState }) => {
+        try {
+            const { auth } = getState();
+            const token = auth.token;
+            const response = await axios.post(`${BASE_URL}product/add-review`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            if (!response.data.status) {
+                return rejectWithValue({ message: response.data.message });
+            }
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(
+                error.response?.data?.message || 'Error occurred while adding the question'
+            );
+        }
+    }
+);
+
+
 
 const initialState = {
     addProLoading: false,
@@ -180,14 +257,13 @@ const initialState = {
     totalItems: 0,
     totalPages: 0,
     numberOfElements: 0,
-    pageSize: 10,
-    currentPage: 0,
     isFirst: false,
     isLast: false,
-    firstPage: false,
-    lastPage: false,
     hasNext: false,
     hasPrevious: false,
+
+    delProLoading: false,
+    delProError: null,
 
     pDetails: null,
     pdLoading: false,
@@ -205,6 +281,12 @@ const initialState = {
 
     editAddLoading: false,
     editAddError: null,
+
+    addquestLoading: false,
+    addquestError: null,
+
+    addrevLoading: false,
+    addrevError: null
 };
 
 const productSlice = createSlice({
@@ -233,23 +315,43 @@ const productSlice = createSlice({
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.getProLoading = false;
                 state.getProError = null;
-                const { data, totalItems, totalPages, numberOfElements, pageSize, currentPage, isFirst, isLast, firstPage, lastPage, hasNext, hasPrevious } = action.payload;
+                const { data, totalItems, totalPages, numberOfElements, isFirst, isLast, hasNext, hasPrevious } = action.payload;
                 state.products = data;
                 state.totalItems = totalItems;
                 state.totalPages = totalPages;
                 state.numberOfElements = numberOfElements;
-                state.pageSize = pageSize;
-                state.currentPage = currentPage;
                 state.isFirst = isFirst;
                 state.isLast = isLast;
-                state.firstPage = firstPage;
-                state.lastPage = lastPage;
                 state.hasNext = hasNext;
                 state.hasPrevious = hasPrevious;
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.getProLoading = false;
                 state.getProError = action.payload;
+            })
+
+            .addCase(deleteProduct.pending, (state) => {
+                state.delProLoading = true;
+                state.delProError = null;
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.delProLoading = false;
+                state.delProError = null;
+                state.products = state.products.filter(
+                    (product) => product.productId !== action.payload.productId
+                );
+                state.totalItems -= 1;
+                state.numberOfElements -= 1;
+                if (state.numberOfElements === 0 && state.hasPrevious) {
+                    state.hasPrevious = false;
+                }
+                if (state.products.length === 0 && state.hasNext) {
+                    state.hasNext = false;
+                }
+            })
+            .addCase(deleteProduct.rejected, (state, action) => {
+                state.delProLoading = false;
+                state.delProError = action.payload;
             })
 
             .addCase(fetchProductDetails.pending, (state) => {
@@ -304,7 +406,7 @@ const productSlice = createSlice({
                 state.delAddLoading = false;
                 state.delAddError = null;
                 state.addresses = state.addresses.filter(
-                    (address) => address.id !== action.payload
+                    (address) => address.id !== action.payload.addressId
                 );
             })
             .addCase(deleteAddress.rejected, (state, action) => {
@@ -328,6 +430,32 @@ const productSlice = createSlice({
             .addCase(editAddress.rejected, (state, action) => {
                 state.editAddLoading = false;
                 state.editAddError = action.payload;
+            })
+
+            .addCase(addQuestion.pending, (state) => {
+                state.addquestLoading = true;
+                state.addquestError = null;
+            })
+            .addCase(addQuestion.fulfilled, (state) => {
+                state.addquestLoading = false;
+                state.addquestError = null;
+            })
+            .addCase(addQuestion.rejected, (state, action) => {
+                state.addquestLoading = false;
+                state.addquestError = action.payload;
+            })
+
+            .addCase(addReview.pending, (state) => {
+                state.addrevLoading = true;
+                state.addrevError = null;
+            })
+            .addCase(addReview.fulfilled, (state) => {
+                state.addrevLoading = false;
+                state.addrevError = null;
+            })
+            .addCase(addReview.rejected, (state, action) => {
+                state.addrevLoading = false;
+                state.addrevError = action.payload;
             })
     },
 });

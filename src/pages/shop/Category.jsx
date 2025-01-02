@@ -15,11 +15,13 @@ const Category = () => {
     const [categoryParams] = useSearchParams();
     const categoryName = categoryParams.get('query');
     const [page, setPage] = useState(0);
-    const [size, setSize] = useState(5);
+    const [size, setSize] = useState(10);
+    const [sort, setSort] = useState("PRICE_LOW_TO_HIGH");
+
 
     useEffect(() => {
-        dispatch(categoryProducts({ page, size, category: categoryName }));
-    }, [dispatch, page, size, categoryName]);
+        dispatch(categoryProducts({ page, size, category: categoryName, sort }));
+    }, [dispatch, page, size, categoryName, sort]);
 
     //pagination
     const handlePageChange = (newPage) => {
@@ -67,13 +69,9 @@ const Category = () => {
                         <p className="text">Showing {numberOfElements} of {totalItems} products</p>
                     </div>
 
-                    <select name="sort">
-                        <option value="featured">Featured</option>
-                        <option value="bestselling">Best Selling</option>
-                        <option value="atoz">Alphabetically A to Z</option>
-                        <option value="ztoa">Alphabetically Z to A</option>
-                        <option value="atoz">Price High to Low</option>
-                        <option value="atoz">Price Low to High</option>
+                    <select name="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+                        <option value="PRICE_HIGH_TO_LOW">Price High to Low</option>
+                        <option value="PRICE_LOW_TO_HIGH">Price Low to High</option>
                     </select>
                 </div>
 
@@ -83,7 +81,7 @@ const Category = () => {
                     {!getProLoading && !getProError && products && products.length > 0 && products.map((pro) => (
                         <Fragment key={pro.productId}>
                             <Suspense fallback={<Loader />}>
-                                <ProductCard name={pro.name} id={pro.productId} images={pro.images} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
+                                <ProductCard name={pro.name} id={pro.productId} images={pro.image} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
                             </Suspense>
                         </Fragment>
                     ))}

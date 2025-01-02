@@ -3,24 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import Sliders from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { fetchProducts } from '../slices/productSlice';
+import { categoryProducts } from '../slices/categorySlice';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Loader from './Loader/Loader';
 
+
 const ProductCard = lazy(() => import('./ProductCard'));
 
 
-const Carousel = () => {
+const CatCarousel = ({ category }) => {
 
     const dispatch = useDispatch();
-    const { products, getProLoading, getProError } = useSelector((state) => state.product);
+    const { products, getProLoading, getProError } = useSelector((state) => state.category);
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(10);
 
     useEffect(() => {
-        dispatch(fetchProducts({ page, size }));
-    }, [dispatch, page, size]);
+        dispatch(categoryProducts({ page, size, category }));
+    }, [dispatch, page, size, category ]);
 
     const NextArrow = (props) => {
         const { style, onClick } = props;
@@ -109,4 +110,4 @@ const Carousel = () => {
     );
 };
 
-export default Carousel;
+export default CatCarousel;

@@ -15,10 +15,11 @@ const Search = () => {
     const query = searchParams.get('query');
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(10);
+    const [sort, setSort] = useState("PRICE_LOW_TO_HIGH");
 
     useEffect(() => {
-        dispatch(searchProducts({ page, size, search: query }));
-    }, [dispatch, page, size, query]);
+        dispatch(searchProducts({ page, size, search: query, sort }));
+    }, [dispatch, page, size, query, sort]);
 
     //pagination
     const handlePageChange = (newPage) => {
@@ -65,11 +66,9 @@ const Search = () => {
                         <h1 className="text">Search results for - {query}</h1>
                         <p className="text">Showing {numberOfElements} of {totalItems} products</p>
                     </div>
-                    <select name="sort">
-                        <option value="atoz">Alphabetically A to Z</option>
-                        <option value="ztoa">Alphabetically Z to A</option>
-                        <option value="atoz">Price High to Low</option>
-                        <option value="atoz">Price Low to High</option>
+                    <select name="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+                        <option value="PRICE_HIGH_TO_LOW">Price High to Low</option>
+                        <option value="PRICE_LOW_TO_HIGH">Price Low to High</option>
                     </select>
                 </div>
 
@@ -79,7 +78,7 @@ const Search = () => {
                     {!getProLoading && !getProError && products && products.length > 0 && products.map((pro) => (
                         <Fragment key={pro.productId}>
                             <Suspense fallback={<Loader />}>
-                                <ProductCard name={pro.name} id={pro.productId} images={pro.images} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
+                                <ProductCard name={pro.name} id={pro.productId} images={pro.image} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
                             </Suspense>
                         </Fragment>
                     ))}

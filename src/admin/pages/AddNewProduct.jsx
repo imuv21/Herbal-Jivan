@@ -84,14 +84,6 @@ const AddNewProduct = () => {
                 formData.append("productImage", file);
             });
 
-            // reviewImages.forEach((file, index) => {
-            //     formData.append(`productImage[${index}]`, file);
-            // });
-
-            // reviewImages.forEach((file) => {
-            //     formData.append("productImage[]", file);
-            // });
-
             const result = await dispatch(addProduct(formData)).unwrap();
             toast(<div className='flex center g5'> < VerifiedIcon /> {"Product added successfully!"}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
 

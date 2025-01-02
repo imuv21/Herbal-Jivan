@@ -1,19 +1,21 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../slices/userSlice';
+import Loader from '../../components/Loader/Loader';
 
 
 const UsersList = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const { users, currentPage, totalPages, userLoading, userError } = useSelector((state) => state.user);
+    const { users, totalItems, totalPages, numberOfElements, isFirst, isLast, hasNext, hasPrevious, userLoading, userError } = useSelector((state) => state.user);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(2);
 
     useEffect(() => {
-        dispatch(getUsers({ page: currentPage }));
-    }, [dispatch, currentPage]);
+        dispatch(getUsers({ page, size }));
+    }, [dispatch, page, size]);
 
     const seeOrders = (id) => {
         navigate(`/dashboard/user-list/user-orders/${id}`);
@@ -25,22 +27,42 @@ const UsersList = () => {
         navigate(`/dashboard/user-list/user-questions/${id}`);
     }
 
-    const goToNextPage = () => {
-        if (currentPage < totalPages - 1) {
-            dispatch(getUsers({ page: currentPage + 1 }));
+    //pagination
+    const handlePageChange = (newPage) => {
+        if (newPage >= 0 && newPage < totalPages) {
+            setPage(newPage);
         }
     };
 
-    const goToPreviousPage = () => {
-        if (currentPage > 0) {
-            dispatch(getUsers({ page: currentPage - 1 }));
+    const getPageNumbers = (currentPage, totalPages) => {
+        const pageNumbers = [];
+        const maxPageButtons = 5;
+
+        let startPage = Math.max(0, currentPage - 2);
+        let endPage = Math.min(totalPages - 1, currentPage + 2);
+
+        if (endPage - startPage < maxPageButtons - 1) {
+            if (startPage === 0) {
+                endPage = Math.min(totalPages - 1, startPage + maxPageButtons - 1);
+            } else if (endPage === totalPages - 1) {
+                startPage = Math.max(0, endPage - maxPageButtons + 1);
+            }
         }
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbers.push(i);
+        }
+        return pageNumbers;
     };
+
+    const pageNumbers = getPageNumbers(page, totalPages);
 
     return (
         <Fragment>
             <article className="sortCat">
-                <h1 className="heading">Users List</h1>
+                <div className="flexcol g5">
+                    <h1 className="heading">Users List</h1>
+                    {!userLoading && !userError && numberOfElements && totalItems && <p className="text">Showing {numberOfElements} of {totalItems} users</p>}
+                </div>
                 <select name="sort">
                     <option value="atoz">Alphabetically A to Z</option>
                     <option value="ztoa">Alphabetically Z to A</option>
@@ -49,9 +71,9 @@ const UsersList = () => {
 
             <article className='usersList'>
                 {userLoading ? (
-                    <p>Loading...</p>
+                    <Loader />
                 ) : userError ? (
-                    <p>Error: {userError}</p>
+                    <p>Error loading users!</p>
                 ) : (
                     <Fragment>
                         <div className="userRow">
@@ -63,7 +85,7 @@ const UsersList = () => {
 
                         {users && users.length > 0 && users.map((user, index) => (
                             <div className="userRow" key={user.userId}>
-                                <div className="index">{(currentPage * 10) + index + 1}</div>
+                                <div className="index">{index + 1}</div>
                                 <div className="email">{`${user.firstname} ${user.lastname}`}</div>
                                 <div className="email">{user.email}</div>
                                 <div className="seeBtns">
@@ -73,15 +95,37 @@ const UsersList = () => {
                                 </div>
                             </div>
                         ))}
+
+                        {!userLoading && !userError && totalItems > size && (
+                            <div className="pagination" style={{ marginTop: '50px' }}>
+                                <div className="flex wh" style={{ gap: '10px' }}>
+                                    <button className='pagination-btn' onClick={() => handlePageChange(0)} disabled={isFirst}>
+                                        First Page
+                                    </button>
+                                    <button className='pagination-btn' onClick={() => handlePageChange(page - 1)} disabled={!hasPrevious}>
+                                        Previous
+                                    </button>
+                                </div>
+                                <div className="flex wh" style={{ gap: '10px' }}>
+                                    {pageNumbers.map(index => (
+                                        <button key={index} className={`pagination-btn ${index === page ? 'active' : ''}`} onClick={() => handlePageChange(index)}>
+                                            {index + 1}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="flex wh" style={{ gap: '10px' }}>
+                                    <button className='pagination-btn' onClick={() => handlePageChange(page + 1)} disabled={!hasNext}>
+                                        Next
+                                    </button>
+                                    <button className='pagination-btn' onClick={() => handlePageChange(totalPages - 1)} disabled={isLast}>
+                                        Last Page
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </Fragment>
                 )}
             </article>
-
-            <div className="pagination">
-                <button onClick={goToPreviousPage} disabled={currentPage === 0}>Previous</button>
-                <span>Page {currentPage + 1} of {totalPages}</span>
-                <button onClick={goToNextPage} disabled={currentPage === totalPages - 1}>Next</button>
-            </div>
         </Fragment>
     )
 }

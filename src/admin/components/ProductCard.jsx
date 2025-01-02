@@ -6,21 +6,26 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import defaulImg from '../../assets/images/defaultImage.jpg';
 
 
-const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => {
+const ProductCard = ({ id, name, images, originalPrice, salePrice, ratings, onDelete }) => {
 
     const navigate = useNavigate();
     const discountPercentage = ((originalPrice - salePrice) / originalPrice) * 100;
+
     const getStars = (ratings) => {
-        const fullStars = Math.floor(ratings);
-        const decimalPart = ratings % 1;
+        const numericRating = Number(ratings) || 0;
+        const fullStars = Math.floor(numericRating);
+        const decimalPart = numericRating % 1;
         const halfStar = decimalPart >= 0.25 && decimalPart <= 0.75 ? 1 : 0;
         const adjustedFullStars = decimalPart >= 0.75 ? fullStars + 1 : fullStars;
-        const emptyStars = 5 - adjustedFullStars - halfStar;
-        return { fullStars: adjustedFullStars, halfStar, emptyStars };
+        const emptyStars = Math.max(5 - adjustedFullStars - halfStar, 0);
+        return { fullStars: Math.min(adjustedFullStars, 5), halfStar, emptyStars };
     };
     const { fullStars, halfStar, emptyStars } = getStars(ratings);
+
+     const imageToShow = (images && images.length > 0 && images[1]?.imageUrl) ? images[1].imageUrl : defaulImg;
 
     const gotoEdit = (id, e) => {
         e.preventDefault();
@@ -33,17 +38,17 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
 
     return (
         <div className='show-img-detail-sub' >
-            <img className='product-img-size' src={image} alt={`${name}`} />
+            <img className='product-img-size' src={imageToShow} alt={`${name}`} />
             <div className="discount-icon">{discountPercentage.toFixed(0)}% OFF</div>
             <div className='product-detail-info'>
                 <div className="starCont">
-                    {[...Array(fullStars)].map((_, i) => (
+                    {[...Array(fullStars || 0)].map((_, i) => (
                         <span key={`full-${i}`} className="star"><StarIcon /></span>
                     ))}
                     {halfStar === 1 && (
                         <span className="star"><StarHalfIcon /></span>
                     )}
-                    {[...Array(emptyStars)].map((_, i) => (
+                    {[...Array(emptyStars || 0)].map((_, i) => (
                         <span key={`empty-${i}`} className="dullStar"><StarOutlineIcon /></span>
                     ))}
                     &nbsp;&nbsp;<span className="textBig">{ratings}</span>
@@ -57,7 +62,7 @@ const ProductCard = ({ id, name, image, originalPrice, salePrice, ratings }) => 
             <div className="show-img-detail-sub-admin">
                 <EditIcon style={{ color: 'var(--codeSix)' }} onClick={(e) => gotoEdit(id, e)} />
                 <RemoveRedEyeIcon style={{ color: 'var(--codeThree)' }} onClick={(e) => see(id, e)} />
-                <DeleteIcon />
+                <DeleteIcon onClick={() => onDelete(id)} />
             </div>
         </div>
     )
