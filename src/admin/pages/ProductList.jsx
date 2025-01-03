@@ -105,33 +105,36 @@ const ProductList = () => {
                 ))) : (<p className="text">No products left!</p>)}
             </div>
 
-            {!getProLoading && !getProError && totalItems > size && (
-                <div className="pagination" style={{ marginTop: '50px' }}>
-                    <div className="flex wh" style={{ gap: '10px' }}>
-                        <button className='pagination-btn' onClick={() => handlePageChange(0)} disabled={isFirst}>
-                            First Page
-                        </button>
-                        <button className='pagination-btn' onClick={() => handlePageChange(page - 1)} disabled={!hasPrevious}>
-                            Previous
-                        </button>
-                    </div>
-                    <div className="flex wh" style={{ gap: '10px' }}>
-                        {pageNumbers.map(index => (
-                            <button key={index} className={`pagination-btn ${index === page ? 'active' : ''}`} onClick={() => handlePageChange(index)}>
-                                {index + 1}
+            <div className="flex center wh">
+                {!getProLoading && !getProError && totalItems > size && (
+                    <div className="pagination" style={{ marginTop: '50px' }}>
+                        <div className="flex wh" style={{ gap: '10px' }}>
+                            <button className='pagination-btn' onClick={() => handlePageChange(0)} disabled={isFirst}>
+                                First Page
                             </button>
-                        ))}
+                            <button className='pagination-btn' onClick={() => handlePageChange(page - 1)} disabled={!hasPrevious}>
+                                Previous
+                            </button>
+                        </div>
+                        <div className="flex wh" style={{ gap: '10px' }}>
+                            {pageNumbers.map(index => (
+                                <button key={index} className={`pagination-btn ${index === page ? 'active' : ''}`} onClick={() => handlePageChange(index)}>
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="flex wh" style={{ gap: '10px' }}>
+                            <button className='pagination-btn' onClick={() => handlePageChange(page + 1)} disabled={!hasNext}>
+                                Next
+                            </button>
+                            <button className='pagination-btn' onClick={() => handlePageChange(totalPages - 1)} disabled={isLast}>
+                                Last Page
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex wh" style={{ gap: '10px' }}>
-                        <button className='pagination-btn' onClick={() => handlePageChange(page + 1)} disabled={!hasNext}>
-                            Next
-                        </button>
-                        <button className='pagination-btn' onClick={() => handlePageChange(totalPages - 1)} disabled={isLast}>
-                            Last Page
-                        </button>
-                    </div>
-                </div>
-            )}
+                )}
+            </div>
+
 
             <div className={`popup-btn ${isClickedFooter ? 'clicked' : ''}`}>
                 {isClickedFooter && (

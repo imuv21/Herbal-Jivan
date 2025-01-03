@@ -1,21 +1,22 @@
 import React, { Fragment, lazy, Suspense, useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoryProducts } from '../../slices/categorySlice';
 import Loader from '../../components/Loader/Loader';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const ProductCard = lazy(() => import('../../components/ProductCard'));
 
 
-const Category = () => {
+const AdminCategory = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { products, totalItems, totalPages, numberOfElements, isFirst, isLast, hasNext, hasPrevious, getProLoading, getProError } = useSelector((state) => state.category);
     const [categoryParams] = useSearchParams();
     const categoryName = categoryParams.get('query');
     const [page, setPage] = useState(0);
-    const [size, setSize] = useState(10);
+    const [size, setSize] = useState(5);
     const [sort, setSort] = useState("PRICE_LOW_TO_HIGH");
 
 
@@ -23,13 +24,16 @@ const Category = () => {
         dispatch(categoryProducts({ page, size, category: categoryName, sort }));
     }, [dispatch, page, size, categoryName, sort]);
 
+    const back = () => {
+        navigate('/dashboard/category-list');
+    }
+
     //pagination
     const handlePageChange = (newPage) => {
         if (newPage >= 0 && newPage < totalPages) {
             setPage(newPage);
         }
     };
-
     const getPageNumbers = (currentPage, totalPages) => {
         const pageNumbers = [];
         const maxPageButtons = 5;
@@ -49,44 +53,38 @@ const Category = () => {
         }
         return pageNumbers;
     };
-
     const pageNumbers = getPageNumbers(page, totalPages);
 
 
     return (
         <Fragment>
-            <Helmet>
-                <title>Category | Herbal Jivan - Embrace Wellness, Naturally</title>
-                <meta name="description" content="Discover the power of nature with Herbal Jivan. Your trusted source for herbal remedies, wellness products, and holistic health solutions crafted with care and authenticity. Embrace a healthier, natural lifestyle today." />
-                <link rel="canonical" href="https://herbaljivan.netlify.app/category" />
-            </Helmet>
-
-            <section className='page flexcol center'>
-
-                <div className="sortCat">
-                    <div className="flexcol">
-                        <h1 className="heading">{categoryName}</h1>
-                        <p className="text">Showing {numberOfElements} of {totalItems} products</p>
+            <div className="sortCat">
+                <div className="flexcol">
+                    <div className="backSection">
+                        <ArrowBackIosNewIcon onClick={back} />  <h1 className="heading">{categoryName}</h1>
                     </div>
-
-                    <select name="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
-                        <option value="PRICE_HIGH_TO_LOW">Price High to Low</option>
-                        <option value="PRICE_LOW_TO_HIGH">Price Low to High</option>
-                    </select>
+                    <p className="text" style={{ marginLeft: '30px' }}>Showing {numberOfElements} of {totalItems} products</p>
                 </div>
 
-                <div className="categoryGrid">
-                    {getProLoading && <p className="text">Loading products...</p>}
-                    {getProError && <p className="text">Error loading products...</p>}
-                    {!getProLoading && !getProError && products && products.length > 0 && products.map((pro) => (
-                        <Fragment key={pro.productId}>
-                            <Suspense fallback={<Loader />}>
-                                <ProductCard name={pro.name} id={pro.productId} images={pro.image} ratings={pro.finalStar} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
-                            </Suspense>
-                        </Fragment>
-                    ))}
-                </div>
+                <select name="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+                    <option value="PRICE_HIGH_TO_LOW">Price High to Low</option>
+                    <option value="PRICE_LOW_TO_HIGH">Price Low to High</option>
+                </select>
+            </div>
 
+            <div className="categoryGrid">
+                {getProLoading && <p className="text">Loading products...</p>}
+                {getProError && <p className="text">Error loading products...</p>}
+                {!getProLoading && !getProError && products && products.length > 0 && products.map((pro) => (
+                    <Fragment key={pro.productId}>
+                        <Suspense fallback={<Loader />}>
+                            <ProductCard name={pro.name} id={pro.productId} images={pro.image} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
+                        </Suspense>
+                    </Fragment>
+                ))}
+            </div>
+
+            <div className="flex center wh">
                 {!getProLoading && !getProError && totalItems > size && (
                     <div className="pagination">
                         <div className="flex wh" style={{ gap: '10px' }}>
@@ -114,9 +112,9 @@ const Category = () => {
                         </div>
                     </div>
                 )}
-            </section>
+            </div>
         </Fragment>
     );
 };
 
-export default Category;
+export default AdminCategory;

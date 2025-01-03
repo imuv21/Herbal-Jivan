@@ -78,7 +78,7 @@ const Search = () => {
                     {!getProLoading && !getProError && products && products.length > 0 && products.map((pro) => (
                         <Fragment key={pro.productId}>
                             <Suspense fallback={<Loader />}>
-                                <ProductCard name={pro.name} id={pro.productId} images={pro.image} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
+                                <ProductCard name={pro.name} id={pro.productId} images={pro.image} ratings={pro.finalStar} originalPrice={pro.originalPrice} salePrice={pro.salePrice} />
                             </Suspense>
                         </Fragment>
                     ))}

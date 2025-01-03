@@ -67,6 +67,8 @@ const QuestionsList = () => {
     };
 
     const deleteQuestionHandle = async (id) => {
+
+        if (isDeleted[id]) return;
         setIsDeleted((prevState) => ({ ...prevState, [id]: true }));
         try {
             const { status } = await dispatch(deleteQuestion(id)).unwrap();
@@ -138,7 +140,7 @@ const QuestionsList = () => {
                             <div className="seeBtns fw-600">action</div>
                         </div>
 
-                        {questions && questions.length > 0 ? ( questions.map((question, index) => (
+                        {questions && questions.length > 0 ? (questions.map((question, index) => (
                             <div className="userRowTwo" key={index}>
                                 <div className="index">{index + 1}</div>
                                 <div className="email">

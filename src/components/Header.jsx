@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import { getCart } from '../slices/cartSlice';
 
 
 const Header = () => {
@@ -18,6 +19,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
+    const { cartItems, getLoading, getError, updLoading, updError } = useSelector((state) => state.cart);
     const [isHovered, setIsHovered] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [searchInput, setSearchInput] = useState('');
@@ -55,6 +57,7 @@ const Header = () => {
         }
     }
 
+    const totalQuantity = cartItems?.reduce((total, item) => total + item.quantity, 0) || 0;
 
     return (
         <Fragment>
@@ -75,7 +78,7 @@ const Header = () => {
                     {!user && <Link to="/signup" className="cartIcon"><h1 className='textBig'>Sign up</h1></Link>}
                     {user && <Link to="/cart" className="cartIcon">
                         <LocalMallIcon />
-                        <div className="cartcount">12</div>
+                        <div className="cartcount">{totalQuantity}</div>
                     </Link>}
                     <div className="cartIcon profileIcon" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                         <AccountCircleIcon className='header-icon' />

@@ -28,6 +28,7 @@ const ReviewsList = () => {
     }
 
     const deleteReviewHandle = async (reviewId) => {
+        if (isDeleted[reviewId]) return;
         setIsDeleted((prevState) => ({ ...prevState, [reviewId]: true }));
         try {
             const { status } = await dispatch(deleteReview(reviewId)).unwrap();
@@ -44,6 +45,8 @@ const ReviewsList = () => {
     };
 
     const handleStatusChange = async (reviewId, newStatus) => {
+
+        if (isUpdating[reviewId]) return;
         setIsUpdating((prev) => ({ ...prev, [reviewId]: true }));
         try {
             const response = await dispatch(updateStatus({ reviewId, status: newStatus })).unwrap();

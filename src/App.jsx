@@ -22,7 +22,7 @@ const Profile = lazy(() => import('./pages/auth/Profile'));
 const Cart = lazy(() => import('./pages/shop/Cart'));
 const Order = lazy(() => import('./pages/shop/Order'));
 
-//both
+//public & private
 const Home = lazy(() => import('./pages/Home'));
 const Search = lazy(() => import('./pages/shop/Search'));
 const ProductDetails = lazy(() => import('./pages/shop/ProductDetails'));
@@ -54,6 +54,7 @@ const UserOrder = lazy(() => import('./admin/pages/UserOrder'));
 const Reviews = lazy(() => import('./admin/pages/Reviews'));
 const Questions = lazy(() => import('./admin/pages/Questions'));
 const ProductDetailAdmin = lazy(() => import('./admin/pages/ProductDetailAdmin'));
+const AdminCategory = lazy(() => import('./admin/pages/AdminCategory'));
 const AddAdmin = lazy(() => import('./admin/pages/AddAdmin'));
 const RoleManagement = lazy(() => import('./admin/pages/RoleManagement'));
 
@@ -93,6 +94,7 @@ function App() {
               <Route path="featured-products" element={<Featured />} />
               <Route path="add-new-admin" element={<AddAdmin />} />
               <Route path="role-management" element={<RoleManagement />} />
+              <Route path="admin-category" element={<AdminCategory />} />
             </Route>
           </Route>
 

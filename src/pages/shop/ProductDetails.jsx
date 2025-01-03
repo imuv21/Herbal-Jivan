@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTransition, animated } from '@react-spring/web';
-import { addToCart } from '../../slices/cartSlice';
+import { addToCart, getCart } from '../../slices/cartSlice';
 import { fetchProductDetails, addQuestion, addReview } from '../../slices/productSlice';
 import DOMPurify from 'dompurify';
 import CatCarousel from '../../components/CatCarousel';
@@ -62,7 +62,7 @@ const ProductDetails = () => {
   const totalreviews = fivestar + fourstar + threestar + twostar + onestar;
   const ratings = [{ stars: 5, count: fivestar }, { stars: 4, count: fourstar }, { stars: 3, count: threestar }, { stars: 2, count: twostar }, { stars: 1, count: onestar }];
 
-  const images = pDetails?.image?.map((img) => img.imageUrl) || [];
+  const images = pDetails?.image?.slice(0, 5).map((img) => img.imageUrl) || [];
   const inStock = pDetails?.stock > 0 ? true : false;
 
   //image slider
@@ -116,8 +116,10 @@ const ProductDetails = () => {
     if (isAdded) return;
     setIsAdded(true);
     try {
-      const response = await dispatch(addToCart({ productId: id, quantity })).unwrap();
+      await dispatch(addToCart({ productId: id, quantity })).unwrap();
       toast(<div className='flex center g5'> < VerifiedIcon /> {`${quantity} item${quantity > 1 ? 's' : ''} added to cart!`}</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+      dispatch(getCart());
+
     } catch (error) {
       console.error('Failed to add item to cart:', error);
       toast(<div className='flex center g5'> < NewReleasesIcon /> Something went wrong!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });

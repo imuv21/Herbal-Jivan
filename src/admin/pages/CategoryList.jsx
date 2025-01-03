@@ -5,7 +5,6 @@ import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UploadIcon from "@mui/icons-material/Upload";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -19,6 +18,7 @@ const CategoryList = () => {
     const [isClickedFooter, setIsClickedFooter] = useState(false);
     const [isClickedFooterTwo, setIsClickedFooterTwo] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+
 
     const handleClickFooter = (event) => {
         event.preventDefault();
@@ -113,11 +113,10 @@ const CategoryList = () => {
 
             <div className="adminGrid">
                 {categories && categories.length > 0 && categories.map((cat, index) => (
-                    <Link to={`/category?query=${cat.name}`} className="adminGridItem" key={index}>
+                    <Link to={`/dashboard/admin-category?query=${cat.name}`} className="adminGridItem" key={index}>
                         <img src={cat.image} alt={cat.name} />
                         <p className="text">{cat.name}</p>
-                        <EditIcon className='editIcon' onClick={handleClickFooter} />
-                        <DeleteIcon className='deleteIcon' />
+                        <DeleteIcon className='deleteIcon' onClick={handleClickFooter} />
                     </Link>
                 ))}
             </div>
@@ -126,33 +125,11 @@ const CategoryList = () => {
                 {isClickedFooter && (
                     <div className="popup">
                         <form className="popup-wrapper" style={{gap: '10px'}} onSubmit={handleSubmit}>
-                            <h2 className="headingSmol" style={{ marginBottom: '15px' }}>Edit Category</h2>
-
-                            <div className="pageBox5 flexcol center">
-                                <input type="text" name="categoryName" placeholder="Enter category name..." onChange={handleInputChange} required />
-                            </div>
-
-                            <div className="pageBox5 flexcol center">
-                                <label htmlFor="file-upload" className="upload-label wh">
-                                    <UploadIcon />
-                                    <span>Upload Images</span>
-                                </label>
-                                <input id="file-upload" type="file" multiple accept="image/*" onChange={handleImageUpload} style={{ display: "none" }} />
-                                {previewImages && previewImages.length > 0 &&
-                                    <div className="preview-container">
-                                        {previewImages.map((image, index) => (
-                                            <div className="preview-box" key={index}>
-                                                <img src={image} alt={`Preview ${index}`} className="preview-image" />
-                                                <span className="delete-icon"><DeleteForeverIcon onClick={() => handleDeleteImage(index)} /></span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                }
-                            </div>
+                            <h2 className="headingSmol" style={{ marginBottom: '15px' }}>Are you sure?</h2>
 
                             <div className="flex wh g10" style={{ marginTop: '15px', justifyContent: 'space-between' }}>
-                                <button type='submit' className="applyBtn" disabled={isSubmitted}>{isSubmitted ? 'Updating...' : 'Update'}</button>
-                                <button type="button" className="applyBtn" onClick={closepopup}>Cancel</button>
+                                <button type='submit' className="applyBtn" disabled={isSubmitted}>{isSubmitted ? 'Deleting...' : 'Yes'}</button>
+                                <button type="button" className="applyBtn" onClick={closepopup}>No</button>
                             </div>
                         </form>
                     </div>

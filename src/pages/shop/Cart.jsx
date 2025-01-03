@@ -16,7 +16,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const { cartItems, totalSellPrice, getLoading, getError, updLoading, updError } = useSelector((state) => state.cart);
     const [quantities, setQuantities] = useState({});
-    const [isRemove, setIsRemove] = useState(false);
+    const [isRemoving, setIsRemoving] = useState({});
 
     useEffect(() => {
         dispatch(getCart());
@@ -53,15 +53,20 @@ const Cart = () => {
         });
     };
 
-    const removeCart = (productId) => {
-        if (isRemove) return;
-        setIsRemove(true);
+    const removeItem = async (index, productId) => {
+        if (isRemoving[index]) return;
+
+        setIsRemoving((prev) => ({ ...prev, [index]: true }));
+
         try {
-            dispatch(removeCart(productId));
-            toast(<div className='flex center g5'> < VerifiedIcon /> Product removed successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
-        
+            const response = dispatch(removeCart(productId)).unwrap();
+            if (response?.status) {
+                toast(<div className='flex center g5'> < VerifiedIcon /> Product removed successfully!</div>, { duration: 3000, position: 'top-center', style: { color: 'rgb(0, 189, 0)' }, className: 'success', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+            }
         } catch (error) {
             toast(<div className='flex center g5'> < NewReleasesIcon /> Error removing product!</div>, { duration: 3000, position: 'top-center', style: { color: 'red' }, className: 'failed', ariaProps: { role: 'status', 'aria-live': 'polite' } });
+        } finally {
+            setIsRemoving((prev) => ({ ...prev, [index]: false }));
         }
     }
 
@@ -98,10 +103,12 @@ const Cart = () => {
                 <section className='cartCont'>
 
                     <article className='cartProducts'>
-                        {(getLoading || updLoading) && <p className="text">Loading products...</p>}
-                        {(getError || updError) && <p className="text">Error loading products...</p>}
-                        {!getLoading && !updLoading && !getError && !updError && cartItems && cartItems.length > 0 ?
-                            (cartItems.map((item, index) => (
+                        {getLoading || updLoading ? (
+                            <p className="text">Loading products...</p>
+                        ) : getError || updError ? (
+                            <p className="text">Error loading products...</p>
+                        ) : cartItems && cartItems.length > 0 ? (
+                            cartItems.map((item, index) => (
                                 <article key={index} className='cartproCont'>
                                     <img src={item.image?.imageUrl || cartImg} className='cartImg' alt={`${item.itemName}-${index}`} />
                                     <div className='cartDetailCont'>
@@ -112,7 +119,7 @@ const Cart = () => {
                                                 <p className='product-priceThree'>Rs. {Number(item.sellPrice).toFixed(2)}₹</p>
                                                 <div className='discount-iconThree'>{discount(item.unitPrice, item.sellPrice)}% OFF</div>
                                             </div>
-                                            <button onClick={() => removeItem(item.productId)}>Remove</button>
+                                            <button onClick={() => removeItem(index, item.productId)} disabled={isRemoving[index]}>{isRemoving[index] ? 'Removing...' : 'Remove'}</button>
                                         </div>
                                         <div className="cartBtnsCont">
                                             {totalSellPrice && <p className='product-priceThreeTwo'>Rs. {totalPrice(item.sellPrice, quantities[index])}₹</p>}
@@ -124,10 +131,10 @@ const Cart = () => {
                                         </div>
                                     </div>
                                 </article>
-                            )))
-                            :
+                            ))
+                        ) : (
                             <p className='text'>There are no products in the cart!</p>
-                        }
+                        )}
                     </article>
 
                     <article className='cartCalc'>

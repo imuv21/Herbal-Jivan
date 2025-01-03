@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTransition, animated } from '@react-spring/web';
 import { fetchProductDetails } from '../../slices/productSlice';
-import { productDetail } from '../../assets/schemas';
 import Loader from '../../components/Loader/Loader';
 import freedelivery from '../../assets/images/icons8-delivery-100.png';
 import cod from '../../assets/images/icons8-cash-on-delivery-100.png';
@@ -28,9 +27,9 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const ProductDetailAdmin = () => {
 
-    const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { id } = useParams();
     const { pDetails, pdLoading, pdError } = useSelector((state) => state.product);
 
     useEffect(() => {
@@ -81,7 +80,7 @@ const ProductDetailAdmin = () => {
 
     //image slider
 
-    const images = pDetails?.image?.map((img) => img.imageUrl) || [];
+    const images = pDetails?.image?.slice(0, 5).map((img) => img.imageUrl) || [];
     const inStock = pDetails?.stock > 0 ? true : false;
     const [index, setIndex] = useState(0);
     const interval = 4000;
@@ -206,7 +205,7 @@ const ProductDetailAdmin = () => {
                     </article>
 
                     <article className='pdContDetail'>
-                        <h1 className='headingSmol'>{productDetail?.name}</h1>
+                        <h1 className='headingSmol'>{pDetails?.name}</h1>
                         <div className="starContTwo">
                             {[...Array(fullStars || 0)].map((_, i) => (
                                 <span key={`full-${i}`} className="starTwo"><StarIcon /></span>

@@ -1735,15 +1735,16 @@ button:focus {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
+  outline: 1px solid hotpink;
 }
 
 .preview-box {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border: 1px solid var(--codeThree);
   border-radius: var(--brOne);
 }
@@ -3020,14 +3021,8 @@ button:focus {
 }
 
 
-.editIcon {
-  top: 10px;
-  right: 10px;
-  color: var(--codeSix);
-}
-
 .deleteIcon {
-  top: 35px;
+  top: 10px;
   right: 10px;
   color: var(--codeFour);
 }
